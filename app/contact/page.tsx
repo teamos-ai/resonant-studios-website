@@ -34,17 +34,31 @@ export default function ContactPage() {
             <li className="card">
               <span className="rs-feature-icon" aria-hidden="true"><MapPin size={28} strokeWidth={1.5} /></span>
               <h3 className="rs-feature-h">Visit the studio</h3>
-              <p>Werribee, Victoria — Melbourne&apos;s west. By appointment only. Discovery call first so we can plan access.</p>
+              <p>
+                Kindred Studios<br />
+                3 Harris Street<br />
+                Yarraville VIC 3013
+              </p>
+              <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
+                By appointment only — discovery call first so we can plan access.<br />
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Kindred+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">Get directions →</a>
+              </p>
+            </li>
+            <li className="card">
+              <span className="rs-feature-icon" aria-hidden="true"><Phone size={28} strokeWidth={1.5} /></span>
+              <h3 className="rs-feature-h">Call Tony</h3>
+              <p><a href="tel:+61456225315" style={{ fontSize: "var(--fs-lead)", fontWeight: 500 }}>0456 225 315</a></p>
+              <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
+                Call or text Tony directly. If he&apos;s in session he&apos;ll get back to you the same day.
+              </p>
             </li>
             <li className="card">
               <span className="rs-feature-icon" aria-hidden="true"><Mail size={28} strokeWidth={1.5} /></span>
               <h3 className="rs-feature-h">Email</h3>
-              <p><a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a><br /><span style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)" }}>Replies within 1 business day.</span></p>
-            </li>
-            <li className="card">
-              <span className="rs-feature-icon" aria-hidden="true"><Phone size={28} strokeWidth={1.5} /></span>
-              <h3 className="rs-feature-h">Phone</h3>
-              <p>Coming soon. For now, the discovery-call calendar gets you a direct phone or Zoom slot with Tony.</p>
+              <p><a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a></p>
+              <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
+                Replies within 1 business day.
+              </p>
             </li>
           </ul>
         </div>

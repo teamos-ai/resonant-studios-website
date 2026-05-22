@@ -12,7 +12,7 @@ export default function HomePage() {
       >
         <div className="rs-page-container">
           <div className="rs-hero-content">
-            <div className="rs-hero-eyebrow">NDIS-aligned music studio · Werribee</div>
+            <div className="rs-hero-eyebrow">NDIS-aligned music studio · Yarraville VIC</div>
             <h1 id="hero-heading">
               Your song. <em>Your story.</em><br />On Spotify.
             </h1>
@@ -35,7 +35,7 @@ export default function HomePage() {
           <div className="rs-twocol">
             <div className="rs-twocol-media">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/library/photos/tony-mixing-profile.jpg" alt="Tony Rako in profile at the mixing desk in the Werribee studio." />
+              <img src="/library/photos/tony-mixing-profile.jpg" alt="Tony Rako in profile at the mixing desk." />
             </div>
             <div className="rs-twocol-content">
               <div className="eyebrow" style={{ color: "var(--secondary)" }}>Why we built this</div>

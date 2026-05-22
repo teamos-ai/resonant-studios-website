@@ -39,7 +39,7 @@ export default function AboutPage() {
                 When Tony looked at Melbourne&apos;s west, he saw a region with over 8,000 NDIS participants — and zero music studios built for them. No accessible spaces. No disability-informed staff. No pathway to a real, professional outcome.
               </p>
               <p style={{ color: "var(--ink-2)", lineHeight: "var(--lh-body)" }}>
-                So he built one. Werribee, Victoria. Wheelchair access. Sensory-friendly lighting. A quiet break space. Support workers welcome.
+                So he built one. At <a href="https://www.google.com/maps/dir/?api=1&destination=Kindred+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">Kindred Studios in Yarraville</a> — wheelchair access, sensory-friendly lighting, a quiet break space, support workers welcome.
               </p>
             </div>
             <div className="rs-twocol-media">
