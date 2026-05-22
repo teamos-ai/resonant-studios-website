@@ -1,6 +1,14 @@
 import Link from "next/link";
+import Script from "next/script";
 
 export const metadata = { title: "For support coordinators — A referral worth making" };
+
+// Go High Level referral form — provided 2026-05-22.
+// Form ID: yztI9Mq5aooBrsTHAa1g
+// Direct link: https://link.teamos.ai/widget/form/yztI9Mq5aooBrsTHAa1g
+const GHL_REFERRAL_ID = "yztI9Mq5aooBrsTHAa1g";
+const GHL_REFERRAL_SRC = `https://link.teamos.ai/widget/form/${GHL_REFERRAL_ID}`;
+const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 
 export default function CoordinatorsPage() {
   return (
@@ -82,20 +90,44 @@ export default function CoordinatorsPage() {
             </li>
           </ol>
           <div style={{ marginTop: "var(--s-7)" }}>
-            <div className="form-shell" style={{ background: "var(--bg-elevated)", border: "1px solid var(--rule)", borderRadius: "var(--r-4)", boxShadow: "var(--shadow-md)", padding: "var(--s-7)", maxWidth: 640, marginInline: "auto" }}>
-              <div style={{ marginBottom: "var(--s-6)" }}>
+            <div className="form-shell" style={{ background: "var(--bg-elevated)", border: "1px solid var(--rule)", borderRadius: "var(--r-4)", boxShadow: "var(--shadow-md)", padding: "var(--s-7)", maxWidth: 720, marginInline: "auto" }}>
+              <div style={{ marginBottom: "var(--s-5)" }}>
                 <div className="eyebrow" style={{ marginBottom: 10 }}>Referral form</div>
                 <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 30, lineHeight: 1.1, margin: 0, color: "var(--ink)" }}>Refer a participant</h3>
-                <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>The form below is hosted by Go High Level. Submissions go straight to Tony.</p>
+                <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>Hosted by Go High Level. Submissions go straight to Tony — he&apos;ll reply within one business day.</p>
               </div>
-              <div className="rs-embed-slot">
-                {/* TODO: replace with GHL referral form iframe embed code */}
-                Go High Level referral form embed — paste iframe here
+              <div className="rs-referral-embed">
+                <iframe
+                  src={GHL_REFERRAL_SRC}
+                  id={`inline-${GHL_REFERRAL_ID}`}
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Referral Form - Coordinators"
+                  data-height="619"
+                  data-layout-iframe-id={`inline-${GHL_REFERRAL_ID}`}
+                  data-form-id={GHL_REFERRAL_ID}
+                  title="Refer a participant — Resonant Studios"
+                  style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
+                />
               </div>
+              <p style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: "var(--s-4)", lineHeight: 1.5 }}>
+                Form not loading?{" "}
+                <a href={GHL_REFERRAL_SRC} target="_blank" rel="noopener noreferrer">Open the referral form in a new tab →</a>
+              </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* GHL embed loader — defers until after hydration so it never blocks
+          first paint. Listens for postMessage events from the referral form
+          iframe and resizes it as content height changes. */}
+      <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
 
       <section className="rs-cta-band" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
         <div className="rs-cta-band-inner">
