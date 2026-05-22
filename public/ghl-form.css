@@ -1,0 +1,420 @@
+/* ============================================================
+Resonant Studios — GHL form theme
+Drop-in CSS for the Advanced CSS field on a GHL form.
+Mirrors the live design system: DM Serif headings, Manrope body,
+token-based colour, 48px touch targets, AA contrast, motion floor,
+light + dark via prefers-color-scheme.
+
+SETUP: Add the font <link> to your GHL page's Tracking Code → Head:
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+============================================================ */
+
+/* ===== Tokens — light mode (default) ====================== */
+:root {
+  --bg:              #EDE9DF;
+  --bg-elevated:     #FFFFFF;
+  --bg-sunken:       #DDD7C8;
+  --ink:             #1F1E1B;
+  --ink-muted:       rgba(31, 30, 27, 0.66);
+  --ink-soft:        rgba(31, 30, 27, 0.52);
+  --rule:            rgba(31, 30, 27, 0.10);
+  --rule-strong:     rgba(31, 30, 27, 0.22);
+  --primary:         #A95930;
+  --primary-hover:   #8B4525;
+  --primary-wash:    rgba(169, 89, 48, 0.14);
+  --secondary:       #587058;
+  --secondary-hover: #3F523F;
+  --secondary-ink:   #FFFFFF;
+  --success:         #6F8C6A;
+  --error:           #9C4A3C;
+  --error-wash:      rgba(156, 74, 60, 0.10);
+
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-body:    "Manrope", system-ui, -apple-system, sans-serif;
+
+  --r-1: 6px;  --r-2: 10px; --r-3: 14px;
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px;
+  --tap-target: 48px;
+  --ease:       cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast:   140ms; --dur-mid: 220ms;
+  --focus-ring: 2px solid var(--primary);
+}
+
+/* ===== Tokens — dark mode (system pref) =================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:              #181C1F;
+    --bg-elevated:     #22272B;
+    --bg-sunken:       #131618;
+    --ink:             #E6E8EA;
+    --ink-muted:       rgba(230, 232, 234, 0.70);
+    --ink-soft:        rgba(230, 232, 234, 0.52);
+    --rule:            rgba(230, 232, 234, 0.10);
+    --rule-strong:     rgba(230, 232, 234, 0.22);
+    --primary:         #E58F66;
+    --primary-hover:   #F0A57F;
+    --primary-wash:    rgba(229, 143, 102, 0.18);
+    --secondary:       #9BB89C;
+    --secondary-hover: #B6CDB7;
+    --secondary-ink:   #0E1A10;
+    --success:         #A8CFA1;
+    --error:           #E89A88;
+    --error-wash:      rgba(232, 154, 136, 0.18);
+  }
+}
+
+/* ===== Base ============================================== */
+html, body {
+  background:               var(--bg) !important;
+  color:                    var(--ink) !important;
+  font-family:              var(--font-body) !important;
+  font-size:                16px;
+  line-height:              1.55;
+  -webkit-font-smoothing:   antialiased;
+  -moz-osx-font-smoothing:  grayscale;
+}
+
+* { box-sizing: border-box; }
+
+::selection { background: var(--primary-wash); color: var(--ink); }
+
+*:focus-visible {
+  outline:        var(--focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* ===== Headings ========================================== */
+h1, h2, h3, .form-title, .form-heading {
+  font-family:    var(--font-display) !important;
+  font-weight:    500 !important;
+  color:          var(--ink) !important;
+  letter-spacing: -0.02em;
+  line-height:    1.15;
+  margin:         0 0 var(--s-3) 0;
+}
+h1, .form-title { font-size: clamp(1.75rem, 3vw, 2.25rem); }
+h2              { font-size: clamp(1.5rem, 2.4vw, 1.875rem); }
+h3              { font-size: 1.25rem; }
+
+p, .form-description {
+  color:       var(--ink-muted) !important;
+  font-family: var(--font-body) !important;
+  line-height: 1.6;
+  margin:      0 0 var(--s-4) 0;
+}
+
+a { color: var(--primary); text-decoration: none; transition: color var(--dur-fast) var(--ease); }
+a:hover { color: var(--primary-hover); text-decoration: underline; text-underline-offset: 4px; }
+
+/* ===== Labels ============================================ */
+label,
+.field-label,
+.form-builder--field label,
+.field-builder--item label {
+  display:        block !important;
+  font-family:    var(--font-body) !important;
+  font-size:      0.875rem !important;
+  font-weight:    600 !important;
+  color:          var(--ink) !important;
+  margin-bottom:  6px !important;
+  letter-spacing: 0;
+}
+
+label .required,
+label[aria-required="true"]::after,
+.required-asterisk {
+  color: var(--primary) !important;
+}
+
+/* ===== Inputs / textareas / selects ====================== */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea,
+select,
+.form-control,
+.form-input {
+  display:      block !important;
+  width:        100% !important;
+  min-height:   var(--tap-target) !important;
+  background:   var(--bg-elevated) !important;
+  border:       1.5px solid var(--rule-strong) !important;
+  border-radius: var(--r-2) !important;
+  padding:      12px 14px !important;
+  font-family:  var(--font-body) !important;
+  font-size:    1rem !important;
+  color:        var(--ink) !important;
+  line-height:  1.45;
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    box-shadow   var(--dur-fast) var(--ease),
+    background   var(--dur-fast) var(--ease) !important;
+  box-shadow:        none !important;
+  -webkit-appearance: none;
+  appearance:        none;
+}
+
+textarea { min-height: 120px !important; resize: vertical; }
+
+select {
+  background-image:    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat:   no-repeat !important;
+  background-position: right 14px center !important;
+  background-size:     16px 16px !important;
+  padding-right:       40px !important;
+}
+
+input::placeholder,
+textarea::placeholder { color: var(--ink-soft) !important; opacity: 1; }
+
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline:       var(--focus-ring) !important;
+  outline-offset: 2px !important;
+  border-color:  var(--primary) !important;
+  box-shadow:    0 0 0 3px var(--primary-wash) !important;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+select[aria-invalid="true"],
+input.is-invalid,
+textarea.is-invalid,
+select.is-invalid,
+.has-error input,
+.has-error textarea,
+.has-error select {
+  border-color: var(--error) !important;
+}
+input[aria-invalid="true"]:focus,
+.is-invalid:focus {
+  box-shadow: 0 0 0 3px var(--error-wash) !important;
+}
+
+.field-error,
+.form-error,
+.error-message,
+.invalid-feedback,
+[role="alert"] {
+  color:       var(--error) !important;
+  font-size:   0.8125rem !important;
+  font-family: var(--font-body) !important;
+  margin-top:  6px !important;
+  line-height: 1.45;
+}
+
+.field-hint,
+.form-help-text,
+.help-block,
+small.text-muted {
+  color:       var(--ink-soft) !important;
+  font-size:   0.75rem !important;
+  font-family: var(--font-body) !important;
+  margin-top:  6px !important;
+  line-height: 1.45;
+}
+
+/* ===== Checkboxes & radios =============================== */
+input[type="checkbox"],
+input[type="radio"] {
+  width:      20px !important;
+  height:     20px !important;
+  min-height: 20px !important;
+  margin-right: 10px !important;
+  accent-color: var(--secondary);
+  cursor:     pointer;
+  flex-shrink: 0;
+}
+
+.form-check,
+.checkbox-wrapper,
+.radio-wrapper,
+label:has(> input[type="checkbox"]),
+label:has(> input[type="radio"]) {
+  min-height:  var(--tap-target);
+  display:     flex !important;
+  align-items: center;
+  gap:         10px;
+  cursor:      pointer;
+  font-weight: 500 !important;
+  padding:     6px 0;
+}
+
+/* ===== Submit button ===================================== */
+button[type="submit"],
+.form-builder--submit,
+.btn-submit,
+.ghl-btn,
+.ghl-btn-primary,
+input[type="submit"] {
+  display:         inline-flex !important;
+  align-items:     center !important;
+  justify-content: center !important;
+  gap:             var(--s-2);
+  width:           100% !important;
+  min-height:      var(--tap-target) !important;
+  padding:         14px 24px !important;
+  background:      var(--secondary) !important;
+  color:           var(--secondary-ink) !important;
+  border:          1.5px solid transparent !important;
+  border-radius:   var(--r-2) !important;
+  font-family:     var(--font-body) !important;
+  font-size:       1rem !important;
+  font-weight:     600 !important;
+  letter-spacing:  0;
+  cursor:          pointer !important;
+  text-decoration: none !important;
+  text-transform:  none !important;
+  box-shadow:      0 1px 2px rgba(0, 0, 0, 0.08) !important;
+  transition:
+    background  var(--dur-mid) var(--ease),
+    transform   var(--dur-fast) var(--ease),
+    box-shadow  var(--dur-mid) var(--ease) !important;
+}
+
+button[type="submit"]:hover,
+.form-builder--submit:hover,
+.btn-submit:hover,
+.ghl-btn-primary:hover,
+input[type="submit"]:hover {
+  background:      var(--secondary-hover) !important;
+  color:           var(--secondary-ink) !important;
+  text-decoration: none !important;
+}
+
+button[type="submit"]:active,
+.btn-submit:active,
+.ghl-btn-primary:active,
+input[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+button[type="submit"]:disabled,
+.btn-submit:disabled,
+.ghl-btn-primary:disabled,
+input[type="submit"]:disabled {
+  opacity:   0.4;
+  cursor:    not-allowed;
+  transform: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  button[type="submit"],
+  .form-builder--submit,
+  .btn-submit,
+  .ghl-btn,
+  .ghl-btn-primary,
+  input[type="submit"] {
+    background: var(--primary) !important;
+    color:      #1A0E08 !important;
+  }
+  button[type="submit"]:hover,
+  .form-builder--submit:hover,
+  .btn-submit:hover,
+  .ghl-btn-primary:hover,
+  input[type="submit"]:hover {
+    background: var(--primary-hover) !important;
+    color:      #1A0E08 !important;
+  }
+}
+
+/* ===== Field spacing ===================================== */
+.form-builder--item,
+.field-builder--item,
+.form-group,
+.field-group {
+  margin-bottom: var(--s-5) !important;
+}
+
+/* ===== Form container ==================================== */
+.form-builder,
+.form-container,
+form {
+  font-family: var(--font-body) !important;
+  color:       var(--ink) !important;
+}
+
+.form-section,
+.field-section {
+  background:    var(--bg-elevated);
+  border:        1px solid var(--rule);
+  border-radius: var(--r-3);
+  padding:       var(--s-5);
+  margin-bottom: var(--s-5);
+}
+
+/* ===== Date / time picker overrides ====================== */
+.flatpickr-calendar,
+.calendar,
+.datepicker,
+.date-picker {
+  background:    var(--bg-elevated) !important;
+  border:        1px solid var(--rule) !important;
+  border-radius: var(--r-3) !important;
+  color:         var(--ink) !important;
+  font-family:   var(--font-body) !important;
+  box-shadow:    0 8px 24px -8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.flatpickr-day.selected,
+.calendar .selected,
+.date-picker .selected {
+  background:   var(--primary) !important;
+  color:        #FFFFFF !important;
+  border-color: var(--primary) !important;
+}
+
+.flatpickr-day:hover,
+.calendar .day:hover {
+  background: var(--primary-wash) !important;
+  color:      var(--primary) !important;
+}
+
+/* ===== Accessibility preferences ========================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:  0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High-contrast light mode */
+@media (prefers-contrast: more) {
+  :root {
+    --rule:        rgba(31, 30, 27, 0.30);
+    --rule-strong: rgba(31, 30, 27, 0.50);
+  }
+  input, textarea, select { border-width: 2px !important; }
+}
+
+/* High-contrast dark mode — flattened from nested @media (invalid CSS) */
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --rule:        rgba(230, 232, 234, 0.30);
+    --rule-strong: rgba(230, 232, 234, 0.50);
+  }
+}
+
+/* ===== Responsive ======================================== */
+@media (max-width: 480px) {
+  html, body { font-size: 16px; }
+  h1, .form-title { font-size: 1.5rem; }
+  button[type="submit"],
+  input[type="submit"] {
+    font-size: 0.9375rem !important;
+    padding:   12px 20px !important;
+  }
+}
