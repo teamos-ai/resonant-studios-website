@@ -588,3 +588,112 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 @media (max-width: 880px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
 }
+
+/* ============================================================
+   Legal / long-form prose pages (/privacy, /terms, /accessibility)
+   Editorial container width, generous vertical rhythm, sage anchor
+   colour switch, dimmed code blocks. Token-driven throughout.
+   ============================================================ */
+
+.rs-legal { padding-bottom: var(--s-10); }
+
+.rs-legal-header {
+  background: var(--bg-sunken);
+  padding: var(--s-9) 0 var(--s-7);
+  margin-bottom: var(--s-8);
+  border-bottom: 1px solid var(--rule);
+}
+.rs-legal-header h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-display);
+  line-height: 1.05;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+  margin: var(--s-2) 0 var(--s-4);
+}
+
+.rs-legal-meta {
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+  margin: var(--s-3) 0;
+}
+.rs-legal-meta strong { color: var(--ink-2); font-weight: 600; }
+
+.rs-legal-note {
+  background: var(--primary-wash);
+  border-left: 3px solid var(--primary);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--r-2);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-top: var(--s-5);
+}
+.rs-legal-note strong { color: var(--primary); font-weight: 600; }
+
+.rs-legal .prose {
+  max-width: var(--w-prose);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+  color: var(--ink-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.rs-legal .prose h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+  margin: var(--s-8) 0 var(--s-4);
+}
+.rs-legal .prose h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: 1.25;
+  color: var(--ink);
+  margin: var(--s-6) 0 var(--s-3);
+}
+.rs-legal .prose p { margin: 0 0 var(--s-4); }
+.rs-legal .prose strong { color: var(--ink); font-weight: 600; }
+.rs-legal .prose em { color: var(--ink-2); font-style: italic; }
+.rs-legal .prose a { color: var(--secondary); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.rs-legal .prose a:hover { color: var(--secondary-hover); }
+.rs-legal .prose ul { margin: 0 0 var(--s-5) 0; padding-left: var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+.rs-legal .prose li { color: var(--ink-muted); }
+.rs-legal .prose li::marker { color: var(--primary); }
+.rs-legal .prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  padding: 2px 6px;
+  border-radius: var(--r-1);
+  color: var(--ink);
+}
+.rs-legal .prose hr,
+.rs-legal .prose .rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: var(--s-8) 0 var(--s-6);
+}
+.rs-legal-foot {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  margin-top: var(--s-6);
+}
+.rs-legal .prose .rs-lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  margin: 0 0 var(--s-4);
+}
+
+@media (max-width: 720px) {
+  .rs-legal-header { padding: var(--s-8) 0 var(--s-6); margin-bottom: var(--s-6); }
+  .rs-legal .prose { font-size: 0.9375rem; }
+}
