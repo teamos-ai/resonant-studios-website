@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Music } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -80,9 +80,8 @@ export default function Footer() {
 
         <div className="rs-footer-bottom">
           <div className="rs-footer-social">
-            <a href="#" aria-label="Resonant Studios on Instagram" rel="me noopener"><Instagram size={20} strokeWidth={1.75} /></a>
-            <a href="#" aria-label="Resonant Studios on Facebook" rel="me noopener"><Facebook size={20} strokeWidth={1.75} /></a>
-            <a href="#" aria-label="Resonant Studios on Spotify" rel="me noopener"><Music size={20} strokeWidth={1.75} /></a>
+            <a href="https://www.instagram.com/resonant_studios_au/" target="_blank" aria-label="Resonant Studios on Instagram" rel="me noopener noreferrer"><Instagram size={20} strokeWidth={1.75} /></a>
+            <a href="https://www.facebook.com/share/1CiExXGG4Z/" target="_blank" aria-label="Resonant Studios on Facebook" rel="me noopener noreferrer"><Facebook size={20} strokeWidth={1.75} /></a>
           </div>
 
           <div className="rs-footer-legal">
@@ -94,7 +93,7 @@ export default function Footer() {
           </div>
 
           <div className="rs-footer-copy">
-            © {year} Resonant Studios · Tony Rako · ABN coming soon
+            © {year} Resonant Studios · Tony Rako · ABN 17 544 307 578
           </div>
         </div>
 
