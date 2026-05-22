@@ -485,6 +485,31 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   background: var(--bg);
 }
 
+/* /book — two-column form layout (context left, GHL iframe right). */
+.rs-book-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(360px, 1.6fr);
+  gap: var(--s-6);
+  align-items: start;
+}
+.rs-book-context { display: flex; flex-direction: column; gap: var(--s-3); }
+.rs-book-embed {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  overflow: hidden;
+  /* GHL form needs vertical room. Reserve ~896px (its data-height) so the
+     iframe doesn't collapse before the GHL embed script measures content. */
+  min-height: 896px;
+  height: 896px;
+}
+.rs-book-embed iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+@media (max-width: 880px) {
+  .rs-book-layout { grid-template-columns: 1fr; }
+  .rs-book-embed { min-height: 1000px; height: 1000px; }
+}
+
 /* Responsive helpers — applied across pages. */
 @media (max-width: 880px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr !important; }

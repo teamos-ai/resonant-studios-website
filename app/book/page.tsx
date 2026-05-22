@@ -1,6 +1,14 @@
 import Link from "next/link";
+import Script from "next/script";
 
 export const metadata = { title: "Book a call — A relaxed 30–45 minute conversation" };
+
+// Go High Level booking form — provided 2026-05-22.
+// Form ID: iCxMBCuuvvpz6mEJO1He
+// Direct link: https://link.teamos.ai/widget/form/iCxMBCuuvvpz6mEJO1He
+const GHL_FORM_ID = "iCxMBCuuvvpz6mEJO1He";
+const GHL_FORM_SRC = `https://link.teamos.ai/widget/form/${GHL_FORM_ID}`;
+const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 
 export default function BookPage() {
   return (
@@ -27,12 +35,12 @@ export default function BookPage() {
             <div style={{ marginBottom: "var(--s-5)" }}>
               <div className="eyebrow" style={{ marginBottom: 10 }}>Pick a time</div>
               <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 26, lineHeight: 1.1, margin: 0, color: "var(--ink)" }}>A relaxed conversation, not a sales call.</h2>
-              <p style={{ color: "var(--ink-muted)", fontSize: 14, lineHeight: 1.55, marginTop: 10, maxWidth: 480 }}>
+              <p style={{ color: "var(--ink-muted)", fontSize: 14, lineHeight: 1.55, marginTop: 10, maxWidth: 540 }}>
                 All times are Melbourne local. Sessions are 30–45 minutes. You&apos;ll get a confirmation email with the Zoom link or Tony&apos;s number once you book.
               </p>
             </div>
-            <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "minmax(240px, 1fr) minmax(280px, 1.4fr)", gap: "var(--s-6)", alignItems: "start" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "var(--s-3)" }}>
+            <div className="rs-book-layout">
+              <aside className="rs-book-context">
                 <div className="eyebrow" style={{ color: "var(--secondary)" }}>What we&apos;ll cover</div>
                 <ul style={{ paddingLeft: 18, color: "var(--ink-muted)", lineHeight: 1.6, margin: 0, display: "flex", flexDirection: "column", gap: "var(--s-2)" }}>
                   <li>Your goals and musical interests</li>
@@ -43,10 +51,29 @@ export default function BookPage() {
                 <p style={{ fontSize: "var(--fs-small)", color: "var(--ink-soft)", marginTop: "var(--s-4)" }}>
                   No pressure. No commitment. Just a chat about what you might want to make.
                 </p>
-              </div>
-              <div className="rs-embed-slot" style={{ minHeight: 360 }}>
-                {/* TODO: replace with GHL calendar iframe embed code */}
-                Go High Level calendar embed — paste iframe here
+                <p style={{ fontSize: "var(--fs-small)", color: "var(--ink-soft)" }}>
+                  Form not loading? <a href={GHL_FORM_SRC} target="_blank" rel="noopener noreferrer">Open the booking form in a new tab →</a>
+                </p>
+              </aside>
+
+              <div className="rs-book-embed">
+                <iframe
+                  src={GHL_FORM_SRC}
+                  id={`inline-${GHL_FORM_ID}`}
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Discovery Call Booking Form (on the website)"
+                  data-height="896"
+                  data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
+                  data-form-id={GHL_FORM_ID}
+                  title="Discovery Call Booking Form"
+                  style={{ width: "100%", height: "100%", border: "none", borderRadius: 8 }}
+                />
               </div>
             </div>
             <p style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: "var(--s-4)", lineHeight: 1.5 }}>
@@ -67,6 +94,11 @@ export default function BookPage() {
           </div>
         </div>
       </section>
+
+      {/* GHL form embed loader — defers until after hydration so it never
+          blocks the first paint. Sizes the iframe and handles cross-origin
+          height messages from the GHL widget. */}
+      <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
     </>
   );
 }
