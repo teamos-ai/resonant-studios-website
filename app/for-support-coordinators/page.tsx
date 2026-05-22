@@ -8,7 +8,7 @@ export default function CoordinatorsPage() {
       <section
         className="rs-hero"
         aria-labelledby="coord-hero"
-        style={{ backgroundImage: "url('/library/photos/tony-with-participant.jpg')" }}
+        style={{ backgroundImage: "url('/library/photos/founder-client.jpg')" }}
       >
         <div className="rs-page-container">
           <div className="rs-hero-content">
