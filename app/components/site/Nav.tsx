@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import AccessibilityMenu from "../ui/AccessibilityMenu";
+
+// Theme is handled inside the AccessibilityMenu dropdown — no separate
+// toggle button (per user feedback 2026-05-22).
 
 const links = [
   { href: "/about", label: "About" },
@@ -13,70 +16,6 @@ const links = [
   { href: "/ndis-funding", label: "Funding" },
   { href: "/for-support-coordinators", label: "Coordinators" },
 ];
-
-const STORAGE_KEY = "rs-a11y";
-
-function ThemeToggle() {
-  const [resolved, setResolved] = useState<"light" | "dark">("dark");
-
-  useEffect(() => {
-    const compute = (): "light" | "dark" => {
-      const explicit = document.documentElement.getAttribute("data-theme");
-      if (explicit === "light") return "light";
-      if (explicit === "dark") return "dark";
-      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-    };
-    setResolved(compute());
-    const mq = window.matchMedia("(prefers-color-scheme: light)");
-    const onMq = () => setResolved(compute());
-    const observer = new MutationObserver(() => setResolved(compute()));
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    mq.addEventListener("change", onMq);
-    return () => {
-      observer.disconnect();
-      mq.removeEventListener("change", onMq);
-    };
-  }, []);
-
-  const toggle = () => {
-    const next = resolved === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", next);
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      const settings = raw ? JSON.parse(raw) : {};
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...settings, theme: next }));
-    } catch {}
-    window.dispatchEvent(new CustomEvent("rs-a11y-update"));
-  };
-
-  const Icon = resolved === "light" ? Moon : Sun;
-  const label = resolved === "light" ? "Switch to dark mode" : "Switch to light mode";
-
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      onClick={toggle}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 48,
-        height: 48,
-        background: "transparent",
-        color: "var(--ink)",
-        border: "1.5px solid var(--rule-strong)",
-        borderRadius: 10,
-        cursor: "pointer",
-        padding: 0,
-        flexShrink: 0,
-      }}
-    >
-      <Icon size={18} strokeWidth={1.75} />
-    </button>
-  );
-}
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -113,7 +52,6 @@ export default function Nav() {
         </nav>
 
         <div className="rs-nav-controls">
-          <ThemeToggle />
           <AccessibilityMenu />
           <Link className="btn rs-nav-cta" href="/book">Book a call</Link>
           <button

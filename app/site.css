@@ -101,12 +101,41 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   .rs-floating-nav { padding: 8px 8px 8px 12px; }
 }
 
-/* ===== Button hover — hold text colour, design-system green ===== */
+/* ===== Button hover — hold text colour, design-system token-locked ===== */
 .btn:hover           { background: var(--secondary-hover); color: var(--secondary-ink); text-decoration: none; }
 .btn-secondary:hover { background: rgba(var(--ink-on-dark-rgb), 0.06); color: var(--ink); text-decoration: none; }
 :root[data-theme="light"] .btn-secondary:hover { background: rgba(var(--ink-on-light-rgb), 0.06); }
 .btn-ghost:hover     { background: var(--secondary-wash); color: var(--secondary); text-decoration: none; }
 .btn-sec:hover       { background: var(--primary-hover); color: var(--primary-ink); text-decoration: none; }
+
+/* ============================================================
+   Primary CTA — theme-aware brand swap (user request 2026-05-22)
+   Light mode: sage green (design-system default — already on token).
+   Dark mode:  brand terracotta (warmer, more visible on dark slate).
+   Hover holds in the same hue family.
+
+   This is a deliberate marketing-site override of the design-system
+   `.btn` token mapping. It is NOT applied to .btn-secondary, .btn-ghost,
+   or .btn-sec — only the primary filled .btn CTA.
+   ============================================================ */
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec) {
+  background: var(--primary);
+  color: var(--primary-ink);
+}
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):hover {
+  background: var(--primary-hover);
+  color: var(--primary-ink);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec) {
+    background: var(--primary);
+    color: var(--primary-ink);
+  }
+  :root:not([data-theme]) .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):hover {
+    background: var(--primary-hover);
+    color: var(--primary-ink);
+  }
+}
 
 /* ===== Footer ============================================= */
 .rs-footer {
