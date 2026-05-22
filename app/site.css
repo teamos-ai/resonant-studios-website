@@ -485,29 +485,75 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   background: var(--bg);
 }
 
-/* /book — two-column form layout (context left, GHL iframe right). */
-.rs-book-layout {
-  display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(360px, 1.6fr);
-  gap: var(--s-6);
-  align-items: start;
+/* /book — single-column layout: context strip on top, full-width calendar
+   widget below. The GHL calendar widget bundles date/time + form fields and
+   auto-resizes via postMessage from form_embed.js, so we just need a sensible
+   min-height to reserve vertical space before the widget reports its size. */
+.rs-book-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-4);
+  box-shadow: var(--shadow-md);
+  padding: var(--s-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
 }
-.rs-book-context { display: flex; flex-direction: column; gap: var(--s-3); }
+.rs-book-header { display: flex; flex-direction: column; gap: var(--s-2); }
+.rs-book-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  line-height: 1.1;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+  margin: 0;
+}
+.rs-book-lead {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 60ch;
+}
+.rs-book-context-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  padding: var(--s-5);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+}
 .rs-book-embed {
   background: var(--bg);
   border: 1px solid var(--rule);
   border-radius: var(--r-2);
   overflow: hidden;
-  /* GHL form needs vertical room. Reserve ~896px (its data-height) so the
-     iframe doesn't collapse before the GHL embed script measures content. */
-  min-height: 896px;
-  height: 896px;
+  /* Reserve space for the GHL booking calendar before its embed script
+     measures content. Calendar + form combined typically renders ~720-1000px. */
+  min-height: 760px;
 }
-.rs-book-embed iframe { display: block; width: 100%; height: 100%; border: 0; }
+.rs-book-embed iframe {
+  display: block;
+  width: 100%;
+  /* Let the GHL embed script grow the iframe via postMessage. */
+  min-height: 760px;
+  height: 760px;
+  border: 0;
+}
+.rs-book-foot {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0;
+}
 
-@media (max-width: 880px) {
-  .rs-book-layout { grid-template-columns: 1fr; }
-  .rs-book-embed { min-height: 1000px; height: 1000px; }
+@media (max-width: 720px) {
+  .rs-book-card { padding: var(--s-5); }
+  .rs-book-context-strip { grid-template-columns: 1fr; padding: var(--s-4); gap: var(--s-4); }
+  .rs-book-embed,
+  .rs-book-embed iframe { min-height: 900px; height: 900px; }
 }
 
 /* Responsive helpers — applied across pages. */
