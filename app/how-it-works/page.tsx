@@ -1,0 +1,91 @@
+import Link from "next/link";
+
+export const metadata = { title: "How it works — From first call to Spotify release" };
+
+const steps = [
+  { n: "01", h: "Free discovery call", p: "A relaxed 30–45 minute conversation with Tony. We talk through your goals, how NDIS funding works for sessions, and whether Resonant Studios is the right fit. No pressure." },
+  { n: "02", h: "First session", p: "Three hours in the studio. You bring your ideas. Tony brings 25+ years of professional production. We start shaping what your song could be." },
+  { n: "03", h: "Songwriting & recording", p: "Across the following weeks, we write lyrics, build the beat, record vocals and instruments — whatever the song needs. At your pace, in your style." },
+  { n: "04", h: "Mixing & mastering", p: "Tony mixes and masters your finished track to the same professional standard he applies to major-label work. Nothing watered down." },
+  { n: "05", h: "Released on Spotify", p: "Your song goes live on Spotify under your name. Friends, family, your support team — everyone can hear what you made. Yours to share, forever." },
+];
+
+export default function HowItWorksPage() {
+  return (
+    <>
+      <section
+        className="rs-hero"
+        aria-labelledby="how-hero"
+        style={{ backgroundImage: "url('/library/photos/tony-synth-piano.jpg')" }}
+      >
+        <div className="rs-page-container">
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">How it works</div>
+            <h1 id="how-hero">Idea to Spotify in <em>twelve weeks.</em></h1>
+            <p className="rs-hero-lead">
+              One free discovery call. One first session. A handful of weeks together. One finished song, released under your name. Here&apos;s the full path.
+            </p>
+            <div className="rs-hero-cta">
+              <Link className="btn" href="/book">Book a call</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="rs-page-section">
+        <div className="rs-page-container editorial">
+          <header className="rs-section-heading">
+            <div className="eyebrow">The journey</div>
+            <h2>Five steps. Twelve weeks. One song.</h2>
+            <p>Every step happens at your pace. If a week needs to be lighter, we go lighter. If a session needs to focus on lyrics instead of recording, we do that.</p>
+          </header>
+          <ol className="rs-steps">
+            {steps.map((s) => (
+              <li key={s.n} className="rs-step">
+                <div className="rs-step-num">{s.n}</div>
+                <div>
+                  <h3>{s.h}</h3>
+                  <p>{s.p}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="rs-page-section tone-sunken">
+        <div className="rs-page-container editorial">
+          <header className="rs-section-heading">
+            <div className="eyebrow">Inside a session</div>
+            <h2>A three-hour rhythm.</h2>
+            <p>Most sessions follow the same shape, so you always know roughly what to expect.</p>
+          </header>
+          <ul className="rs-feature-grid" role="list">
+            <li className="card">
+              <h3 className="rs-feature-h">Hour 1 · Check in</h3>
+              <p>Settle in, talk through how the week was, decide what we&apos;re focused on today. Songwriting, lyric ideas, listening back to what we made last time.</p>
+            </li>
+            <li className="card">
+              <h3 className="rs-feature-h">Hour 2 · Make</h3>
+              <p>The actual recording, instrument practice, vocal takes, or production work. The studio is fully yours — you decide what we touch.</p>
+            </li>
+            <li className="card">
+              <h3 className="rs-feature-h">Hour 3 · Listen back</h3>
+              <p>Playback, small mix adjustments, set the next step. You leave with a rough mix to take home if you want one.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="rs-cta-band" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
+        <div className="rs-cta-band-inner">
+          <h2>Ready to start the journey?</h2>
+          <p>The first call is free. It&apos;s where we work out if this is right for you.</p>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link className="btn btn-lg" href="/book">Book a call</Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
