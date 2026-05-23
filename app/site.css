@@ -263,17 +263,33 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 
 /* ===== Marketing page utilities ========================== */
 
-/* Hero — 40 / 60 split: bento on the left, content on the right.
-   Bento is an empty placeholder slot for a graphic / image / animation
-   that visually demonstrates the service. Text sits on the regular page
-   background (no photo overlay needed). */
+/* Hero — full-bleed photo background + vignette/scrim, with a 40 / 60
+   split layered on top (bento placeholder left, content right).
+   The bento is an empty slot for a graphic / image / animation that
+   visually demonstrates the service; it sits on top of the photo. */
 .rs-hero {
   position: relative;
-  background: var(--bg);
-  padding: calc(var(--nav-h) + var(--s-8)) 0 var(--s-8);
-  min-height: clamp(560px, 80vh, 720px);
+  min-height: 100vh;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: calc(-1 * (var(--nav-h) + 16px));
   display: flex;
   align-items: center;
+  padding: calc(var(--nav-h) + var(--s-7)) var(--s-5) var(--s-7);
+  background-color: var(--slate-800);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--ink-on-image);
+  isolation: isolate;
+}
+.rs-hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 35% 50%, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.85) 100%),
+    linear-gradient(105deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.60) 40%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.30) 100%);
 }
 .rs-hero-grid {
   display: grid;
@@ -281,28 +297,22 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   gap: clamp(var(--s-6), 4vw, var(--s-8));
   align-items: center;
   width: 100%;
+  max-width: var(--w-content);
+  margin-inline: auto;
 }
 .rs-hero-bento {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-wash) 0%, var(--secondary-wash) 100%);
-  border: 1px solid var(--rule);
+  background: linear-gradient(135deg, rgba(229, 143, 102, 0.18) 0%, rgba(155, 184, 156, 0.18) 100%);
+  border: 1px solid rgba(245, 239, 228, 0.22);
   border-radius: var(--r-4);
   aspect-ratio: 4 / 5;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 .rs-hero-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-}
-.rs-hero-eyebrow {
-  font-family: var(--font-body);
-  font-size: var(--fs-micro);
-  font-weight: 600;
-  letter-spacing: var(--track-eyebrow);
-  text-transform: uppercase;
-  color: var(--primary);
+  display: flex; flex-direction: column; gap: var(--s-5);
 }
 .rs-hero h1 {
   font-family: var(--font-display);
@@ -310,32 +320,42 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   font-size: var(--fs-h1);
   line-height: 1.1;
   letter-spacing: var(--track-tight);
-  color: var(--ink);
+  color: var(--ink-on-image);
+  text-shadow: 0 2px 18px rgba(0,0,0,0.45);
   margin: 0;
 }
-.rs-hero h1 em { font-style: italic; color: var(--ink-2); }
+.rs-hero h1 em { font-style: italic; color: var(--ink-on-image); }
 .rs-hero-lead {
   font-family: var(--font-body);
   font-size: var(--fs-lead);
   line-height: 1.5;
-  color: var(--ink-muted);
-  max-width: 52ch;
+  color: var(--ink-on-image-90);
+  text-shadow: 0 1px 10px rgba(0,0,0,0.45);
+  max-width: 56ch;
   margin: 0;
 }
-.rs-hero-cta { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-3); }
+.rs-hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--terra-300);
+}
+.rs-hero-cta { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-2); }
 
-/* Mobile — text first, bento below */
+/* Mobile — text first, bento stacks below */
 @media (max-width: 880px) {
   .rs-hero {
-    min-height: auto;
-    padding-top: calc(var(--nav-h) + var(--s-6));
-    padding-bottom: var(--s-7);
+    min-height: 100vh;
+    align-items: flex-end;
+    padding-bottom: var(--s-8);
   }
   .rs-hero-grid {
     grid-template-columns: 1fr;
     gap: var(--s-6);
   }
-  .rs-hero-content { order: 1; }
+  .rs-hero-content { order: 1; max-width: 100%; }
   .rs-hero-bento {
     order: 2;
     aspect-ratio: 4 / 3;
@@ -942,8 +962,9 @@ h3.rs-price-eyebrow {
   border: 2px solid var(--ink) !important;
 }
 
-/* C-9: 78% solid black overlay on photographic surfaces (CTA band + final
-   CTA only — the hero no longer has a photo bg in the split layout). */
+/* C-9: 78% solid black overlay on photographic surfaces (hero, CTA band,
+   final CTA all have photo backgrounds in the split-hero layout). */
+:root[data-contrast="more"] .rs-hero::after,
 :root[data-contrast="more"] .rs-cta-band::after,
 :root[data-contrast="more"] .home-final-cta::after {
   content: "";
@@ -998,7 +1019,7 @@ h3.rs-price-eyebrow {
     color: HighlightText;
     border-color: HighlightText;
   }
-  .rs-cta-band::after, .home-final-cta::after {
+  .rs-hero::after, .rs-cta-band::after, .home-final-cta::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -1143,8 +1164,8 @@ h3.rs-price-eyebrow {
   max-width: 45ch;
 }
 
-/* E-7: Stronger 70% photo scrim (CTA band + final CTA only — hero is
-   no longer photo-backed in the split layout). */
+/* E-7: Stronger 70% photo scrim on all photographic surfaces. */
+:root[data-readable="easy"] .rs-hero::after,
 :root[data-readable="easy"] .rs-cta-band::after,
 :root[data-readable="easy"] .home-final-cta::after {
   content: "";

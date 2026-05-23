@@ -14,20 +14,22 @@ const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 export default function ContactPage() {
   return (
     <>
-      <section className="rs-hero" aria-labelledby="contact-hero">
-        <div className="rs-page-container">
-          <div className="rs-hero-grid">
-            <div className="rs-hero-bento" aria-hidden="true" />
-            <div className="rs-hero-content">
-              <div className="rs-hero-eyebrow">Contact</div>
-              <h1 id="contact-hero">Get in touch with <em>Tony.</em></h1>
-              <p className="rs-hero-lead">
-                The fastest way is to book a free discovery call. If you&apos;d rather email, send a message — Tony reads every one.
-              </p>
-              <div className="rs-hero-cta">
-                <Link className="btn" href="/book">Book a call</Link>
-                <a className="btn btn-secondary" href="mailto:hello@resonantstudios.com.au">Email Tony</a>
-              </div>
+      <section
+        className="rs-hero"
+        aria-labelledby="contact-hero"
+        style={{ backgroundImage: "url('/library/photos/control-room-wide.jpg')" }}
+      >
+        <div className="rs-hero-grid">
+          <div className="rs-hero-bento" aria-hidden="true" />
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">Contact</div>
+            <h1 id="contact-hero">Get in touch with <em>Tony.</em></h1>
+            <p className="rs-hero-lead">
+              The fastest way is to book a free discovery call. If you&apos;d rather email, send a message — Tony reads every one.
+            </p>
+            <div className="rs-hero-cta">
+              <Link className="btn" href="/book">Book a call</Link>
+              <a className="btn btn-on-image" href="mailto:hello@resonantstudios.com.au">Email Tony</a>
             </div>
           </div>
         </div>

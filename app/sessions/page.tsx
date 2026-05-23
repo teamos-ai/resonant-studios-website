@@ -5,20 +5,22 @@ export const metadata = { title: "Sessions — What a session looks like" };
 export default function SessionsPage() {
   return (
     <>
-      <section className="rs-hero" aria-labelledby="sessions-hero">
-        <div className="rs-page-container">
-          <div className="rs-hero-grid">
-            <div className="rs-hero-bento" aria-hidden="true" />
-            <div className="rs-hero-content">
-              <div className="rs-hero-eyebrow">Sessions</div>
-              <h1 id="sessions-hero">Three hours, <em>one-on-one,</em> in a real studio.</h1>
-              <p className="rs-hero-lead">
-                No experience needed. No rigid curriculum. Just your ideas, Tony&apos;s 25 years of expertise, and a Spotify-ready song waiting to be made.
-              </p>
-              <div className="rs-hero-cta">
-                <Link className="btn" href="/book">Book a call</Link>
-                <Link className="btn btn-secondary" href="/ndis-funding">NDIS funding</Link>
-              </div>
+      <section
+        className="rs-hero"
+        aria-labelledby="sessions-hero"
+        style={{ backgroundImage: "url('/library/photos/tony-hands-on-console.jpg')" }}
+      >
+        <div className="rs-hero-grid">
+          <div className="rs-hero-bento" aria-hidden="true" />
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">Sessions</div>
+            <h1 id="sessions-hero">Three hours, <em>one-on-one,</em> in a real studio.</h1>
+            <p className="rs-hero-lead">
+              No experience needed. No rigid curriculum. Just your ideas, Tony&apos;s 25 years of expertise, and a Spotify-ready song waiting to be made.
+            </p>
+            <div className="rs-hero-cta">
+              <Link className="btn" href="/book">Book a call</Link>
+              <Link className="btn btn-on-image" href="/ndis-funding">NDIS funding</Link>
             </div>
           </div>
         </div>

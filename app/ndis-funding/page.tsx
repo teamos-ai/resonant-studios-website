@@ -5,19 +5,21 @@ export const metadata = { title: "NDIS funding — Using your plan for music ses
 export default function NDISFundingPage() {
   return (
     <>
-      <section className="rs-hero" aria-labelledby="ndis-hero">
-        <div className="rs-page-container">
-          <div className="rs-hero-grid">
-            <div className="rs-hero-bento" aria-hidden="true" />
-            <div className="rs-hero-content">
-              <div className="rs-hero-eyebrow">NDIS funding</div>
-              <h1 id="ndis-hero">Using your NDIS plan <em>for music sessions.</em></h1>
-              <p className="rs-hero-lead">
-                Sessions at Resonant Studios may be funded under your NDIS Capacity Building budget — specifically Community, Social and Civic Participation. Here&apos;s what that means in practice.
-              </p>
-              <div className="rs-hero-cta">
-                <Link className="btn" href="/book">Talk to Tony</Link>
-              </div>
+      <section
+        className="rs-hero"
+        aria-labelledby="ndis-hero"
+        style={{ backgroundImage: "url('/library/photos/console-fader-detail.jpg')" }}
+      >
+        <div className="rs-hero-grid">
+          <div className="rs-hero-bento" aria-hidden="true" />
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">NDIS funding</div>
+            <h1 id="ndis-hero">Using your NDIS plan <em>for music sessions.</em></h1>
+            <p className="rs-hero-lead">
+              Sessions at Resonant Studios may be funded under your NDIS Capacity Building budget — specifically Community, Social and Civic Participation. Here&apos;s what that means in practice.
+            </p>
+            <div className="rs-hero-cta">
+              <Link className="btn" href="/book">Talk to Tony</Link>
             </div>
           </div>
         </div>

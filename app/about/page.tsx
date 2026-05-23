@@ -5,20 +5,22 @@ export const metadata = { title: "About — Built by someone who gets it" };
 export default function AboutPage() {
   return (
     <>
-      <section className="rs-hero" aria-labelledby="about-hero">
-        <div className="rs-page-container">
-          <div className="rs-hero-grid">
-            <div className="rs-hero-bento" aria-hidden="true" />
-            <div className="rs-hero-content">
-              <div className="rs-hero-eyebrow">About</div>
-              <h1 id="about-hero">Built by <em>someone who gets it.</em></h1>
-              <p className="rs-hero-lead">
-                Tony Rako has spent 25+ years producing music professionally — and navigates mental health disability firsthand. That combination is rare. It&apos;s exactly why Resonant Studios exists.
-              </p>
-              <div className="rs-hero-cta">
-                <Link className="btn" href="/book">Book a call</Link>
-                <Link className="btn btn-secondary" href="/how-it-works">How sessions run</Link>
-              </div>
+      <section
+        className="rs-hero"
+        aria-labelledby="about-hero"
+        style={{ backgroundImage: "url('/library/photos/tony-mixing-profile.jpg')" }}
+      >
+        <div className="rs-hero-grid">
+          <div className="rs-hero-bento" aria-hidden="true" />
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">About</div>
+            <h1 id="about-hero">Built by <em>someone who gets it.</em></h1>
+            <p className="rs-hero-lead">
+              Tony Rako has spent 25+ years producing music professionally — and navigates mental health disability firsthand. That combination is rare. It&apos;s exactly why Resonant Studios exists.
+            </p>
+            <div className="rs-hero-cta">
+              <Link className="btn" href="/book">Book a call</Link>
+              <Link className="btn btn-on-image" href="/how-it-works">How sessions run</Link>
             </div>
           </div>
         </div>

@@ -4,23 +4,25 @@ import { Accessibility, Disc3, Headphones } from "lucide-react";
 export default function HomePage() {
   return (
     <>
-      {/* HERO — 40/60 split: bento placeholder for graphic/animation on the left, content on the right */}
-      <section className="rs-hero" aria-labelledby="hero-heading">
-        <div className="rs-page-container">
-          <div className="rs-hero-grid">
-            <div className="rs-hero-bento" aria-hidden="true" />
-            <div className="rs-hero-content">
-              <div className="rs-hero-eyebrow">NDIS-aligned music studio · Yarraville VIC</div>
-              <h1 id="hero-heading">
-                Your song. <em>Your story.</em><br />On Spotify.
-              </h1>
-              <p className="rs-hero-lead">
-                Personalised one-on-one music sessions in Melbourne&apos;s west. Built for NDIS participants who want a finished song — professionally produced, released under your name.
-              </p>
-              <div className="rs-hero-cta">
-                <Link className="btn" href="/book">Book a call</Link>
-                <Link className="btn btn-secondary" href="/how-it-works">How sessions run</Link>
-              </div>
+      {/* HERO — photo bg + 40/60 split: bento placeholder on the left, content on the right */}
+      <section
+        className="rs-hero"
+        aria-labelledby="hero-heading"
+        style={{ backgroundImage: "url('/library/photos/music-studio.jpg')" }}
+      >
+        <div className="rs-hero-grid">
+          <div className="rs-hero-bento" aria-hidden="true" />
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">NDIS-aligned music studio · Yarraville VIC</div>
+            <h1 id="hero-heading">
+              Your song. <em>Your story.</em><br />On Spotify.
+            </h1>
+            <p className="rs-hero-lead">
+              Personalised one-on-one music sessions in Melbourne&apos;s west. Built for NDIS participants who want a finished song — professionally produced, released under your name.
+            </p>
+            <div className="rs-hero-cta">
+              <Link className="btn" href="/book">Book a call</Link>
+              <Link className="btn btn-on-image" href="/how-it-works">How sessions run</Link>
             </div>
           </div>
         </div>

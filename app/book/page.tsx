@@ -14,17 +14,19 @@ const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 export default function BookPage() {
   return (
     <>
-      <section className="rs-hero" aria-labelledby="book-hero">
-        <div className="rs-page-container">
-          <div className="rs-hero-grid">
-            <div className="rs-hero-bento" aria-hidden="true" />
-            <div className="rs-hero-content">
-              <div className="rs-hero-eyebrow">Book a call</div>
-              <h1 id="book-hero">Let&apos;s talk about <em>what you want to make.</em></h1>
-              <p className="rs-hero-lead">
-                A free 30–45 minute discovery call. Phone or Zoom — whichever suits you. Bring your support coordinator, family member, or anyone who helps you decide.
-              </p>
-            </div>
+      <section
+        className="rs-hero"
+        aria-labelledby="book-hero"
+        style={{ backgroundImage: "url('/library/photos/tony-hands-on-console.jpg')" }}
+      >
+        <div className="rs-hero-grid">
+          <div className="rs-hero-bento" aria-hidden="true" />
+          <div className="rs-hero-content">
+            <div className="rs-hero-eyebrow">Book a call</div>
+            <h1 id="book-hero">Let&apos;s talk about <em>what you want to make.</em></h1>
+            <p className="rs-hero-lead">
+              A free 30–45 minute discovery call. Phone or Zoom — whichever suits you. Bring your support coordinator, family member, or anyone who helps you decide.
+            </p>
           </div>
         </div>
       </section>
