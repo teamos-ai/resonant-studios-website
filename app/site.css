@@ -799,13 +799,15 @@ h3.rs-price-eyebrow {
 }
 
 /* Two-bento grid — used on /sessions Weekly-sessions section to pair
-   two large content cards side-by-side. Collapses to single column on
-   mobile. */
+   two large content cards side-by-side. align-items: stretch (the grid
+   default) makes both cards the same height regardless of inner
+   content, so their borders line up at top and bottom. Collapses to
+   single column on mobile. */
 .rs-bento-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--s-5);
-  align-items: start;
+  align-items: stretch;
 }
 .rs-bento-card {
   padding: var(--s-6) !important;
@@ -813,6 +815,10 @@ h3.rs-price-eyebrow {
   flex-direction: column;
   gap: var(--s-4);
 }
+/* Push the divider (and everything after it — the footnote) to the
+   bottom of the card, so the bottoms of both cards line up even when
+   the content above the divider is shorter in one card. */
+.rs-bento-card .rule { margin-top: auto; }
 .rs-bento-card-h {
   font-family: var(--font-body);
   font-weight: 700;
