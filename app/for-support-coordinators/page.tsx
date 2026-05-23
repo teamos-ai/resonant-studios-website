@@ -13,23 +13,20 @@ const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 export default function CoordinatorsPage() {
   return (
     <>
-      <section
-        className="rs-hero"
-        aria-labelledby="coord-hero"
-        style={{ backgroundImage: "url('/library/photos/founder-client.jpg')" }}
-      >
+      <section className="rs-hero" aria-labelledby="coord-hero">
         <div className="rs-page-container">
-          <div className="rs-hero-content">
-            <div className="rs-hero-eyebrow">For support coordinators</div>
-            <h1 id="coord-hero">A referral <em>worth making.</em></h1>
-            <p className="rs-hero-lead">
-              Resonant Studios delivers documented, outcome-focused sessions your participants will talk about for years — a finished song on Spotify, under their name.
-            </p>
-            <div className="rs-hero-cta">
-              <Link className="btn" href="#referral">Make a referral</Link>
-              <Link className="btn btn-on-image" href="/contact">
-                Talk to Tony first
-              </Link>
+          <div className="rs-hero-grid">
+            <div className="rs-hero-bento" aria-hidden="true" />
+            <div className="rs-hero-content">
+              <div className="rs-hero-eyebrow">For support coordinators</div>
+              <h1 id="coord-hero">A referral <em>worth making.</em></h1>
+              <p className="rs-hero-lead">
+                Resonant Studios delivers documented, outcome-focused sessions your participants will talk about for years — a finished song on Spotify, under their name.
+              </p>
+              <div className="rs-hero-cta">
+                <Link className="btn" href="#referral">Make a referral</Link>
+                <Link className="btn btn-secondary" href="/contact">Talk to Tony first</Link>
+              </div>
             </div>
           </div>
         </div>

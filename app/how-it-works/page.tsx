@@ -13,20 +13,19 @@ const steps = [
 export default function HowItWorksPage() {
   return (
     <>
-      <section
-        className="rs-hero"
-        aria-labelledby="how-hero"
-        style={{ backgroundImage: "url('/library/photos/tony-synth-piano.jpg')" }}
-      >
+      <section className="rs-hero" aria-labelledby="how-hero">
         <div className="rs-page-container">
-          <div className="rs-hero-content">
-            <div className="rs-hero-eyebrow">How it works</div>
-            <h1 id="how-hero">Idea to Spotify in <em>twelve weeks.</em></h1>
-            <p className="rs-hero-lead">
-              One free discovery call. One first session. A handful of weeks together. One finished song, released under your name. Here&apos;s the full path.
-            </p>
-            <div className="rs-hero-cta">
-              <Link className="btn" href="/book">Book a call</Link>
+          <div className="rs-hero-grid">
+            <div className="rs-hero-bento" aria-hidden="true" />
+            <div className="rs-hero-content">
+              <div className="rs-hero-eyebrow">How it works</div>
+              <h1 id="how-hero">Idea to Spotify in <em>twelve weeks.</em></h1>
+              <p className="rs-hero-lead">
+                One free discovery call. One first session. A handful of weeks together. One finished song, released under your name. Here&apos;s the full path.
+              </p>
+              <div className="rs-hero-cta">
+                <Link className="btn" href="/book">Book a call</Link>
+              </div>
             </div>
           </div>
         </div>
