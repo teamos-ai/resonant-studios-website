@@ -55,36 +55,75 @@ export default function SessionsPage() {
         </div>
       </section>
 
+      {/* WEEKLY SESSIONS — heading + 2 bento cards (times + activities) */}
       <section className="rs-page-section tone-sunken">
         <div className="rs-page-container">
           <header className="rs-section-heading">
-            <div className="eyebrow">Package options</div>
-            <h2>Pick the rhythm that fits.</h2>
-            <p>All sessions are 3 hours, one-on-one. Most participants take an 8 or 12-session package — enough to take a song from idea to Spotify release.</p>
+            <div className="eyebrow">Weekly sessions</div>
+            <h2>3-hour one-on-one sessions.</h2>
+            <p>Most participants attend weekly sessions in recurring timeslots, with the creative process shaped around their goals, interests, and pace.</p>
           </header>
-          <ul className="rs-price-grid" role="list">
-            <li className="card rs-price-card">
-              <h3 className="eyebrow rs-price-eyebrow">Single</h3>
-              <div className="rs-price-amount">$210.69</div>
-              <div className="rs-price-line">One 3-hour session</div>
-              <div className="rs-price-rate">Weekday day rate · NDIS line item 04_104_0125_6_1</div>
-            </li>
-            <li className="card rs-price-card" style={{ boxShadow: "var(--shadow-sm), inset 0 0 0 1px var(--primary-wash)" }}>
-              <h3 className="eyebrow rs-price-eyebrow">8 sessions</h3>
-              <div className="rs-price-amount">$1,685</div>
-              <div className="rs-price-line">Complete song · idea to Spotify release</div>
-              <div className="rs-price-rate">~$210 per session · most popular package</div>
-            </li>
-            <li className="card rs-price-card">
-              <h3 className="eyebrow rs-price-eyebrow">12 sessions</h3>
-              <div className="rs-price-amount">$2,528</div>
-              <div className="rs-price-line">Extended creative project · multiple tracks</div>
-              <div className="rs-price-rate">For participants who want more time and space</div>
-            </li>
-          </ul>
-          <p style={{ marginTop: "var(--s-7)", textAlign: "center", fontSize: "var(--fs-small)", color: "var(--ink-soft)", maxWidth: "70ch", marginInline: "auto" }}>
-            Supports may be funded under an NDIS plan where aligned with participant goals.
-          </p>
+          <div className="rs-bento-2col">
+            <div className="card rs-bento-card">
+              <h3 className="rs-bento-card-h">Available session times</h3>
+              <ul className="rs-pill-list" role="list">
+                <li>9:00 AM – 12:00 PM</li>
+                <li>1:00 PM – 4:00 PM</li>
+                <li>5:00 PM – 8:00 PM</li>
+              </ul>
+              <hr className="rule" />
+              <p className="rs-bento-card-foot">Recurring weekly timeslots help create consistency while still allowing sessions to adapt to each participant&apos;s goals and energy.</p>
+            </div>
+            <div className="card rs-bento-card">
+              <h3 className="rs-bento-card-h">Sessions may include</h3>
+              <ul className="rs-pill-list cols-2" role="list">
+                <li>Songwriting</li>
+                <li>Music production</li>
+                <li>Vocal recording</li>
+                <li>Instrumental recording</li>
+                <li>Mixing &amp; mastering</li>
+                <li>Professionally releasing music</li>
+              </ul>
+              <hr className="rule" />
+              <p className="rs-bento-card-foot">Supports may be funded under an NDIS plan where aligned with participant goals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SESSION PRICING — outer card wrapping the heading + 3 price cards */}
+      <section className="rs-page-section">
+        <div className="rs-page-container">
+          <div className="card rs-pricing-card">
+            <header className="rs-section-heading" style={{ textAlign: "left", margin: "0 0 var(--s-6)" }}>
+              <div className="eyebrow">Session pricing</div>
+              <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h3)", lineHeight: 1.2, margin: "var(--s-2) 0 var(--s-3)", color: "var(--ink)", letterSpacing: "var(--track-tight)" }}>
+                Simple 3-hour session rates.
+              </h3>
+              <p>Sessions are billed using the applicable NDIS community participation rate. Pricing below shows both the full 3-hour session cost and the hourly rate.</p>
+            </header>
+            <ul className="rs-price-grid" role="list">
+              <li className="card rs-price-card">
+                <h4 className="rs-price-tier">Weekday</h4>
+                <div className="rs-price-amount">$210.69</div>
+                <div className="rs-price-rate">$70.23/hr</div>
+              </li>
+              <li className="card rs-price-card">
+                <h4 className="rs-price-tier">Saturday</h4>
+                <div className="rs-price-amount">$296.49</div>
+                <div className="rs-price-rate">$98.83/hr</div>
+              </li>
+              <li className="card rs-price-card">
+                <h4 className="rs-price-tier">Sunday</h4>
+                <div className="rs-price-amount">$382.29</div>
+                <div className="rs-price-rate">$127.43/hr</div>
+              </li>
+            </ul>
+            <hr className="rule" />
+            <p style={{ fontSize: "var(--fs-small)", color: "var(--ink-soft)", margin: 0 }}>
+              Pricing may vary depending on the applicable support item, session time, and individual participant circumstances.
+            </p>
+          </div>
         </div>
       </section>
 

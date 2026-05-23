@@ -798,6 +798,85 @@ h3.rs-price-eyebrow {
   .rs-legal .prose { font-size: 0.9375rem; }
 }
 
+/* Two-bento grid — used on /sessions Weekly-sessions section to pair
+   two large content cards side-by-side. Collapses to single column on
+   mobile. */
+.rs-bento-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  align-items: start;
+}
+.rs-bento-card {
+  padding: var(--s-6) !important;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.rs-bento-card-h {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.rs-bento-card-foot {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+.rs-bento-card .rule { margin: 0; }
+
+/* Pill list — each li is a centred bordered pill on the inner bg.
+   Default is single column; .cols-2 modifier gives 2-column grid. */
+.rs-pill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.rs-pill-list.cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+}
+.rs-pill-list li {
+  padding: var(--s-3) var(--s-5);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  text-align: center;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: var(--fs-small);
+}
+.rs-pill-list.cols-2 li { text-align: left; }
+
+/* Pricing outer card */
+.rs-pricing-card {
+  padding: var(--s-7) !important;
+  max-width: var(--w-editorial);
+  margin-inline: auto;
+}
+.rs-pricing-card .rule { margin: var(--s-6) 0 var(--s-5); }
+.rs-price-tier {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  color: var(--ink);
+  margin: 0 0 var(--s-2);
+  letter-spacing: -0.005em;
+}
+
+@media (max-width: 880px) {
+  .rs-bento-2col { grid-template-columns: 1fr; }
+  .rs-pill-list.cols-2 { grid-template-columns: 1fr; }
+}
+
 /* Check-card list — each li becomes a thin bordered card prefixed with
    a sage ✓. Used on /sessions Who-it's-for. */
 .rs-check-list {
