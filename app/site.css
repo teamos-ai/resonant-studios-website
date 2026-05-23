@@ -757,3 +757,432 @@ h3.rs-price-eyebrow {
   .rs-legal-header { padding: var(--s-8) 0 var(--s-6); margin-bottom: var(--s-6); }
   .rs-legal .prose { font-size: 0.9375rem; }
 }
+
+/* ============================================================
+   ACCESSIBILITY MODES — Contrast, Dyslexia, Easy Read
+   ============================================================
+   Three opt-in modes set on <html> via the AccessibilityMenu:
+     [data-contrast="more"]
+     [data-readable="dyslexia"]
+     [data-readable="easy"]
+   Plus a forced-colors path for Windows High Contrast Mode.
+
+   Default rendering is unchanged — these rules only fire when
+   the user explicitly opts in (or their OS signals
+   forced-colors / prefers-contrast).
+
+   Sources informing the values below:
+     - WCAG 2.2 — SC 1.4.6 (AAA contrast), 1.4.11 (non-text
+       contrast), 1.4.12 (text spacing), 2.4.7 (focus visible)
+     - MDN: prefers-contrast, forced-colors
+     - British Dyslexia Association Style Guide 2023
+     - Atkinson Hyperlegible (Braille Institute)
+     - W3C COGA "Content Usable" for cognitive accessibility
+     - Inclusion International Easy Read Guidelines
+     - GOV.UK Service Manual
+
+   Heroes + CTA bands need position:relative so contrast and easy
+   modes can paint a darker ::after overlay over inline backgrounds.
+   ============================================================ */
+
+.rs-hero,
+.rs-cta-band,
+.home-final-cta { position: relative; }
+.rs-hero > *,
+.rs-cta-band > *,
+.home-final-cta > * { position: relative; z-index: 2; }
+
+/* ============================================================
+   CONTRAST MODE — pure-black/pure-white inversion
+   ============================================================
+   The design-system BRIEF forbids pure #000 on default UI for
+   halation reasons; this is the explicit user-opt-in carve-out
+   — they have asked for maximum contrast, so the carve-out is
+   justified for this mode only.
+*/
+
+/* C-3, C-4, C-8: AAA ink, promote all muted text to full contrast,
+   max-strength rules. Dark theme + explicit dark + OS-dark. */
+:root[data-contrast="more"][data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #000000;
+  --bg-elevated: #000000;
+  --bg-sunken: #000000;
+  --ink: #FFFFFF;
+  --ink-2: #FFFFFF;
+  --ink-muted: #FFFFFF;
+  --ink-soft: #FFFFFF;
+  --ink-faint: #FFFFFF;
+  --rule: #FFFFFF;
+  --rule-strong: #FFFFFF;
+  --primary: #FFFFFF;
+  --primary-ink: #000000;
+  --primary-hover: #FFFFFF;
+  --primary-wash: rgba(255, 255, 255, 0.18);
+  --secondary: #FFFFFF;
+  --secondary-ink: #000000;
+  --secondary-hover: #FFFFFF;
+  --secondary-wash: rgba(255, 255, 255, 0.18);
+  --accent: #FFFFFF;
+  --accent-wash: rgba(255, 255, 255, 0.18);
+}
+:root[data-contrast="more"][data-theme="light"] {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --bg-elevated: #FFFFFF;
+  --bg-sunken: #FFFFFF;
+  --ink: #000000;
+  --ink-2: #000000;
+  --ink-muted: #000000;
+  --ink-soft: #000000;
+  --ink-faint: #000000;
+  --rule: #000000;
+  --rule-strong: #000000;
+  --primary: #000000;
+  --primary-ink: #FFFFFF;
+  --primary-hover: #000000;
+  --primary-wash: rgba(0, 0, 0, 0.10);
+  --secondary: #000000;
+  --secondary-ink: #FFFFFF;
+  --secondary-hover: #000000;
+  --secondary-wash: rgba(0, 0, 0, 0.10);
+  --accent: #000000;
+  --accent-wash: rgba(0, 0, 0, 0.10);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-contrast="more"]:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #000000; --bg-elevated: #000000; --bg-sunken: #000000;
+    --ink: #FFFFFF; --ink-2: #FFFFFF; --ink-muted: #FFFFFF;
+    --ink-soft: #FFFFFF; --ink-faint: #FFFFFF;
+    --rule: #FFFFFF; --rule-strong: #FFFFFF;
+    --primary: #FFFFFF; --primary-ink: #000000;
+    --primary-hover: #FFFFFF; --primary-wash: rgba(255, 255, 255, 0.18);
+    --secondary: #FFFFFF; --secondary-ink: #000000;
+    --secondary-hover: #FFFFFF; --secondary-wash: rgba(255, 255, 255, 0.18);
+    --accent: #FFFFFF; --accent-wash: rgba(255, 255, 255, 0.18);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root[data-contrast="more"]:not([data-theme]) {
+    color-scheme: light;
+    --bg: #FFFFFF; --bg-elevated: #FFFFFF; --bg-sunken: #FFFFFF;
+    --ink: #000000; --ink-2: #000000; --ink-muted: #000000;
+    --ink-soft: #000000; --ink-faint: #000000;
+    --rule: #000000; --rule-strong: #000000;
+    --primary: #000000; --primary-ink: #FFFFFF;
+    --primary-hover: #000000; --primary-wash: rgba(0, 0, 0, 0.10);
+    --secondary: #000000; --secondary-ink: #FFFFFF;
+    --secondary-hover: #000000; --secondary-wash: rgba(0, 0, 0, 0.10);
+    --accent: #000000; --accent-wash: rgba(0, 0, 0, 0.10);
+  }
+}
+
+/* C-4: Thicken every visible border. */
+:root[data-contrast="more"] .card,
+:root[data-contrast="more"] .input,
+:root[data-contrast="more"] .btn-secondary,
+:root[data-contrast="more"] .btn-on-image,
+:root[data-contrast="more"] .form-shell,
+:root[data-contrast="more"] .scheduler-shell,
+:root[data-contrast="more"] .pair-card,
+:root[data-contrast="more"] .rs-feature-grid .card,
+:root[data-contrast="more"] .rs-price-card,
+:root[data-contrast="more"] .rs-footer,
+:root[data-contrast="more"] .rs-footer-aoc,
+:root[data-contrast="more"] .rs-footer-social a,
+:root[data-contrast="more"] .testimonial-card,
+:root[data-contrast="more"] .rs-book-card,
+:root[data-contrast="more"] .rs-book-embed,
+:root[data-contrast="more"] .rs-book-context-strip,
+:root[data-contrast="more"] .rs-referral-embed,
+:root[data-contrast="more"] .rs-legal-note {
+  border-width: 2px;
+  border-style: solid;
+}
+
+/* C-5: Underline every text link (not the button-styled or logo links). */
+:root[data-contrast="more"] a:not(.btn):not(.rs-nav-logo):not(.rs-footer-logo):not(.rs-nav-cta):not(.rs-drawer-cta):not(.rs-footer-cta) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+/* C-6: Focus ring — 3px + 4px offset + 1px inner outline so it reads
+   on every background colour. */
+:root[data-contrast="more"] :focus-visible {
+  outline: 3px solid var(--primary) !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 1px var(--ink) !important;
+}
+
+/* C-7: Solid nav bg, no backdrop blur. */
+:root[data-contrast="more"] .rs-floating-nav {
+  background: var(--bg) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: 2px solid var(--ink) !important;
+}
+
+/* C-9: 78% solid black overlay on photographic surfaces. */
+:root[data-contrast="more"] .rs-hero::after,
+:root[data-contrast="more"] .rs-cta-band::after,
+:root[data-contrast="more"] .home-final-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* C-10: Hard 3px shadow below buttons + 2px border = clear depth signal. */
+:root[data-contrast="more"] .btn {
+  box-shadow: 0 3px 0 0 var(--ink) !important;
+  border: 2px solid var(--ink) !important;
+}
+:root[data-contrast="more"] .btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 0 var(--ink) !important;
+}
+
+/* C-2: Forced-colors mode (Windows High Contrast). Let the OS set the
+   colours; we apply structural fixes (thicker borders, focus ring,
+   link underlines, photo overlay). */
+@media (forced-colors: active) {
+  .card, .input, .btn, .btn-secondary, .form-shell, .scheduler-shell,
+  .pair-card, .rs-price-card, .rs-footer-social a, .testimonial-card,
+  .rs-book-card, .rs-book-embed, .rs-referral-embed, .rs-floating-nav {
+    border-width: 2px;
+    border-style: solid;
+  }
+  .rs-floating-nav {
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  :focus-visible {
+    outline: 3px solid LinkText !important;
+    outline-offset: 4px !important;
+  }
+  a:not(.btn):not(.rs-nav-logo):not(.rs-footer-logo) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .btn {
+    forced-color-adjust: none;
+    background: ButtonFace;
+    color: ButtonText;
+    border-color: ButtonText;
+  }
+  .btn:hover, .btn:focus {
+    background: Highlight;
+    color: HighlightText;
+    border-color: HighlightText;
+  }
+  .rs-hero::after, .rs-cta-band::after, .home-final-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: Canvas;
+    opacity: 0.88;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* ============================================================
+   DYSLEXIA MODE — beyond the font swap
+   D-1 (Atkinson Hyperlegible body font) lives in globals.css.
+   ============================================================ */
+
+/* D-2 + D-3 + D-4: BDA-recommended spacing + line height */
+:root[data-readable="dyslexia"] body {
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+  line-height: 1.7;
+}
+:root[data-readable="dyslexia"] {
+  --lh-body: 1.7;
+}
+
+/* Display headings keep DM Serif but get gentler spacing — BDA
+   guidance is for body copy; tight tracking is part of the design. */
+:root[data-readable="dyslexia"] h1,
+:root[data-readable="dyslexia"] h2,
+:root[data-readable="dyslexia"] h3,
+:root[data-readable="dyslexia"] h4,
+:root[data-readable="dyslexia"] .rs-display,
+:root[data-readable="dyslexia"] .hero-headline,
+:root[data-readable="dyslexia"] .problem-heading,
+:root[data-readable="dyslexia"] .final-cta-heading,
+:root[data-readable="dyslexia"] .solution-heading {
+  letter-spacing: 0;
+  word-spacing: 0.08em;
+}
+
+/* D-5: Off-white cream background in light mode (reduces visual stress). */
+:root[data-readable="dyslexia"][data-theme="light"] {
+  --bg: #FFF8F0;
+  --bg-elevated: #FFFFFF;
+  --bg-sunken: #FFEFDF;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-readable="dyslexia"]:not([data-theme]) {
+    --bg: #FFF8F0;
+    --bg-elevated: #FFFFFF;
+    --bg-sunken: #FFEFDF;
+  }
+}
+
+/* D-6: Suppress italics — upright + semibold instead. */
+:root[data-readable="dyslexia"] em,
+:root[data-readable="dyslexia"] i,
+:root[data-readable="dyslexia"] .italic,
+:root[data-readable="dyslexia"] .pull-quote,
+:root[data-readable="dyslexia"] blockquote p,
+:root[data-readable="dyslexia"] .testimonial-body .pull-quote {
+  font-style: normal !important;
+  font-weight: 600 !important;
+}
+
+/* D-7: Cap line length to 70 characters. */
+:root[data-readable="dyslexia"] p,
+:root[data-readable="dyslexia"] li,
+:root[data-readable="dyslexia"] .rs-lead,
+:root[data-readable="dyslexia"] .lead,
+:root[data-readable="dyslexia"] .rs-hero-lead,
+:root[data-readable="dyslexia"] blockquote {
+  max-width: 70ch;
+}
+
+/* D-8: No all-caps text. */
+:root[data-readable="dyslexia"] .eyebrow,
+:root[data-readable="dyslexia"] .rs-eyebrow,
+:root[data-readable="dyslexia"] .rs-hero-eyebrow,
+:root[data-readable="dyslexia"] .rs-footer-col-title,
+:root[data-readable="dyslexia"] .rs-footer-eyebrow,
+:root[data-readable="dyslexia"] .rs-easy-read-summary strong,
+:root[data-readable="dyslexia"] h3.rs-price-eyebrow {
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ============================================================
+   EASY READ MODE — bigger, simpler, more space
+   ============================================================ */
+
+/* E-1, E-2, E-3 */
+:root[data-readable="easy"] {
+  --fs-body: 1.25rem;
+  --lh-body: 1.8;
+}
+:root[data-readable="easy"] body {
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+}
+
+/* E-4: All buttons get .btn-lg sizing. */
+:root[data-readable="easy"] .btn {
+  min-height: 56px !important;
+  padding: 16px 24px !important;
+  font-size: 1.125rem !important;
+}
+
+/* E-5: Single column on every multi-column grid. */
+:root[data-readable="easy"] .rs-feature-grid,
+:root[data-readable="easy"] .rs-price-grid,
+:root[data-readable="easy"] .rs-twocol,
+:root[data-readable="easy"] .problem-pair,
+:root[data-readable="easy"] .rs-book-context-strip,
+:root[data-readable="easy"] .rs-footer-grid,
+:root[data-readable="easy"] .rs-footer-bottom,
+:root[data-readable="easy"] .grid-2,
+:root[data-readable="easy"] .grid-3,
+:root[data-readable="easy"] .scheduler-shell-grid,
+:root[data-readable="easy"] .rs-book-layout,
+:root[data-readable="easy"] .hero-card {
+  grid-template-columns: 1fr !important;
+}
+:root[data-readable="easy"] .hero-trust {
+  flex-direction: column;
+}
+/* When images stack, cap their width so they don't sprawl. */
+:root[data-readable="easy"] .rs-twocol-media,
+:root[data-readable="easy"] .problem-media,
+:root[data-readable="easy"] .hero-media {
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+/* E-6: Cap body line length to 45 characters. */
+:root[data-readable="easy"] p,
+:root[data-readable="easy"] li,
+:root[data-readable="easy"] .rs-lead,
+:root[data-readable="easy"] .lead,
+:root[data-readable="easy"] .rs-hero-lead,
+:root[data-readable="easy"] blockquote {
+  max-width: 45ch;
+}
+
+/* E-7: Stronger 70% photo scrim. */
+:root[data-readable="easy"] .rs-hero::after,
+:root[data-readable="easy"] .rs-cta-band::after,
+:root[data-readable="easy"] .home-final-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.70);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* E-8: Flat full-width nav (no float, no backdrop blur). Predictability
+   over elegance for cognitive accessibility. */
+:root[data-readable="easy"] .rs-floating-nav {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  background: var(--bg-elevated) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  border-bottom: 2px solid var(--rule-strong) !important;
+  padding: var(--s-4) var(--s-5) !important;
+  box-shadow: var(--shadow-sm);
+}
+:root[data-readable="easy"] body {
+  padding-top: calc(var(--nav-h) + 16px);
+}
+
+/* E-9: Per-page Easy Read summary — hidden by default, visible only
+   when easy mode is active. Pages add <aside class="rs-easy-read-summary">
+   after their hero. */
+.rs-easy-read-summary { display: none; }
+:root[data-readable="easy"] .rs-easy-read-summary {
+  display: block;
+  max-width: 720px;
+  margin: var(--s-7) auto;
+  padding: var(--s-5) var(--s-6);
+  background: var(--primary-wash);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--r-2);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+.rs-easy-read-summary strong {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--primary);
+  margin-bottom: var(--s-2);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.rs-easy-read-summary p {
+  margin: 0;
+  color: var(--ink);
+}

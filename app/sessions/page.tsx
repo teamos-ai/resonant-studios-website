@@ -27,6 +27,11 @@ export default function SessionsPage() {
         </div>
       </section>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page tells you what happens in a three-hour music session. It also shows what each package costs.</p>
+      </aside>
+
       <section className="rs-page-section">
         <div className="rs-page-container">
           <div className="rs-twocol">

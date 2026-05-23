@@ -28,6 +28,11 @@ export default function PrivacyPage() {
         </div>
       </header>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page tells you how we use the information you share with us. It also tells you who we share it with, and how to get in touch.</p>
+      </aside>
+
       <div className="rs-page-container prose">
 
         <h2>1. About us</h2>

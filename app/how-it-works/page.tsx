@@ -32,6 +32,11 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page shows the five steps from your first call to your finished song on Spotify.</p>
+      </aside>
+
       <section className="rs-page-section">
         <div className="rs-page-container editorial">
           <header className="rs-section-heading">

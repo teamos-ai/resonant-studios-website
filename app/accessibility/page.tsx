@@ -25,6 +25,11 @@ export default function AccessibilityPage() {
         </div>
       </header>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page lists what we have done to make the website easier to use. It also tells you what to do if something does not work for you.</p>
+      </aside>
+
       <div className="rs-page-container prose">
 
         <h2>Our commitment</h2>

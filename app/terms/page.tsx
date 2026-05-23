@@ -28,6 +28,11 @@ export default function TermsPage() {
         </div>
       </header>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page is the rules for using our website. The rules for the music sessions are in a separate agreement you sign when you join.</p>
+      </aside>
+
       <div className="rs-page-container prose">
 
         <h2>1. Who we are</h2>

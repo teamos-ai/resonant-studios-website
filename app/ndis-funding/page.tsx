@@ -25,6 +25,11 @@ export default function NDISFundingPage() {
       </section>
 
       <section className="rs-page-section">
+        <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+          <strong>What this page is about</strong>
+          <p>This page explains how NDIS funding works for our music sessions. It tells you what to ask your plan manager or support coordinator.</p>
+        </aside>
+
         <div className="rs-page-container editorial">
           <header className="rs-section-heading">
             <div className="eyebrow">How it works</div>

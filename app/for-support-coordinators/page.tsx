@@ -35,6 +35,11 @@ export default function CoordinatorsPage() {
         </div>
       </section>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page is for support coordinators thinking about referring a participant to us. It explains why and how to refer.</p>
+      </aside>
+
       <section className="rs-page-section" id="outcomes">
         <div className="rs-page-container">
           <header className="rs-section-heading">
