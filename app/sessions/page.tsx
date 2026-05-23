@@ -16,7 +16,7 @@ export default function SessionsPage() {
             <div className="rs-hero-eyebrow">Sessions</div>
             <h1 id="sessions-hero">Three hours, <em>one-on-one,</em> in a real studio.</h1>
             <p className="rs-hero-lead">
-              No experience needed. No rigid curriculum. Just your ideas, Tony&apos;s 25 years of expertise, and a Spotify-ready song waiting to be made.
+              No experience needed. No rigid curriculum. Just your ideas, Tony&apos;s 25+ years of professional music production experience, and a supportive creative environment built around your goals.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
@@ -34,23 +34,21 @@ export default function SessionsPage() {
       <section className="rs-page-section">
         <div className="rs-page-container">
           <div className="rs-twocol">
-            <div className="rs-twocol-media">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/library/photos/tony-vocal-booth.jpg" alt="Vocal booth at the Resonant Studios space, warm lighting." />
-            </div>
             <div className="rs-twocol-content">
               <div className="eyebrow">Who it&apos;s for</div>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h1)", lineHeight: "var(--lh-heading)", margin: 0, letterSpacing: "var(--track-tight)" }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-display)", lineHeight: 1.05, margin: 0, letterSpacing: "var(--track-tight)" }}>
                 Participants 15+. <em style={{ color: "var(--ink-2)" }}>Any experience level.</em>
               </h2>
-              <p className="lead">
+            </div>
+            <div className="rs-twocol-content">
+              <p className="lead" style={{ marginTop: 0 }}>
                 Sessions are fully adapted to your communication style, energy levels, and creative goals. Whether you&apos;ve never picked up a microphone or you&apos;ve been writing for years, we start where you are.
               </p>
-              <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "var(--s-3)", color: "var(--ink-muted)" }}>
-                <li>✓ Self-managed &amp; plan-managed NDIS participants welcome</li>
-                <li>✓ Support workers and family members welcome to attend</li>
-                <li>✓ Sessions can pause, restart, or adjust to your energy</li>
-                <li>✓ All recording, mixing, mastering, and Spotify release included</li>
+              <ul className="rs-check-list" role="list">
+                <li>Self-managed &amp; plan-managed NDIS participants welcome</li>
+                <li>Support workers and family members welcome to attend</li>
+                <li>Sessions can pause, restart, or adjust to your energy</li>
+                <li>Recording, mixing, mastering, and music release support available</li>
               </ul>
             </div>
           </div>
