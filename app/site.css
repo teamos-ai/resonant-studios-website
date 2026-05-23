@@ -118,20 +118,20 @@ body { padding-top: calc(var(--nav-h) + 16px); }
    `.btn` token mapping. It is NOT applied to .btn-secondary, .btn-ghost,
    or .btn-sec — only the primary filled .btn CTA.
    ============================================================ */
-:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec) {
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):not(.btn-on-image) {
   background: var(--primary);
   color: var(--primary-ink);
 }
-:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):hover {
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):not(.btn-on-image):hover {
   background: var(--primary-hover);
   color: var(--primary-ink);
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec) {
+  :root:not([data-theme]) .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):not(.btn-on-image) {
     background: var(--primary);
     color: var(--primary-ink);
   }
-  :root:not([data-theme]) .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):hover {
+  :root:not([data-theme]) .btn:not(.btn-secondary):not(.btn-ghost):not(.btn-sec):not(.btn-on-image):hover {
     background: var(--primary-hover);
     color: var(--primary-ink);
   }
