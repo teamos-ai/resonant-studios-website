@@ -57,19 +57,19 @@ export default function NDISFundingPage() {
           </header>
           <ul className="rs-price-grid" role="list">
             <li className="card rs-price-card">
-              <div className="eyebrow">Weekday</div>
+              <h3 className="eyebrow rs-price-eyebrow">Weekday</h3>
               <div className="rs-price-amount">$210.69</div>
               <div className="rs-price-line">3-hour session, Monday to Friday</div>
               <div className="rs-price-rate">$70.23/hr · standard NDIS rate</div>
             </li>
             <li className="card rs-price-card">
-              <div className="eyebrow">Saturday</div>
+              <h3 className="eyebrow rs-price-eyebrow">Saturday</h3>
               <div className="rs-price-amount">$316.05</div>
               <div className="rs-price-line">3-hour session, Saturday</div>
               <div className="rs-price-rate">$105.35/hr · NDIS Saturday rate</div>
             </li>
             <li className="card rs-price-card">
-              <div className="eyebrow">Sunday &amp; public holidays</div>
+              <h3 className="eyebrow rs-price-eyebrow">Sunday &amp; public holidays</h3>
               <div className="rs-price-amount">$421.38</div>
               <div className="rs-price-line">3-hour session, Sunday or public holiday</div>
               <div className="rs-price-rate">$140.46/hr · NDIS Sunday rate</div>

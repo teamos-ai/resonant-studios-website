@@ -19,7 +19,7 @@ export default function AboutPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-secondary" href="/how-it-works" style={{ borderColor: "rgba(245,239,228,0.4)", color: "var(--ink-on-image)" }}>
+              <Link className="btn btn-on-image" href="/how-it-works">
                 How sessions run
               </Link>
             </div>

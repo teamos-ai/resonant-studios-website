@@ -27,7 +27,7 @@ export default function CoordinatorsPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="#referral">Make a referral</Link>
-              <Link className="btn btn-secondary" href="/contact" style={{ borderColor: "rgba(245,239,228,0.4)", color: "var(--ink-on-image)" }}>
+              <Link className="btn btn-on-image" href="/contact">
                 Talk to Tony first
               </Link>
             </div>

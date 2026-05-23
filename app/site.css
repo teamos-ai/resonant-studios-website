@@ -308,7 +308,7 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   font-family: var(--font-body);
   font-size: var(--fs-lead);
   line-height: 1.5;
-  color: rgba(245,239,228,0.90);
+  color: var(--ink-on-image-90);
   text-shadow: 0 1px 10px rgba(0,0,0,0.45);
   max-width: 56ch;
 }
@@ -397,12 +397,12 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 .rs-cta-band h2 em { font-style: italic; color: var(--ink-on-image); }
 .rs-cta-band p {
   font-size: var(--fs-lead); line-height: 1.5;
-  color: rgba(245,239,228,0.88);
+  color: var(--ink-on-image-88);
   text-shadow: 0 1px 10px rgba(0,0,0,0.45);
   margin: 0 auto; max-width: 56ch;
 }
 .rs-cta-band .btn-lg { font-size: var(--fs-lead); padding: 16px 28px; min-height: 56px; }
-.rs-cta-band-foot { font-size: var(--fs-small); color: rgba(245,239,228,0.70); }
+.rs-cta-band-foot { font-size: var(--fs-small); color: var(--ink-on-image-70); }
 .rs-cta-band-foot a { color: var(--terra-300); text-decoration: underline; text-underline-offset: 4px; }
 
 /* Feature card triplet (Solution-style). */
@@ -606,6 +606,47 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 /* Responsive helpers — applied across pages. */
 @media (max-width: 880px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
+}
+
+/* ============================================================
+   Photographic carve-out — cream-ink alpha variants.
+   Per BRIEF §1, pure-#000 forbidden on UI; cream-ink-on-image
+   is the carve-out for text/borders sitting on photo scrims.
+   These three alpha steps (40/70/90) replace inline rgba() in
+   page TSX so token discipline holds end-to-end.
+   ============================================================ */
+:root {
+  --ink-on-image-40: rgba(245, 239, 228, 0.40);
+  --ink-on-image-70: rgba(245, 239, 228, 0.70);
+  --ink-on-image-88: rgba(245, 239, 228, 0.88);
+  --ink-on-image-90: rgba(245, 239, 228, 0.90);
+}
+
+/* Outline secondary button when it sits on a photographic surface.
+   Replaces inline { borderColor, color } overrides across hero CTAs. */
+.btn.btn-on-image {
+  border-color: var(--ink-on-image-40);
+  color: var(--ink-on-image);
+  background: transparent;
+}
+.btn.btn-on-image:hover {
+  border-color: var(--ink-on-image);
+  background: var(--ink-on-image-40);
+  color: var(--ink-on-image);
+}
+
+/* Price-tier eyebrow — promoted from <div> to <h3> for screen-reader
+   navigation. The .eyebrow class still drives the visual size/letter
+   spacing, but the heading semantics now match each price card. */
+h3.rs-price-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.3;
 }
 
 /* ============================================================

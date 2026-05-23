@@ -19,7 +19,7 @@ export default function SessionsPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-secondary" href="/ndis-funding" style={{ borderColor: "rgba(245,239,228,0.4)", color: "var(--ink-on-image)" }}>
+              <Link className="btn btn-on-image" href="/ndis-funding">
                 NDIS funding
               </Link>
             </div>
@@ -62,19 +62,19 @@ export default function SessionsPage() {
           </header>
           <ul className="rs-price-grid" role="list">
             <li className="card rs-price-card">
-              <div className="eyebrow">Single</div>
+              <h3 className="eyebrow rs-price-eyebrow">Single</h3>
               <div className="rs-price-amount">$210.69</div>
               <div className="rs-price-line">One 3-hour session</div>
               <div className="rs-price-rate">Weekday day rate · NDIS line item 04_104_0125_6_1</div>
             </li>
             <li className="card rs-price-card" style={{ boxShadow: "var(--shadow-sm), inset 0 0 0 1px var(--primary-wash)" }}>
-              <div className="eyebrow">8 sessions</div>
+              <h3 className="eyebrow rs-price-eyebrow">8 sessions</h3>
               <div className="rs-price-amount">$1,685</div>
               <div className="rs-price-line">Complete song · idea to Spotify release</div>
               <div className="rs-price-rate">~$210 per session · most popular package</div>
             </li>
             <li className="card rs-price-card">
-              <div className="eyebrow">12 sessions</div>
+              <h3 className="eyebrow rs-price-eyebrow">12 sessions</h3>
               <div className="rs-price-amount">$2,528</div>
               <div className="rs-price-line">Extended creative project · multiple tracks</div>
               <div className="rs-price-rate">For participants who want more time and space</div>

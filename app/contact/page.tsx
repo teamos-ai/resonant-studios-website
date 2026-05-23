@@ -28,7 +28,7 @@ export default function ContactPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <a className="btn btn-secondary" href="mailto:hello@resonantstudios.com.au" style={{ borderColor: "rgba(245,239,228,0.4)", color: "var(--ink-on-image)" }}>
+              <a className="btn btn-on-image" href="mailto:hello@resonantstudios.com.au">
                 Email Tony
               </a>
             </div>
