@@ -4,9 +4,9 @@ export const metadata = { title: "How it works — From first call to Spotify re
 
 const steps = [
   { n: "01", h: "Free discovery call", p: "A relaxed 30–45 minute conversation with Tony. We talk through your goals, how NDIS funding works for sessions, and whether Resonant Studios is the right fit. No pressure." },
-  { n: "02", h: "First session", p: "Three hours in the studio. You bring your ideas. Tony brings 25+ years of professional production. We start shaping what your song could be." },
-  { n: "03", h: "Songwriting & recording", p: "Across the following weeks, we write lyrics, build the beat, record vocals and instruments — whatever the song needs. At your pace, in your style." },
-  { n: "04", h: "Mixing & mastering", p: "Tony mixes and masters your finished track to the same professional standard he applies to major-label work. Nothing watered down." },
+  { n: "02", h: "First session", p: "Three hours in the studio. You bring your ideas. Tony brings 25+ years of professional music production experience. We start shaping what your song could be." },
+  { n: "03", h: "Songwriting & recording", p: "Across the following weeks, we write lyrics, build the beat, record vocals and instruments — whatever the music needs, shaped around your goals and creative style. At your pace, in your style." },
+  { n: "04", h: "Mixing & mastering", p: "Tony mixes and masters your finished track to the same professional standard he applies to major-label work — delivering the polished sound your music deserves." },
   { n: "05", h: "Released on Spotify", p: "Your song goes live on Spotify under your name. Friends, family, your support team — everyone can hear what you made. Yours to share, forever." },
 ];
 
@@ -24,7 +24,7 @@ export default function HowItWorksPage() {
             <div className="rs-hero-eyebrow">How it works</div>
             <h1 id="how-hero">Idea to Spotify in <em>twelve weeks.</em></h1>
             <p className="rs-hero-lead">
-              One free discovery call. One first session. A handful of weeks together. One finished song, released under your name. Here&apos;s the full path.
+              One discovery call. One session to explore your goals. A handful of weeks together. One finished song, released under your name. Here&apos;s the full path.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
@@ -42,7 +42,7 @@ export default function HowItWorksPage() {
         <div className="rs-page-container editorial">
           <header className="rs-section-heading">
             <div className="eyebrow">The journey</div>
-            <h2>Five steps. Twelve weeks. One song.</h2>
+            <h2>Five steps. Twelve weeks. Your music.</h2>
             <p>Every step happens at your pace. If a week needs to be lighter, we go lighter. If a session needs to focus on lyrics instead of recording, we do that.</p>
           </header>
           <ol className="rs-steps">
@@ -86,7 +86,7 @@ export default function HowItWorksPage() {
       <section className="rs-cta-band" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
         <div className="rs-cta-band-inner">
           <h2>Ready to start the journey?</h2>
-          <p>The first call is free. It&apos;s where we work out if this is right for you.</p>
+          <p>We start out with a call. It&apos;s where we work out if this is the right fit for you.</p>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
           </div>
