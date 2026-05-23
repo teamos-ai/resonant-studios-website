@@ -661,10 +661,9 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 }
 
 /* Outline secondary button when it sits on a photographic surface.
-   Replaces inline { borderColor, color } overrides across hero CTAs.
-   Light mode (or default): cream-on-photo for max contrast vs the
-   dark scrim. Dark mode: on-brand sage green to match the brand
-   palette without losing legibility (sage on near-black scrim ≈ 9:1). */
+   Cream border + cream text + transparent background in both themes.
+   The button always sits on a dark photo scrim, so cream-on-photo is
+   the right call regardless of the website's theme. */
 .btn.btn-on-image {
   border-color: var(--ink-on-image-40);
   color: var(--ink-on-image);
@@ -674,29 +673,6 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   border-color: var(--ink-on-image);
   background: var(--ink-on-image-40);
   color: var(--ink-on-image);
-}
-
-/* Dark-mode override — secondary on-image button becomes brand sage.
-   Per user feedback 2026-05-23. */
-:root[data-theme="dark"] .btn.btn-on-image {
-  border-color: var(--secondary);
-  color: var(--secondary);
-}
-:root[data-theme="dark"] .btn.btn-on-image:hover {
-  border-color: var(--secondary);
-  background: var(--secondary);
-  color: var(--secondary-ink);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .btn.btn-on-image {
-    border-color: var(--secondary);
-    color: var(--secondary);
-  }
-  :root:not([data-theme]) .btn.btn-on-image:hover {
-    border-color: var(--secondary);
-    background: var(--secondary);
-    color: var(--secondary-ink);
-  }
 }
 
 /* Price-tier eyebrow — promoted from <div> to <h3> for screen-reader
