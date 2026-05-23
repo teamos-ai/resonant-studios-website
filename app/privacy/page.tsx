@@ -68,7 +68,7 @@ export default function PrivacyPage() {
 
         <h3>3.3 Information collected automatically when you visit the website</h3>
         <ul>
-          <li>Standard server logs from our website host (Vercel, Inc., USA) — your IP address, browser type, the pages you visit, the date and time. We use these only for security and performance monitoring.</li>
+          <li>Standard server logs from our website host — your IP address, browser type, the pages you visit, the date and time. We use these only for security and performance monitoring.</li>
           <li>Local browser storage of your accessibility preferences (theme, reading mode, motion, contrast). This is stored on your device under the key <code>rs-a11y</code> and never sent to our servers.</li>
         </ul>
         <p>
@@ -92,15 +92,15 @@ export default function PrivacyPage() {
         <ul>
           <li><strong>Your plan manager</strong> (if you&apos;re plan-managed) — for invoicing and payment.</li>
           <li><strong>Your support coordinator</strong> — only with your consent, and only the information you&apos;ve agreed we can share.</li>
-          <li><strong>Go High Level (GHL)</strong> — our CRM and form/calendar platform. When you fill out a booking, contact, or referral form, your responses are stored in GHL on our behalf. GHL processes data under our instructions.</li>
-          <li><strong>Vercel, Inc.</strong> — our website host. Server logs and any data flowing through the website pass through Vercel&apos;s infrastructure.</li>
-          <li><strong>Music distribution services (e.g. DistroKid, CD Baby, or similar)</strong> — when we release your finished song to Spotify under your name, we share the metadata needed for distribution (artist name, song title, release date). We do this with your written consent at the time of release.</li>
+          <li><strong>Our forms and calendar provider</strong> — when you fill out a booking, contact, or referral form, your responses are stored on our behalf by a third-party service. The provider processes data under our instructions and only for the purposes set out in this policy.</li>
+          <li><strong>Our website hosting provider</strong> — server logs and any data flowing through the website pass through their infrastructure.</li>
+          <li><strong>Music distribution services</strong> — when we release your finished song to streaming services under your name, we share the metadata needed for distribution (artist name, song title, release date). We do this with your written consent at the time of release.</li>
           <li><strong>The ATO and other regulators</strong> — if required by law (for example, tax records, NDIS Commission audits).</li>
         </ul>
 
         <h2>6. Information stored overseas</h2>
         <p>
-          Some of the services we use store data outside Australia. Vercel and GitHub are based in the United States. Go High Level uses cloud infrastructure that may include US data centres. Music distribution services are typically US-based. We take reasonable steps to ensure overseas providers handle your information consistently with the APPs, but you should be aware that overseas privacy regimes may differ from Australian law.
+          Some of the third-party services we use store data outside Australia, including hosting, forms and calendar, code repository, and music distribution providers. These are typically based in the United States or use cloud infrastructure that may include US data centres. We take reasonable steps to ensure overseas providers handle your information consistently with the APPs, but you should be aware that overseas privacy regimes may differ from Australian law. If you&apos;d like the names of specific service providers we use, contact us via the details at the bottom of this page and we&apos;ll provide them.
         </p>
 
         <h2>7. How long we keep it</h2>
@@ -110,14 +110,14 @@ export default function PrivacyPage() {
         <ul>
           <li><strong>Active participant records</strong> — for the duration of your sessions plus 7 years (NDIS, ATO, and general business record-keeping standard).</li>
           <li><strong>Discovery-call enquiries that don&apos;t lead to sessions</strong> — up to 12 months, then deleted.</li>
-          <li><strong>Website server logs</strong> — typically 30 days at Vercel.</li>
+          <li><strong>Website server logs</strong> — typically 30 days at our hosting provider.</li>
           <li><strong>Marketing opt-in lists (if any)</strong> — until you unsubscribe.</li>
         </ul>
 
         <h2>8. How we keep it safe</h2>
         <p>We take reasonable steps to protect your information from misuse, loss, unauthorised access, modification, or disclosure:</p>
         <ul>
-          <li>Cloud services protected by access controls and the providers&apos; own security standards (Vercel, GHL, GitHub all maintain SOC 2 or equivalent).</li>
+          <li>Cloud services protected by access controls and providers&apos; own security standards (our hosting, forms platform, and code repository all maintain SOC 2 or equivalent).</li>
           <li>Local devices used by Tony are password-protected with full-disk encryption.</li>
           <li>Email and form data is transmitted over HTTPS.</li>
           <li>Paper records (if any) are stored securely at the studio.</li>

@@ -99,7 +99,7 @@ export default function CoordinatorsPage() {
               <div style={{ marginBottom: "var(--s-5)" }}>
                 <div className="eyebrow" style={{ marginBottom: 10 }}>Referral form</div>
                 <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 30, lineHeight: 1.1, margin: 0, color: "var(--ink)" }}>Refer a participant</h3>
-                <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>Hosted by Go High Level. Submissions go straight to Tony — he&apos;ll reply within one business day.</p>
+                <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>Submissions go straight to Tony — he&apos;ll reply within one business day.</p>
               </div>
               <div className="rs-referral-embed">
                 <iframe

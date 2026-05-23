@@ -91,7 +91,7 @@ export default function TermsPage() {
 
         <h2>7. Third-party content and links</h2>
         <p>
-          The website embeds forms and a calendar hosted by <strong>Go High Level</strong> (link.teamos.ai). Go High Level&apos;s privacy policy and terms apply to those embeds in addition to ours. The website may also link to other websites (for example, the Office of the Australian Information Commissioner, the NDIS Quality and Safeguards Commission). We don&apos;t control those websites and aren&apos;t responsible for their content.
+          The website embeds forms and a calendar from a third-party service. That service&apos;s privacy policy and terms apply to those embeds in addition to ours. The website may also link to other websites (for example, the Office of the Australian Information Commissioner, the NDIS Quality and Safeguards Commission). We don&apos;t control those websites and aren&apos;t responsible for their content.
         </p>
 
         <h2>8. Disclaimers</h2>

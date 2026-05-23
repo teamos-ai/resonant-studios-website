@@ -85,7 +85,7 @@ export default function AccessibilityPage() {
         <h2>What might not work yet</h2>
         <p>We&apos;re transparent about where we know we have work to do:</p>
         <ul>
-          <li><strong>The Go High Level forms</strong> embedded in <Link href="/book">/book</Link>, <Link href="/contact">/contact</Link>, and <Link href="/for-support-coordinators">/for-support-coordinators</Link> render inside an iframe and don&apos;t fully follow our design system&apos;s focus and contrast styling. We&apos;ve applied a tokenised CSS theme to bring them as close as possible. If a form is hard to use, please call Tony on <a href="tel:+61456225315">0456 225 315</a> or email <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a> — we&apos;ll book your call manually.</li>
+          <li><strong>The forms</strong> embedded in <Link href="/book">/book</Link>, <Link href="/contact">/contact</Link>, and <Link href="/for-support-coordinators">/for-support-coordinators</Link> render inside an iframe and don&apos;t fully follow our design system&apos;s focus and contrast styling. We&apos;ve applied a tokenised CSS theme to bring them as close as possible. If a form is hard to use, please call Tony on <a href="tel:+61456225315">0456 225 315</a> or email <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a> — we&apos;ll book your call manually.</li>
           <li><strong>Photography on the website</strong> currently uses descriptive alternative text for images that carry meaning, and is marked decorative where it doesn&apos;t. We review this on every change.</li>
         </ul>
 
