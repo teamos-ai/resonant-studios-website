@@ -16,7 +16,7 @@ export default function AboutPage() {
             <div className="rs-hero-eyebrow">About</div>
             <h1 id="about-hero">Built by <em>someone who gets it.</em></h1>
             <p className="rs-hero-lead">
-              Tony Rako has spent 25+ years producing music professionally — and navigates mental health disability firsthand. That combination is rare. It&apos;s exactly why Resonant Studios exists.
+              Tony Rako combines 25+ years of professional music production with disability advocacy and lived experience of disability. That combination is rare — and it&apos;s exactly why Resonant Studios exists.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
@@ -32,13 +32,13 @@ export default function AboutPage() {
             <div className="rs-twocol-content">
               <div className="eyebrow">The studio</div>
               <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h1)", lineHeight: "var(--lh-heading)", letterSpacing: "var(--track-tight)", margin: 0 }}>
-                A real studio. <em style={{ color: "var(--ink-2)" }}>Built for participants.</em>
+                A real studio. <em style={{ color: "var(--ink-2)" }}>Designed for accessibility.</em>
               </h2>
               <p className="lead">
-                When Tony looked at Melbourne&apos;s west, he saw a region with over 8,000 NDIS participants — and zero music studios built for them. No accessible spaces. No disability-informed staff. No pathway to a real, professional outcome.
+                When Tony looked at Melbourne&apos;s west, he saw a gap in accessible studio spaces that combined professional music production with a genuinely supportive environment for people with disabilities. No accessible spaces. No disability-informed staff. No pathway to a real, professional outcome.
               </p>
               <p style={{ color: "var(--ink-2)", lineHeight: "var(--lh-body)" }}>
-                So he built one. At <a href="https://www.google.com/maps/dir/?api=1&destination=Kindred+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">Kindred Studios in Yarraville</a> — wheelchair access, sensory-friendly lighting, a quiet break space, support workers welcome.
+                So he built one — Resonant Studios, a professional and accessible music studio <a href="https://www.google.com/maps/dir/?api=1&destination=Kindred+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">based in Yarraville</a>, with wheelchair access, carefully designed lighting, and support workers or family welcome.
               </p>
             </div>
             <div className="rs-twocol-media">
@@ -53,8 +53,8 @@ export default function AboutPage() {
         <div className="rs-page-container">
           <header className="rs-section-heading">
             <div className="eyebrow">What you&apos;ll find</div>
-            <h2>Accessibility, designed in.</h2>
-            <p>Not bolted on after the fact. Every detail of the studio was chosen with NDIS participants in mind.</p>
+            <h2>Accessibility built into every detail.</h2>
+            <p>Not bolted on after the fact. Every detail of the studio was chosen with people with disabilities in mind.</p>
           </header>
           <ul className="rs-feature-grid" role="list">
             <li className="card">
@@ -63,7 +63,7 @@ export default function AboutPage() {
             </li>
             <li className="card">
               <h3 className="rs-feature-h">Sensory-friendly</h3>
-              <p>Dimmable lighting. Sound levels you control. A quiet break space when sessions get intense.</p>
+              <p>Adjustable lighting, soft ambient accent lighting, and flexible sound levels designed to help participants feel comfortable throughout the session.</p>
             </li>
             <li className="card">
               <h3 className="rs-feature-h">Support workers welcome</h3>
