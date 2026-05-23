@@ -23,7 +23,7 @@ export default function TermsPage() {
             <strong>Last reviewed:</strong> {EFFECTIVE_DATE}
           </p>
           <p className="rs-legal-note">
-            <strong>Working draft.</strong> This page is a working draft. Before going live in front of regulators or in a dispute, we&apos;ll have a solicitor familiar with Australian consumer law review it. If something here looks off, email <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a>.
+            <strong>Working draft.</strong> This page is a working draft. Before going live in front of regulators or in a dispute, we&apos;ll have a solicitor familiar with Australian consumer law review it. If something here looks off, email <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>.
           </p>
         </div>
       </header>
@@ -117,7 +117,7 @@ export default function TermsPage() {
           We want to know if something on the website (or about our service) isn&apos;t working for you. Reach us:
         </p>
         <ul>
-          <li>Email: <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a></li>
+          <li>Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a></li>
           <li>Phone: <a href="tel:+61456225315">0456 225 315</a></li>
         </ul>
         <p>
@@ -134,7 +134,7 @@ export default function TermsPage() {
           <strong>Resonant Studios</strong><br />
           Tony Rako, sole trader · ABN 17 544 307 578<br />
           Kindred Studios, 3 Harris Street, Yarraville VIC 3013<br />
-          Email: <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a><br />
+          Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a><br />
           Phone: <a href="tel:+61456225315">0456 225 315</a>
         </p>
 

@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             <strong>Last reviewed:</strong> {EFFECTIVE_DATE}
           </p>
           <p className="rs-legal-note">
-            <strong>Working draft.</strong> This privacy policy is a working draft prepared for an unregistered NDIS provider operating in Victoria, Australia. We&apos;ll have a privacy lawyer review it before treating it as final. If anything in here looks wrong for your situation, tell us at <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a>.
+            <strong>Working draft.</strong> This privacy policy is a working draft prepared for an unregistered NDIS provider operating in Victoria, Australia. We&apos;ll have a privacy lawyer review it before treating it as final. If anything in here looks wrong for your situation, tell us at <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>.
           </p>
         </div>
       </header>
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
           <li><strong>Withdraw your consent</strong> at any time. This won&apos;t affect anything we&apos;ve already done with your information lawfully.</li>
           <li><strong>Complain</strong> if you think we&apos;ve mishandled your information (see section 11 below).</li>
         </ul>
-        <p>To exercise any of these rights, email <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a> with the words &quot;Privacy request&quot; in the subject line.</p>
+        <p>To exercise any of these rights, email <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a> with the words &quot;Privacy request&quot; in the subject line.</p>
 
         <h2>10. Children and young people</h2>
         <p>
@@ -143,7 +143,7 @@ export default function PrivacyPage() {
         <h2>11. Complaints and feedback</h2>
         <p>If you&apos;re unhappy with how we&apos;ve handled your information — or anything else about our service — please tell us first:</p>
         <ul>
-          <li>Email: <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a></li>
+          <li>Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a></li>
           <li>Phone: <a href="tel:+61456225315">0456 225 315</a></li>
           <li>Post: Resonant Studios, c/o Kindred Studios, 3 Harris Street, Yarraville VIC 3013</li>
         </ul>
@@ -164,7 +164,7 @@ export default function PrivacyPage() {
           <strong>Resonant Studios</strong><br />
           Tony Rako, sole trader · ABN 17 544 307 578<br />
           Kindred Studios, 3 Harris Street, Yarraville VIC 3013<br />
-          Email: <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a><br />
+          Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a><br />
           Phone: <a href="tel:+61456225315">0456 225 315</a>
         </p>
 

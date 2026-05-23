@@ -29,7 +29,7 @@ export default function ContactPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <a className="btn btn-on-image" href="mailto:hello@resonantstudios.com.au">Email Tony</a>
+              <a className="btn btn-on-image" href="mailto:info@resonantstudios.com.au">Email Tony</a>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function ContactPage() {
             <li className="card">
               <span className="rs-feature-icon" aria-hidden="true"><Mail size={28} strokeWidth={1.5} /></span>
               <h3 className="rs-feature-h">Email</h3>
-              <p><a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a></p>
+              <p><a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a></p>
               <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
                 Replies within 1 business day.
               </p>

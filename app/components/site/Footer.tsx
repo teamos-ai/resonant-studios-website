@@ -66,7 +66,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="rs-footer-eyebrow">Email</span>
-                <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a>
+                <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>
               </li>
             </ul>
           </div>

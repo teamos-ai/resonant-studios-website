@@ -75,7 +75,7 @@ export default function CoordinatorsPage() {
               <div className="rs-step-num">01</div>
               <div>
                 <h3>Get in touch</h3>
-                <p>Submit the referral form below, email <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a>, or call Tony directly.</p>
+                <p>Submit the referral form below, email <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>, or call Tony directly.</p>
               </div>
             </li>
             <li className="rs-step">

@@ -13,12 +13,12 @@ export default function HomePage() {
         <div className="rs-hero-grid">
           <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
-            <div className="rs-hero-eyebrow">NDIS-aligned music studio · Yarraville VIC</div>
+            <div className="rs-hero-eyebrow">Accessible music studio · Yarraville VIC</div>
             <h1 id="hero-heading">
               Your song. <em>Your story.</em><br />On Spotify.
             </h1>
             <p className="rs-hero-lead">
-              Personalised one-on-one music sessions in Melbourne&apos;s west. Built for NDIS participants who want a finished song — professionally produced, released under your name.
+              Personalised one-on-one music sessions in Melbourne&apos;s west for NDIS participants. Develop creative skills, build confidence, and explore songwriting, recording, and music production in a supportive and accessible studio environment, while working towards professionally recording and releasing your own music.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
@@ -42,15 +42,15 @@ export default function HomePage() {
                 Music matters.<br /><em style={{ fontStyle: "italic", color: "var(--ink-2)" }}>Access is hard.</em>
               </h2>
               <p className="lead">
-                Many NDIS participants want to make music but face barriers — no local studios, intimidation, cost, or not knowing where to start.
+                Many people with disabilities want to make music but face barriers — inaccessible spaces, fear of judgment, or difficulty finding supportive creative environments.
               </p>
               <p style={{ color: "var(--ink-2)", lineHeight: "var(--lh-body)" }}>
-                You deserve more than participation. You deserve proof — something you made, something you own, something you can share with the people who matter most.
+                You deserve something meaningful and lasting — something you made, something you own, something you can share with the people who matter most.
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--s-4)", marginTop: "var(--s-2)" }} className="grid-2">
                 <div className="card" style={{ background: "var(--bg)" }}>
                   <div className="eyebrow" style={{ color: "var(--ink-muted)" }}>The barrier</div>
-                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h3)", margin: "var(--s-2) 0 var(--s-2)" }}>Programs that go nowhere</h3>
+                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h3)", margin: "var(--s-2) 0 var(--s-2)" }}>Programs without real outcomes</h3>
                   <p style={{ color: "var(--ink-muted)", fontSize: "var(--fs-small)" }}>Group activities at the room&apos;s pace. No real recording, nothing tangible to keep when sessions end.</p>
                 </div>
                 <div className="card" style={{ background: "var(--bg)", boxShadow: "var(--shadow-sm), inset 0 0 0 1px var(--primary-wash)" }}>
@@ -85,8 +85,8 @@ export default function HomePage() {
             </li>
             <li className="card">
               <span className="rs-feature-icon" aria-hidden="true"><Disc3 size={28} strokeWidth={1.5} /></span>
-              <h3 className="rs-feature-h">A track on Spotify, under your name</h3>
-              <p>We mix and master your finished song, then release it to the same streaming services real artists use. Yours to share.</p>
+              <h3 className="rs-feature-h">Your music on Spotify. Under your name.</h3>
+              <p>We help you record, mix, master, and release your finished music to the same streaming platforms used by artists around the world. Yours to share.</p>
             </li>
           </ul>
           <p style={{ textAlign: "center", marginTop: "var(--s-7)" }}>
@@ -123,12 +123,15 @@ export default function HomePage() {
         <div className="rs-cta-band-inner">
           <div className="eyebrow" style={{ color: "var(--terra-300)" }}>Ready when you are</div>
           <h2 id="final-cta-heading">Let&apos;s talk about what you want to <em>make</em>.</h2>
-          <p>A relaxed 30–45 minute call with Tony. No pressure. Just a conversation about your goals and how NDIS funding works for sessions.</p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link className="btn btn-lg" href="/book">Book a call</Link>
+          <p>Two ways to begin — start your sessions now, or book a free discovery call to ask questions first.</p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
+            {/* Immediate-start pathway. TODO: swap href to the intake-form
+                URL once it's set up in GHL. Falls back to email for now. */}
+            <Link className="btn btn-lg" href="/intake">Start your sessions</Link>
+            <Link className="btn btn-on-image btn-lg" href="/book">Book a discovery call</Link>
           </div>
           <p className="rs-cta-band-foot">
-            Prefer email? <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a> — Tony reads every message.
+            Prefer email? <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a> — Tony reads every message.
           </p>
         </div>
       </section>

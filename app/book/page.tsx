@@ -72,7 +72,7 @@ export default function BookPage() {
               <a href={GHL_CAL_SRC} target="_blank" rel="noopener noreferrer">Open the booking calendar in a new tab →</a>
               <br />
               Confirmation email arrives within a few minutes. If anything goes wrong, email{" "}
-              <a href="mailto:hello@resonantstudios.com.au">hello@resonantstudios.com.au</a> and Tony will sort it out.
+              <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a> and Tony will sort it out.
             </p>
           </div>
         </div>
