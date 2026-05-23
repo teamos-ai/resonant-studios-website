@@ -18,7 +18,7 @@ export default function HomePage() {
               Your song. <em>Your story.</em><br />On Spotify.
             </h1>
             <p className="rs-hero-lead">
-              Personalised one-on-one music sessions in Melbourne&apos;s west for NDIS participants. Develop creative skills, build confidence, and explore songwriting, recording, and music production in a supportive and accessible studio environment, while working towards professionally recording and releasing your own music.
+              Personalised one-on-one music sessions in Melbourne&apos;s west for NDIS participants. Develop creative skills, build confidence, and explore songwriting, recording, and music production in a supportive and accessible studio environment while working towards your own professionally recorded and released music.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
