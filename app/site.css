@@ -491,8 +491,8 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   background: var(--bg);
 }
 
-/* Referral form iframe wrapper — reserves data-height (619px) so the page
-   doesn't reflow before form_embed.js measures content. */
+/* GHL form iframe wrappers — reserve each form's data-height so the page
+   doesn't reflow before form_embed.js measures content via postMessage. */
 .rs-referral-embed {
   background: var(--bg);
   border: 1px solid var(--rule);
@@ -508,9 +508,28 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   height: 619px;
   border: 0;
 }
+
+.rs-contact-embed {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  overflow: hidden;
+  min-height: 755px;
+  height: 755px;
+}
+.rs-contact-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 755px;
+  height: 755px;
+  border: 0;
+}
+
 @media (max-width: 720px) {
   .rs-referral-embed,
   .rs-referral-embed iframe { min-height: 780px; height: 780px; }
+  .rs-contact-embed,
+  .rs-contact-embed iframe { min-height: 920px; height: 920px; }
 }
 
 /* /book — single-column layout: context strip on top, full-width calendar

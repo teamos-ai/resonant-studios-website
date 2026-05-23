@@ -1,7 +1,15 @@
 import Link from "next/link";
+import Script from "next/script";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 export const metadata = { title: "Contact — Get in touch with Tony" };
+
+// Go High Level contact form — provided 2026-05-22.
+// Form ID: CUDcn1a92JPBJjfpEcH1
+// Direct link: https://link.teamos.ai/widget/form/CUDcn1a92JPBJjfpEcH1
+const GHL_CONTACT_ID = "CUDcn1a92JPBJjfpEcH1";
+const GHL_CONTACT_SRC = `https://link.teamos.ai/widget/form/${GHL_CONTACT_ID}`;
+const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 
 export default function ContactPage() {
   return (
@@ -71,14 +79,38 @@ export default function ContactPage() {
             <h2>Got a quick question?</h2>
             <p>Use the form below for anything that&apos;s not a booking. Tony will get back to you within a business day.</p>
           </header>
-          <div className="form-shell" style={{ background: "var(--bg-elevated)", border: "1px solid var(--rule)", borderRadius: "var(--r-4)", boxShadow: "var(--shadow-md)", padding: "var(--s-7)", maxWidth: 640, marginInline: "auto" }}>
-            <div className="rs-embed-slot">
-              {/* TODO: replace with GHL contact form iframe embed code */}
-              Go High Level contact form embed — paste iframe here
+          <div className="form-shell" style={{ background: "var(--bg-elevated)", border: "1px solid var(--rule)", borderRadius: "var(--r-4)", boxShadow: "var(--shadow-md)", padding: "var(--s-7)", maxWidth: 720, marginInline: "auto" }}>
+            <div className="rs-contact-embed">
+              <iframe
+                src={GHL_CONTACT_SRC}
+                id={`inline-${GHL_CONTACT_ID}`}
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Contact Us Form"
+                data-height="755"
+                data-layout-iframe-id={`inline-${GHL_CONTACT_ID}`}
+                data-form-id={GHL_CONTACT_ID}
+                title="Contact us — Resonant Studios"
+                style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
+              />
             </div>
+            <p style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: "var(--s-4)", lineHeight: 1.5 }}>
+              Form not loading?{" "}
+              <a href={GHL_CONTACT_SRC} target="_blank" rel="noopener noreferrer">Open the contact form in a new tab →</a>
+            </p>
           </div>
         </div>
       </section>
+
+      {/* GHL embed loader — defers until after hydration so it never blocks
+          first paint. Listens for postMessage events from the contact form
+          iframe and resizes it as content height changes. */}
+      <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
     </>
   );
 }
