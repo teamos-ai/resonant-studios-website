@@ -856,11 +856,12 @@ h3.rs-price-eyebrow {
 }
 .rs-pill-list.cols-2 li { text-align: left; }
 
-/* Pricing outer card */
+/* Pricing outer card — full container width, sits below the bento row
+   within the same sunken section so weekly-sessions and pricing read
+   as one continuous block. */
 .rs-pricing-card {
   padding: var(--s-7) !important;
-  max-width: var(--w-editorial);
-  margin-inline: auto;
+  margin-top: var(--s-5);
 }
 .rs-pricing-card .rule { margin: var(--s-6) 0 var(--s-5); }
 .rs-price-tier {

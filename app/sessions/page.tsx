@@ -55,7 +55,7 @@ export default function SessionsPage() {
         </div>
       </section>
 
-      {/* WEEKLY SESSIONS — heading + 2 bento cards (times + activities) */}
+      {/* WEEKLY SESSIONS + SESSION PRICING — one unified sunken section */}
       <section className="rs-page-section tone-sunken">
         <div className="rs-page-container">
           <header className="rs-section-heading">
@@ -88,12 +88,7 @@ export default function SessionsPage() {
               <p className="rs-bento-card-foot">Supports may be funded under an NDIS plan where aligned with participant goals.</p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* SESSION PRICING — outer card wrapping the heading + 3 price cards */}
-      <section className="rs-page-section">
-        <div className="rs-page-container">
           <div className="card rs-pricing-card">
             <header className="rs-section-heading" style={{ textAlign: "left", margin: "0 0 var(--s-6)" }}>
               <div className="eyebrow">Session pricing</div>
