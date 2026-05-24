@@ -516,6 +516,15 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 .rs-price-rate { color: var(--ink-soft); font-size: var(--fs-micro); }
 @media (max-width: 880px) { .rs-price-grid { grid-template-columns: 1fr; } }
 
+/* 4-column variant for /ndis-funding (Weekday/Saturday/Sunday/Public Holiday). */
+.rs-price-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1024px) {
+  .rs-price-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .rs-price-grid.cols-4 { grid-template-columns: 1fr; }
+}
+
 /* Embed slot (forms / calendar). */
 .rs-embed-slot {
   border: 2px dashed var(--rule-strong);
