@@ -37,7 +37,7 @@ export default function PrivacyPage() {
 
         <h2>1. About us</h2>
         <p>
-          Resonant Studios is a sole trader business owned and operated by <strong>Tony Rako</strong> (ABN 17 544 307 578), trading as Resonant Studios. We deliver NDIS-aligned music production sessions for self-managed and plan-managed participants from <strong>Kindred Studios, 3 Harris Street, Yarraville VIC 3013</strong>. We are an unregistered NDIS provider.
+          Resonant Studios is a sole trader business owned and operated by <strong>Tony Rako</strong> (ABN 17 544 307 578), trading as Resonant Studios. We deliver NDIS-aligned music production sessions for self-managed and plan-managed participants from <strong>3 Harris Street, Yarraville VIC 3013</strong>. We are an unregistered NDIS provider.
         </p>
         <p>
           In this policy, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; refer to Resonant Studios. &quot;You&quot; refers to anyone whose personal information we hold — typically participants, their family members or support workers, support coordinators, and plan managers.
@@ -144,8 +144,8 @@ export default function PrivacyPage() {
         <p>If you&apos;re unhappy with how we&apos;ve handled your information — or anything else about our service — please tell us first:</p>
         <ul>
           <li>Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a></li>
-          <li>Phone: <a href="tel:+61456225315">0456 225 315</a></li>
-          <li>Post: Resonant Studios, c/o Kindred Studios, 3 Harris Street, Yarraville VIC 3013</li>
+          <li>Phone: <a href="tel:+61480893303">0480 893 303</a></li>
+          <li>Post: Resonant Studios, 3 Harris Street, Yarraville VIC 3013</li>
         </ul>
         <p>We&apos;ll acknowledge your complaint within 5 business days and respond substantively within 30 days.</p>
         <p>If you&apos;re not satisfied with how we resolve it, you can take it to:</p>
@@ -163,9 +163,9 @@ export default function PrivacyPage() {
         <p>
           <strong>Resonant Studios</strong><br />
           Tony Rako, sole trader · ABN 17 544 307 578<br />
-          Kindred Studios, 3 Harris Street, Yarraville VIC 3013<br />
+          Resonant Studios, 3 Harris Street, Yarraville VIC 3013<br />
           Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a><br />
-          Phone: <a href="tel:+61456225315">0456 225 315</a>
+          Phone: <a href="tel:+61480893303">0480 893 303</a>
         </p>
 
         <hr className="rule" />

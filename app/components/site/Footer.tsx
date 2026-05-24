@@ -25,7 +25,7 @@ export default function Footer() {
               />
             </Link>
             <p className="rs-footer-tagline">Your song. Your story. On Spotify.</p>
-            <p className="rs-footer-bio">A boutique, NDIS-aligned music production studio at Kindred Studios in Yarraville. Twelve weeks. One finished song. Released under your name. Built and run by Tony Rako.</p>
+            <p className="rs-footer-bio">A boutique, NDIS-aligned music production studio at Resonant Studios in Yarraville. Twelve weeks. One finished song. Released under your name. Built and run by Tony Rako.</p>
             <Link className="btn rs-footer-cta" href="/book">Book a call</Link>
           </div>
 
@@ -55,14 +55,14 @@ export default function Footer() {
             <ul className="rs-footer-list rs-footer-contact">
               <li>
                 <span className="rs-footer-eyebrow">Visit</span>
-                Kindred Studios<br />
+                Resonant Studios<br />
                 3 Harris Street<br />
                 Yarraville VIC 3013<br />
                 <span className="rs-footer-soft">By appointment only</span>
               </li>
               <li>
                 <span className="rs-footer-eyebrow">Phone</span>
-                <a href="tel:+61456225315">0456 225 315</a>
+                <a href="tel:+61480893303">0480 893 303</a>
               </li>
               <li>
                 <span className="rs-footer-eyebrow">Email</span>

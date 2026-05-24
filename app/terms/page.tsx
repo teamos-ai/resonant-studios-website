@@ -37,7 +37,7 @@ export default function TermsPage() {
 
         <h2>1. Who we are</h2>
         <p>
-          The website at <strong>resonantstudios.com.au</strong> is operated by <strong>Tony Rako</strong>, sole trader, trading as <strong>Resonant Studios</strong> (ABN 17 544 307 578), based at Kindred Studios, 3 Harris Street, Yarraville VIC 3013. In these terms, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; mean Resonant Studios. &quot;You&quot; means anyone who visits the website.
+          The website at <strong>resonantstudios.com.au</strong> is operated by <strong>Tony Rako</strong>, sole trader, trading as <strong>Resonant Studios</strong> (ABN 17 544 307 578), based at Resonant Studios, 3 Harris Street, Yarraville VIC 3013. In these terms, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; mean Resonant Studios. &quot;You&quot; means anyone who visits the website.
         </p>
 
         <h2>2. Agreement</h2>
@@ -118,7 +118,7 @@ export default function TermsPage() {
         </p>
         <ul>
           <li>Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a></li>
-          <li>Phone: <a href="tel:+61456225315">0456 225 315</a></li>
+          <li>Phone: <a href="tel:+61480893303">0480 893 303</a></li>
         </ul>
         <p>
           For complaints about NDIS-funded services specifically, you can also contact the <strong>NDIS Quality and Safeguards Commission</strong> at <a href="https://www.ndiscommission.gov.au" target="_blank" rel="noopener noreferrer">ndiscommission.gov.au</a>.
@@ -133,9 +133,9 @@ export default function TermsPage() {
         <p>
           <strong>Resonant Studios</strong><br />
           Tony Rako, sole trader · ABN 17 544 307 578<br />
-          Kindred Studios, 3 Harris Street, Yarraville VIC 3013<br />
+          Resonant Studios, 3 Harris Street, Yarraville VIC 3013<br />
           Email: <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a><br />
-          Phone: <a href="tel:+61456225315">0456 225 315</a>
+          Phone: <a href="tel:+61480893303">0480 893 303</a>
         </p>
 
         <hr className="rule" />

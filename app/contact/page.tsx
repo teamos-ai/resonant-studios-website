@@ -42,19 +42,19 @@ export default function ContactPage() {
               <span className="rs-feature-icon" aria-hidden="true"><MapPin size={28} strokeWidth={1.5} /></span>
               <h3 className="rs-feature-h">Visit the studio</h3>
               <p>
-                Kindred Studios<br />
+                Resonant Studios<br />
                 3 Harris Street<br />
                 Yarraville VIC 3013
               </p>
               <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
                 By appointment only — discovery call first so we can plan access.<br />
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Kindred+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">Get directions →</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Resonant+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">Get directions →</a>
               </p>
             </li>
             <li className="card">
               <span className="rs-feature-icon" aria-hidden="true"><Phone size={28} strokeWidth={1.5} /></span>
               <h3 className="rs-feature-h">Call Tony</h3>
-              <p><a href="tel:+61456225315" style={{ fontSize: "var(--fs-lead)", fontWeight: 500 }}>0456 225 315</a></p>
+              <p><a href="tel:+61480893303" style={{ fontSize: "var(--fs-lead)", fontWeight: 500 }}>0480 893 303</a></p>
               <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
                 Call or text Tony directly. If he&apos;s in session he&apos;ll get back to you the same day.
               </p>

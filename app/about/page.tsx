@@ -38,7 +38,7 @@ export default function AboutPage() {
                 When Tony looked at Melbourne&apos;s west, he saw a gap in accessible studio spaces that combined professional music production with a genuinely supportive environment for people with disabilities. No accessible spaces. No disability-informed staff. No pathway to a real, professional outcome.
               </p>
               <p style={{ color: "var(--ink-2)", lineHeight: "var(--lh-body)" }}>
-                So he built one — Resonant Studios, a professional and accessible music studio <a href="https://www.google.com/maps/dir/?api=1&destination=Kindred+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">based in Yarraville</a>, with wheelchair access, carefully designed lighting, and support workers or family welcome.
+                So he built one — Resonant Studios, a professional and accessible music studio <a href="https://www.google.com/maps/dir/?api=1&destination=Resonant+Studios+3+Harris+Street+Yarraville+VIC+3013" target="_blank" rel="noopener noreferrer">based in Yarraville</a>, with wheelchair access, carefully designed lighting, and support workers or family welcome.
               </p>
             </div>
             <div className="rs-twocol-media">

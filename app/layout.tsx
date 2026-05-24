@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s · Resonant Studios",
   },
   description:
-    "A boutique, NDIS-aligned music production studio at Kindred Studios in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name. Built and run by Tony Rako. Call 0456 225 315.",
+    "A boutique, NDIS-aligned music production studio at Resonant Studios in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name. Built and run by Tony Rako. Call 0480 893 303.",
   metadataBase: new URL("https://resonantstudios.com.au"),
   openGraph: {
     title: "Resonant Studios — Your song. Your story. On Spotify.",
