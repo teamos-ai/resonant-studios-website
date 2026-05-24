@@ -16,7 +16,7 @@ export default function NDISFundingPage() {
             <div className="rs-hero-eyebrow">NDIS funding</div>
             <h1 id="ndis-hero">Using your NDIS plan <em>for music sessions.</em></h1>
             <p className="rs-hero-lead">
-              Sessions at Resonant Studios may be funded under your NDIS Capacity Building budget — specifically Community, Social and Civic Participation. Here&apos;s what that means in practice.
+              Sessions at Resonant Studios may be funded under your NDIS plan, typically under Assistance with Social and Community Participation, if aligned with your personal goals and funding categories. Here&apos;s what that means in practice.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Talk to Tony</Link>
@@ -35,20 +35,20 @@ export default function NDISFundingPage() {
           <header className="rs-section-heading">
             <div className="eyebrow">How it works</div>
             <h2>Self-managed and plan-managed welcome.</h2>
-            <p>Resonant Studios is an unregistered NDIS provider, which means we work with participants who control their own funding.</p>
+            <p>Resonant Studios is an unregistered NDIS provider supporting self-managed and plan-managed participants.</p>
           </header>
           <ul className="rs-feature-grid" role="list">
             <li className="card">
               <h3 className="rs-feature-h">Plan-managed</h3>
-              <p>We invoice your plan manager directly. You don&apos;t handle paperwork. They handle the claim, we receive the payment, you get the sessions.</p>
+              <p>We work directly with your plan manager to help keep the invoicing process simple and straightforward.</p>
             </li>
             <li className="card">
               <h3 className="rs-feature-h">Self-managed</h3>
-              <p>We provide a compliant invoice you can claim through myGov. We&apos;ll walk you through it on the discovery call if it&apos;s your first time.</p>
+              <p>We provide compliant invoices for self-managed participants and are happy to guide you through the process if needed.</p>
             </li>
             <li className="card">
               <h3 className="rs-feature-h">Agency-managed</h3>
-              <p>We&apos;re currently unable to support agency-managed participants. We&apos;re working toward NDIS registration so this can change.</p>
+              <p>We&apos;re currently unable to support agency-managed participants. We&apos;re working toward registration — feel free to check back with us in the future.</p>
             </li>
           </ul>
         </div>
@@ -58,31 +58,33 @@ export default function NDISFundingPage() {
         <div className="rs-page-container editorial">
           <header className="rs-section-heading">
             <div className="eyebrow">Pricing</div>
-            <h2>Transparent rates. NDIS-compliant.</h2>
-            <p>All rates follow NDIS Capacity Building — Community, Social and Civic Participation pricing.</p>
+            <h2>Transparent pricing. NDIS-aligned.</h2>
+            <p>All rates reflect the current NDIS price limits for Assistance with Social and Community Participation supports.</p>
           </header>
-          <ul className="rs-price-grid" role="list">
+          <ul className="rs-price-grid cols-4" role="list">
             <li className="card rs-price-card">
-              <h3 className="eyebrow rs-price-eyebrow">Weekday</h3>
+              <h3 className="rs-price-tier">Weekday</h3>
               <div className="rs-price-amount">$210.69</div>
-              <div className="rs-price-line">3-hour session, Monday to Friday</div>
-              <div className="rs-price-rate">$70.23/hr · standard NDIS rate</div>
+              <div className="rs-price-rate">$70.23/hr</div>
             </li>
             <li className="card rs-price-card">
-              <h3 className="eyebrow rs-price-eyebrow">Saturday</h3>
-              <div className="rs-price-amount">$316.05</div>
-              <div className="rs-price-line">3-hour session, Saturday</div>
-              <div className="rs-price-rate">$105.35/hr · NDIS Saturday rate</div>
+              <h3 className="rs-price-tier">Saturday</h3>
+              <div className="rs-price-amount">$296.49</div>
+              <div className="rs-price-rate">$98.83/hr</div>
             </li>
             <li className="card rs-price-card">
-              <h3 className="eyebrow rs-price-eyebrow">Sunday &amp; public holidays</h3>
-              <div className="rs-price-amount">$421.38</div>
-              <div className="rs-price-line">3-hour session, Sunday or public holiday</div>
-              <div className="rs-price-rate">$140.46/hr · NDIS Sunday rate</div>
+              <h3 className="rs-price-tier">Sunday</h3>
+              <div className="rs-price-amount">$382.29</div>
+              <div className="rs-price-rate">$127.43/hr</div>
+            </li>
+            <li className="card rs-price-card">
+              <h3 className="rs-price-tier">Public Holiday</h3>
+              <div className="rs-price-amount">$468.09</div>
+              <div className="rs-price-rate">$156.03/hr</div>
             </li>
           </ul>
           <p style={{ marginTop: "var(--s-7)", textAlign: "center", fontSize: "var(--fs-small)", color: "var(--ink-soft)", maxWidth: "70ch", marginInline: "auto" }}>
-            <strong style={{ color: "var(--ink-muted)" }}>NDIS line item:</strong> 04_104_0125_6_1 · Capacity Building — Social, Community and Civic Participation. We&apos;re an unregistered provider; funding eligibility depends on individual plan goals. Talk to your support coordinator or plan manager before booking.
+            Funding eligibility depends on individual plan goals and funding categories. We recommend discussing suitability with your support coordinator or plan manager.
           </p>
         </div>
       </section>
