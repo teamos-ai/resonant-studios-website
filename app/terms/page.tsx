@@ -37,7 +37,7 @@ export default function TermsPage() {
 
         <h2>1. Who we are</h2>
         <p>
-          The website at <strong>resonantstudios.com.au</strong> is operated by <strong>Tony Rako</strong>, sole trader, trading as <strong>Resonant Studios</strong> (ABN 17 544 307 578), based at Resonant Studios, 3 Harris Street, Yarraville VIC 3013. In these terms, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; mean Resonant Studios. &quot;You&quot; means anyone who visits the website.
+          The website at <strong>resonantstudios.com.au</strong> is operated by <strong>Tony Rako</strong>, sole trader, trading as <strong>Resonant Studios</strong> (ABN 17 544 307 578), based at 3 Harris Street, Yarraville VIC 3013. In these terms, &quot;we&quot;, &quot;us&quot; and &quot;our&quot; mean Resonant Studios. &quot;You&quot; means anyone who visits the website.
         </p>
 
         <h2>2. Agreement</h2>
