@@ -27,8 +27,8 @@ export default function CoordinatorsPage() {
               Resonant Studios delivers structured participant-led music sessions with clear documentation, measurable engagement, and tangible creative outcomes.
             </p>
             <div className="rs-hero-cta">
-              <Link className="btn" href="#referral">Make a referral</Link>
-              <Link className="btn btn-on-image" href="#coordinator-call">Talk to Tony first</Link>
+              <Link className="btn" href="/book">Book a call</Link>
+              <Link className="btn btn-on-image" href="#">Intake form</Link>
             </div>
           </div>
         </div>
@@ -165,8 +165,9 @@ export default function CoordinatorsPage() {
           <div className="eyebrow" style={{ color: "var(--terra-300)" }}>Before referring</div>
           <h2>Prefer to discuss a referral with Tony first?</h2>
           <p>Book a call to discuss participant goals, accessibility needs, and session suitability before proceeding with a referral.</p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
+            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
           </div>
         </div>
       </section>

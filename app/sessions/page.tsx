@@ -126,8 +126,9 @@ export default function SessionsPage() {
         <div className="rs-cta-band-inner">
           <h2>Curious how a session would actually feel?</h2>
           <p>The discovery call is the easiest way to find out. No pressure, no commitment.</p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
+            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
           </div>
         </div>
       </section>

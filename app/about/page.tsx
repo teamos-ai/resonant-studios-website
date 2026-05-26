@@ -80,8 +80,9 @@ export default function AboutPage() {
         <div className="rs-cta-band-inner">
           <h2>Come see the studio.</h2>
           <p>The discovery call is free. We&apos;ll walk you through how the space works and what your first session would look like.</p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
+            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
           </div>
         </div>
       </section>

@@ -28,6 +28,7 @@ export default function HowItWorksPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
+              <Link className="btn btn-on-image" href="#">Intake form</Link>
             </div>
           </div>
         </div>
@@ -87,8 +88,9 @@ export default function HowItWorksPage() {
         <div className="rs-cta-band-inner">
           <h2>Ready to start the journey?</h2>
           <p>We start out with a call. It&apos;s where we work out if this is the right fit for you.</p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
+            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
           </div>
         </div>
       </section>

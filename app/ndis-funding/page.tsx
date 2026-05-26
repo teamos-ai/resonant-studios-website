@@ -19,7 +19,8 @@ export default function NDISFundingPage() {
               Sessions at Resonant Studios may be funded under your NDIS plan, typically under Assistance with Social and Community Participation, if aligned with your personal goals and funding categories. Here&apos;s what that means in practice.
             </p>
             <div className="rs-hero-cta">
-              <Link className="btn" href="/book">Talk to Tony</Link>
+              <Link className="btn" href="/book">Book a call</Link>
+              <Link className="btn btn-on-image" href="#">Intake form</Link>
             </div>
           </div>
         </div>
@@ -93,8 +94,9 @@ export default function NDISFundingPage() {
         <div className="rs-cta-band-inner">
           <h2>Not sure if it&apos;s covered?</h2>
           <p>The discovery call is the fastest way to find out. We&apos;ll talk through your plan together — no jargon.</p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
+            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
           </div>
         </div>
       </section>

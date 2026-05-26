@@ -125,10 +125,9 @@ export default function HomePage() {
           <h2 id="final-cta-heading">Let&apos;s talk about what you want to <em>make</em>.</h2>
           <p>Two ways to begin — start your sessions now, or book a free discovery call to ask questions first.</p>
           <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
-            {/* Immediate-start pathway. TODO: swap href to the intake-form
-                URL once it's set up in GHL. Falls back to email for now. */}
-            <Link className="btn btn-lg" href="/intake">Start your sessions</Link>
-            <Link className="btn btn-on-image btn-lg" href="/book">Book a discovery call</Link>
+            <Link className="btn btn-lg" href="/book">Book a call</Link>
+            {/* Intake form — placeholder href, swap to the intake-form URL once it's set up. */}
+            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
           </div>
           <p className="rs-cta-band-foot">
             Prefer email? <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a> — Tony reads every message.
