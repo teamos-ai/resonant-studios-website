@@ -29,7 +29,7 @@ export default function ContactPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-on-image" href="#">Intake form</Link>
+              <Link className="btn btn-on-image" href="/intake">Intake form</Link>
             </div>
           </div>
         </div>

@@ -650,6 +650,18 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   .rs-book-embed iframe { min-height: 900px; height: 900px; }
 }
 
+/* Intake survey embed — taller reservation than the booking calendar
+   because multi-question surveys grow. Inherits the rest of .rs-book-embed. */
+.rs-intake-embed,
+.rs-intake-embed iframe {
+  min-height: 1000px;
+  height: 1000px;
+}
+@media (max-width: 720px) {
+  .rs-intake-embed,
+  .rs-intake-embed iframe { min-height: 1200px; height: 1200px; }
+}
+
 /* Responsive helpers — applied across pages. */
 @media (max-width: 880px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr !important; }

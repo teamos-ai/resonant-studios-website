@@ -1,10 +1,14 @@
 import Link from "next/link";
+import Script from "next/script";
 
-export const metadata = {
-  title: "Start your sessions — Resonant Studios",
-  description:
-    "The fastest way to start your NDIS-aligned music sessions at Resonant Studios. Tell us a few things and we'll set up your first session.",
-};
+export const metadata = { title: "Intake form — Start your sessions" };
+
+// Go High Level intake survey — provided 2026-05-23.
+// Survey ID: NBTWVrqTd7WOcix3a26N
+// Direct link: https://link.teamos.ai/widget/survey/NBTWVrqTd7WOcix3a26N
+const GHL_INTAKE_ID = "NBTWVrqTd7WOcix3a26N";
+const GHL_INTAKE_SRC = `https://link.teamos.ai/widget/survey/${GHL_INTAKE_ID}`;
+const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 
 export default function IntakePage() {
   return (
@@ -12,81 +16,66 @@ export default function IntakePage() {
       <section
         className="rs-hero"
         aria-labelledby="intake-hero"
-        style={{ backgroundImage: "url('/library/photos/tony-hands-on-console.jpg')" }}
+        style={{ backgroundImage: "url('/library/photos/tony-headshot.jpg')" }}
       >
         <div className="rs-hero-grid">
           <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
-            <div className="rs-hero-eyebrow">Start your sessions</div>
-            <h1 id="intake-hero">Let&apos;s set you up.</h1>
+            <div className="rs-hero-eyebrow">Intake form</div>
+            <h1 id="intake-hero">Tell us about <em>you.</em></h1>
             <p className="rs-hero-lead">
-              You already know you want to make music with us — beautiful. Tell us a few things and we&apos;ll get your first session booked.
+              A short intake form so Tony knows what you&apos;d like to make and how to support you in sessions. It takes about 10 minutes. Fill it in yourself or with someone who helps you decide.
             </p>
           </div>
         </div>
       </section>
 
+      <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
+        <strong>What this page is about</strong>
+        <p>This page is the intake form. You answer a few questions about yourself and what you want to make. Then Tony will get in touch.</p>
+      </aside>
+
       <section className="rs-page-section">
         <div className="rs-page-container">
-          <div
-            className="form-shell"
-            style={{
-              background: "var(--bg-elevated)",
-              border: "1px solid var(--rule)",
-              borderRadius: "var(--r-4)",
-              boxShadow: "var(--shadow-md)",
-              padding: "var(--s-7)",
-              maxWidth: 720,
-              marginInline: "auto",
-            }}
-          >
-            <div style={{ marginBottom: "var(--s-5)" }}>
-              <div className="eyebrow" style={{ marginBottom: 10 }}>Intake form</div>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 30, lineHeight: 1.1, margin: 0, color: "var(--ink)" }}>
-                Tell us about you
-              </h2>
-              <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>
-                The intake form is being finalised. In the meantime, the fastest way to start is to email Tony directly — he&apos;ll personally walk you through the first-session setup.
+          <div className="rs-book-card">
+            <header className="rs-book-header">
+              <div className="eyebrow" style={{ marginBottom: 10 }}>Start your sessions</div>
+              <h2 className="rs-book-title">Let&apos;s get you set up.</h2>
+              <p className="rs-book-lead">
+                Your answers go straight to Tony. He&apos;ll be in touch within one business day to confirm your first session and walk you through anything you&apos;d like to ask.
               </p>
+            </header>
+
+            <div className="rs-book-context-strip">
+              <div>
+                <div className="eyebrow" style={{ color: "var(--secondary)", marginBottom: 6 }}>What we&apos;ll ask</div>
+                <p style={{ color: "var(--ink-muted)", fontSize: "var(--fs-small)", margin: 0, lineHeight: 1.55 }}>
+                  Your name and contact details · your NDIS plan type · what you&apos;d like to make · accessibility and support needs.
+                </p>
+              </div>
+              <div>
+                <div className="eyebrow" style={{ color: "var(--accent)", marginBottom: 6 }}>Take your time</div>
+                <p style={{ color: "var(--ink-muted)", fontSize: "var(--fs-small)", margin: 0, lineHeight: 1.55 }}>
+                  Bring your support coordinator, family member, or anyone who helps you decide. You can pause and come back to the form at any time.
+                </p>
+              </div>
             </div>
 
-            {/* TODO: replace with the GHL intake-form iframe once it's built.
-                Until then, surface the two reliable contact paths below. */}
-            <div
-              className="rs-embed-slot"
-              style={{
-                marginBottom: "var(--s-5)",
-                background: "var(--bg)",
-                border: "1px dashed var(--rule-strong)",
-                borderRadius: "var(--r-2)",
-                padding: "var(--s-6)",
-                textAlign: "center",
-                color: "var(--ink-soft)",
-                fontSize: "var(--fs-small)",
-              }}
-            >
-              Intake form coming soon.
+            <div className="rs-book-embed rs-intake-embed">
+              <iframe
+                src={GHL_INTAKE_SRC}
+                id={GHL_INTAKE_ID}
+                title="Resonant Studios — intake form"
+                scrolling="no"
+                style={{ border: "none", width: "100%", display: "block" }}
+              />
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "var(--s-3)" }}>
-              <a
-                className="btn"
-                href="mailto:info@resonantstudios.com.au?subject=I%27m%20ready%20to%20start%20sessions"
-                style={{ width: "100%", justifyContent: "center" }}
-              >
-                Email Tony to get started
-              </a>
-              <Link
-                className="btn btn-secondary"
-                href="/book"
-                style={{ width: "100%", justifyContent: "center" }}
-              >
-                Book a discovery call instead
-              </Link>
-            </div>
-
-            <p style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: "var(--s-5)", lineHeight: 1.5, textAlign: "center" }}>
-              Tony reads every email and reaches back within one business day.
+            <p className="rs-book-foot">
+              Form not loading?{" "}
+              <a href={GHL_INTAKE_SRC} target="_blank" rel="noopener noreferrer">Open the intake form in a new tab →</a>
+              <br />
+              Prefer to chat first? <Link href="/book">Book a free discovery call</Link> — Tony will walk you through the intake on the call.
             </p>
           </div>
         </div>
@@ -95,16 +84,19 @@ export default function IntakePage() {
       <section className="rs-page-section tone-sunken">
         <div className="rs-page-container editorial">
           <div style={{ textAlign: "center" }}>
-            <div className="eyebrow">Not quite sure yet?</div>
-            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h2)", lineHeight: 1.15, margin: "var(--s-3) auto var(--s-4)", letterSpacing: "var(--track-tight)", maxWidth: "26ch" }}>
-              The discovery call is the lowest-pressure way to find out if we&apos;re right for you.
-            </h2>
+            <div className="eyebrow">Not ready to fill it in?</div>
+            <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h2)", lineHeight: 1.15, margin: "var(--s-3) auto var(--s-4)", letterSpacing: "var(--track-tight)", maxWidth: "24ch" }}>That&apos;s fine. Have a chat first.</h2>
             <p style={{ color: "var(--ink-muted)", lineHeight: 1.6, maxWidth: "56ch", marginInline: "auto" }}>
-              Or read about <Link href="/how-it-works">how sessions run</Link>, the <Link href="/ndis-funding">NDIS funding</Link> path, or what <Link href="/sessions">a session actually looks like</Link>.
+              Read about <Link href="/how-it-works">how sessions run</Link>, the <Link href="/ndis-funding">NDIS funding</Link> path, or what <Link href="/sessions">a session actually looks like</Link>. When you&apos;re ready, the form is here.
             </p>
           </div>
         </div>
       </section>
+
+      {/* GHL embed loader — defers until after hydration so it never blocks
+          first paint. Listens for postMessage events from the survey iframe
+          and resizes it as content height changes. */}
+      <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
     </>
   );
 }

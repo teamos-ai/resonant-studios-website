@@ -22,7 +22,7 @@ export default function HomePage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-on-image" href="#">Intake form</Link>
+              <Link className="btn btn-on-image" href="/intake">Intake form</Link>
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function HomePage() {
           <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
             {/* Intake form — placeholder href, swap to the intake-form URL once it's set up. */}
-            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
+            <Link className="btn btn-on-image btn-lg" href="/intake">Intake form</Link>
           </div>
           <p className="rs-cta-band-foot">
             Prefer email? <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a> — Tony reads every message.

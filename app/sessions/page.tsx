@@ -20,7 +20,7 @@ export default function SessionsPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-on-image" href="#">Intake form</Link>
+              <Link className="btn btn-on-image" href="/intake">Intake form</Link>
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@ export default function SessionsPage() {
           <p>The discovery call is the easiest way to find out. No pressure, no commitment.</p>
           <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
-            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
+            <Link className="btn btn-on-image btn-lg" href="/intake">Intake form</Link>
           </div>
         </div>
       </section>

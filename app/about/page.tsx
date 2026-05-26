@@ -20,7 +20,7 @@ export default function AboutPage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-on-image" href="#">Intake form</Link>
+              <Link className="btn btn-on-image" href="/intake">Intake form</Link>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function AboutPage() {
           <p>The discovery call is free. We&apos;ll walk you through how the space works and what your first session would look like.</p>
           <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
-            <Link className="btn btn-on-image btn-lg" href="#">Intake form</Link>
+            <Link className="btn btn-on-image btn-lg" href="/intake">Intake form</Link>
           </div>
         </div>
       </section>
