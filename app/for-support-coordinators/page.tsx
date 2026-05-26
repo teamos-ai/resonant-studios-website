@@ -24,11 +24,11 @@ export default function CoordinatorsPage() {
             <div className="rs-hero-eyebrow">For support coordinators</div>
             <h1 id="coord-hero">A referral <em>worth making.</em></h1>
             <p className="rs-hero-lead">
-              Resonant Studios delivers documented, outcome-focused sessions your participants will talk about for years — a finished song on Spotify, under their name.
+              Resonant Studios delivers structured participant-led music sessions with clear documentation, measurable engagement, and tangible creative outcomes.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="#referral">Make a referral</Link>
-              <Link className="btn btn-on-image" href="/contact">Talk to Tony first</Link>
+              <Link className="btn btn-on-image" href="#coordinator-call">Talk to Tony first</Link>
             </div>
           </div>
         </div>
@@ -43,21 +43,48 @@ export default function CoordinatorsPage() {
         <div className="rs-page-container">
           <header className="rs-section-heading">
             <div className="eyebrow">Why refer here</div>
-            <h2>Outcomes you can actually report.</h2>
-            <p>NDIS-compliant, tangible, documented — built so progress is easy to evidence for ongoing funding.</p>
+            <h2>Documented outcomes and participant progress.</h2>
+            <p>Sessions are structured to support meaningful engagement, documented progress, and participant-led creative outcomes.</p>
           </header>
-          <ul className="rs-feature-grid" role="list">
+
+          {/* Lead panel — bigger card with the "what sessions may include" summary */}
+          <div
+            className="card"
+            style={{
+              padding: "var(--s-7)",
+              borderRadius: "var(--r-4)",
+              marginBottom: "var(--s-5)",
+              boxShadow: "var(--shadow-md), var(--shadow-inset)",
+            }}
+          >
+            <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h3)", lineHeight: 1.2, margin: "0 0 var(--s-3)", color: "var(--ink)", letterSpacing: "var(--track-tight)" }}>
+              What sessions may include
+            </h3>
+            <p style={{ color: "var(--ink-muted)", lineHeight: "var(--lh-body)", margin: 0 }}>
+              Sessions may include songwriting, recording vocals or instruments, beat making, music production, and creative collaboration while supporting confidence, independence, creative skill development, and social participation.
+            </p>
+          </div>
+
+          {/* Two supporting cards — invoicing + progress reports */}
+          <ul
+            role="list"
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "var(--s-4)",
+            }}
+            className="grid-2"
+          >
             <li className="card">
-              <h3 className="rs-feature-h">Tangible outcome</h3>
-              <p>Every participant finishes with a Spotify release. That&apos;s real, measurable, shareable progress against capacity-building goals.</p>
+              <h3 className="rs-feature-h">Clear invoicing</h3>
+              <p>Clear invoices are provided promptly for plan-managed and self-managed participants.</p>
             </li>
             <li className="card">
-              <h3 className="rs-feature-h">NDIS-compliant invoicing</h3>
-              <p>Line item 04_104_0125_6_1, Capacity Building — Community, Social and Civic Participation. Invoices arrive within 48 hours of session completion.</p>
-            </li>
-            <li className="card">
-              <h3 className="rs-feature-h">Progress reports on request</h3>
-              <p>Plain-English session notes available for plan reviews. Outcome framing that maps to standard NDIS goal categories.</p>
+              <h3 className="rs-feature-h">Progress reports available</h3>
+              <p>Session notes and progress updates are available to support participant engagement and goals.</p>
             </li>
           </ul>
         </div>
@@ -68,28 +95,28 @@ export default function CoordinatorsPage() {
           <header className="rs-section-heading">
             <div className="eyebrow">Referral process</div>
             <h2>How to refer a participant.</h2>
-            <p>Pick whichever path suits you — quick form, direct call, or a meeting first to scope fit.</p>
+            <p>Choose the referral approach that works best for you — referral form, direct contact, or an initial conversation first.</p>
           </header>
           <ol className="rs-steps">
             <li className="rs-step">
               <div className="rs-step-num">01</div>
               <div>
                 <h3>Get in touch</h3>
-                <p>Submit the referral form below, email <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>, or call Tony directly.</p>
+                <p>Referrals can be made through the form below, by email at <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>, or by contacting Tony directly.</p>
               </div>
             </li>
             <li className="rs-step">
               <div className="rs-step-num">02</div>
               <div>
-                <h3>Free 15-minute discovery call</h3>
-                <p>With the participant (and you, if you&apos;d like to be there). We confirm fit, accessibility needs, and funding setup.</p>
+                <h3>Initial conversation</h3>
+                <p>A conversation to discuss participant goals, accessibility needs, interests, and session suitability.</p>
               </div>
             </li>
             <li className="rs-step">
               <div className="rs-step-num">03</div>
               <div>
-                <h3>First session booked</h3>
-                <p>Confirmed in writing. Progress reporting available from session 1 onward.</p>
+                <h3>Sessions begin</h3>
+                <p>Once goals, accessibility needs, scheduling, and intake documentation are confirmed, sessions can begin with ongoing communication available where needed.</p>
               </div>
             </li>
           </ol>
@@ -98,7 +125,7 @@ export default function CoordinatorsPage() {
               <div style={{ marginBottom: "var(--s-5)" }}>
                 <div className="eyebrow" style={{ marginBottom: 10 }}>Referral form</div>
                 <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 30, lineHeight: 1.1, margin: 0, color: "var(--ink)" }}>Refer a participant</h3>
-                <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>Submissions go straight to Tony — he&apos;ll reply within one business day.</p>
+                <p style={{ color: "var(--ink-muted)", fontSize: 15, lineHeight: 1.55, marginTop: 12 }}>Submissions are sent directly to Tony, with replies typically provided within one business day.</p>
               </div>
               <div className="rs-referral-embed">
                 <iframe
@@ -133,10 +160,11 @@ export default function CoordinatorsPage() {
           iframe and resizes it as content height changes. */}
       <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
 
-      <section className="rs-cta-band" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
+      <section className="rs-cta-band" id="coordinator-call" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
         <div className="rs-cta-band-inner">
-          <h2>Prefer to meet Tony first?</h2>
-          <p>Book a coordinator-only call. We&apos;ll talk through what your participants might need before any referral.</p>
+          <div className="eyebrow" style={{ color: "var(--terra-300)" }}>Before referring</div>
+          <h2>Prefer to discuss a referral with Tony first?</h2>
+          <p>Book a call to discuss participant goals, accessibility needs, and session suitability before proceeding with a referral.</p>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>
           </div>
