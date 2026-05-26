@@ -22,7 +22,7 @@ export default function HomePage() {
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
-              <Link className="btn btn-on-image" href="/how-it-works">How sessions run</Link>
+              <Link className="btn btn-on-image" href="#">Intake form</Link>
             </div>
           </div>
         </div>
