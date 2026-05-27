@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/ndis-funding", priority: 0.9, changeFrequency: "monthly" },
     { path: "/about", priority: 0.8, changeFrequency: "monthly" },
     { path: "/for-support-coordinators", priority: 0.85, changeFrequency: "monthly" },
+    { path: "/free-resources/coordinators", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/free-resources/parents", priority: 0.7, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.75, changeFrequency: "monthly" },
   ];
 
