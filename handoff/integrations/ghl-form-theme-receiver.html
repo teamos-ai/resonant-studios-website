@@ -1,0 +1,12 @@
+<!--
+  Paste this into the GHL form builder → Custom HTML field (above or below fields).
+  It receives the rs:theme postMessage sent by GhlThemeBridge and sets
+  data-theme on the iframe's <html> element so the CSS selectors work.
+-->
+<script>
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.type === 'rs:theme') {
+      document.documentElement.setAttribute('data-theme', e.data.value);
+    }
+  });
+</script>

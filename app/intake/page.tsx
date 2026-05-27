@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Script from "next/script";
+import GhlThemeBridge from "@/app/components/ui/GhlThemeBridge";
 
 export const metadata = { title: "Intake form — Start your sessions" };
 
@@ -97,6 +98,7 @@ export default function IntakePage() {
           first paint. Listens for postMessage events from the survey iframe
           and resizes it as content height changes. */}
       <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
+      <GhlThemeBridge />
     </>
   );
 }

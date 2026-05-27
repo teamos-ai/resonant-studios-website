@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Script from "next/script";
+import GhlThemeBridge from "@/app/components/ui/GhlThemeBridge";
 
 export const metadata = { title: "For support coordinators — A referral worth making" };
 
@@ -159,6 +160,7 @@ export default function CoordinatorsPage() {
           first paint. Listens for postMessage events from the referral form
           iframe and resizes it as content height changes. */}
       <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
+      <GhlThemeBridge />
 
       <section className="rs-cta-band" id="coordinator-call" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
         <div className="rs-cta-band-inner">

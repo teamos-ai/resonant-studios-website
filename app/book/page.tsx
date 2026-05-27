@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Script from "next/script";
+import GhlThemeBridge from "@/app/components/ui/GhlThemeBridge";
 
 export const metadata = { title: "Book a call — A relaxed 30–45 minute conversation" };
 
@@ -94,6 +95,7 @@ export default function BookPage() {
           first paint. Listens for postMessage events from the calendar
           iframe and resizes it as content height changes. */}
       <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
+      <GhlThemeBridge />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import { Mail, MapPin, Phone } from "lucide-react";
+import GhlThemeBridge from "@/app/components/ui/GhlThemeBridge";
 
 export const metadata = { title: "Contact — Get in touch with Tony" };
 
@@ -110,6 +111,7 @@ export default function ContactPage() {
           first paint. Listens for postMessage events from the contact form
           iframe and resizes it as content height changes. */}
       <Script src={GHL_EMBED_SCRIPT} strategy="lazyOnload" />
+      <GhlThemeBridge />
     </>
   );
 }

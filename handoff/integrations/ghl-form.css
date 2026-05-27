@@ -17,7 +17,10 @@ body,
   margin-bottom: 16px !important;
 }
 
-/* ---- Inputs — light mode ---- */
+/* ================================================================
+   BASE / LIGHT MODE
+   ================================================================ */
+
 input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
 textarea,
 select,
@@ -36,14 +39,12 @@ select,
   transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-/* Placeholder */
 input::placeholder,
 textarea::placeholder {
   color: #5b6470 !important;
   opacity: 1 !important;
 }
 
-/* Field icons */
 .input-field svg,
 .form-group svg,
 .field-container svg {
@@ -61,7 +62,7 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(197, 106, 49, 0.18) !important;
 }
 
-/* ---- Consent checkbox — light mode ---- */
+/* Consent checkbox */
 input[type="checkbox"] {
   width: 16px !important;
   height: 16px !important;
@@ -80,7 +81,7 @@ input[type="checkbox"] {
   opacity: 1 !important;
 }
 
-/* ---- Submit — light mode ---- */
+/* Submit */
 button[type="submit"],
 .submit-form-btn,
 .ghl-btn,
@@ -113,7 +114,7 @@ button[type="submit"]:active,
   transform: translateY(1px) !important;
 }
 
-/* ---- Footer links (Privacy / Terms) — light mode ---- */
+/* Footer links (Privacy / Terms) */
 .form-builder--main a,
 form a {
   color: #2c628d !important;
@@ -125,7 +126,7 @@ form a:hover {
   text-decoration: underline !important;
 }
 
-/* ---- Validation ---- */
+/* Validation */
 .error,
 .invalid-feedback,
 .field-error {
@@ -135,75 +136,144 @@ form a:hover {
 
 /* ================================================================
    DARK MODE
+   Triggered two ways:
+     1. :root[data-theme="dark"]  — set by the GhlThemeBridge postMessage
+     2. @media (prefers-color-scheme: dark) with :not([data-theme="light"])
+        — fallback for the initial render before the bridge message arrives,
+          and for users whose OS preference matches their chosen site theme.
    ================================================================ */
-@media (prefers-color-scheme: dark) {
 
-  body,
-  .ghl-form,
-  .form-builder--main {
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] .ghl-form,
+:root[data-theme="dark"] .form-builder--main {
+  color: #f0f0f0 !important;
+}
+
+:root[data-theme="dark"]
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] .input-field input {
+  background: #111111 !important;
+  color: #f0f0f0 !important;
+  border-color: #c56a31 !important;
+}
+
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder {
+  color: #8a9099 !important;
+}
+
+:root[data-theme="dark"] .input-field svg,
+:root[data-theme="dark"] .form-group svg,
+:root[data-theme="dark"] .field-container svg {
+  color: #8a9099 !important;
+}
+
+:root[data-theme="dark"] input:not([type="checkbox"]):focus,
+:root[data-theme="dark"] textarea:focus,
+:root[data-theme="dark"] select:focus {
+  background: #111111 !important;
+  border-color: #c56a31 !important;
+  box-shadow: 0 0 0 3px rgba(197, 106, 49, 0.25) !important;
+}
+
+:root[data-theme="dark"] input[type="checkbox"] {
+  accent-color: #a65f23 !important;
+}
+
+:root[data-theme="dark"] .checkbox-container label,
+:root[data-theme="dark"] .terms-and-condition,
+:root[data-theme="dark"] .consent-label,
+:root[data-theme="dark"] .checkbox-text {
+  color: #a65f23 !important;
+}
+
+:root[data-theme="dark"] button[type="submit"],
+:root[data-theme="dark"] .submit-form-btn,
+:root[data-theme="dark"] .ghl-btn,
+:root[data-theme="dark"] #submit-btn,
+:root[data-theme="dark"] .form-builder--submit button {
+  background: #a65f23 !important;
+}
+
+:root[data-theme="dark"] button[type="submit"]:hover,
+:root[data-theme="dark"] .submit-form-btn:hover,
+:root[data-theme="dark"] .ghl-btn:hover,
+:root[data-theme="dark"] #submit-btn:hover {
+  background: #8c4f1c !important;
+}
+
+:root[data-theme="dark"] .form-builder--main a,
+:root[data-theme="dark"] form a {
+  color: #a65f23 !important;
+}
+
+/* OS-level dark preference, not explicitly overridden to light by the site */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body,
+  :root:not([data-theme="light"]) .ghl-form,
+  :root:not([data-theme="light"]) .form-builder--main {
     color: #f0f0f0 !important;
   }
 
-  /* Inputs */
-  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
-  textarea,
-  select,
-  .input-field input {
+  :root:not([data-theme="light"])
+    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+  :root:not([data-theme="light"]) textarea,
+  :root:not([data-theme="light"]) select,
+  :root:not([data-theme="light"]) .input-field input {
     background: #111111 !important;
     color: #f0f0f0 !important;
     border-color: #c56a31 !important;
   }
 
-  input::placeholder,
-  textarea::placeholder {
+  :root:not([data-theme="light"]) input::placeholder,
+  :root:not([data-theme="light"]) textarea::placeholder {
     color: #8a9099 !important;
   }
 
-  .input-field svg,
-  .form-group svg,
-  .field-container svg {
+  :root:not([data-theme="light"]) .input-field svg,
+  :root:not([data-theme="light"]) .form-group svg,
+  :root:not([data-theme="light"]) .field-container svg {
     color: #8a9099 !important;
   }
 
-  input:not([type="checkbox"]):focus,
-  textarea:focus,
-  select:focus {
+  :root:not([data-theme="light"]) input:not([type="checkbox"]):focus,
+  :root:not([data-theme="light"]) textarea:focus,
+  :root:not([data-theme="light"]) select:focus {
     background: #111111 !important;
     border-color: #c56a31 !important;
     box-shadow: 0 0 0 3px rgba(197, 106, 49, 0.25) !important;
   }
 
-  /* Consent checkbox */
-  input[type="checkbox"] {
+  :root:not([data-theme="light"]) input[type="checkbox"] {
     accent-color: #a65f23 !important;
   }
 
-  .checkbox-container label,
-  .terms-and-condition,
-  .consent-label,
-  .checkbox-text {
+  :root:not([data-theme="light"]) .checkbox-container label,
+  :root:not([data-theme="light"]) .terms-and-condition,
+  :root:not([data-theme="light"]) .consent-label,
+  :root:not([data-theme="light"]) .checkbox-text {
     color: #a65f23 !important;
   }
 
-  /* Submit */
-  button[type="submit"],
-  .submit-form-btn,
-  .ghl-btn,
-  #submit-btn,
-  .form-builder--submit button {
+  :root:not([data-theme="light"]) button[type="submit"],
+  :root:not([data-theme="light"]) .submit-form-btn,
+  :root:not([data-theme="light"]) .ghl-btn,
+  :root:not([data-theme="light"]) #submit-btn,
+  :root:not([data-theme="light"]) .form-builder--submit button {
     background: #a65f23 !important;
   }
 
-  button[type="submit"]:hover,
-  .submit-form-btn:hover,
-  .ghl-btn:hover,
-  #submit-btn:hover {
+  :root:not([data-theme="light"]) button[type="submit"]:hover,
+  :root:not([data-theme="light"]) .submit-form-btn:hover,
+  :root:not([data-theme="light"]) .ghl-btn:hover,
+  :root:not([data-theme="light"]) #submit-btn:hover {
     background: #8c4f1c !important;
   }
 
-  /* Footer links (Privacy / Terms) */
-  .form-builder--main a,
-  form a {
+  :root:not([data-theme="light"]) .form-builder--main a,
+  :root:not([data-theme="light"]) form a {
     color: #a65f23 !important;
   }
 }
