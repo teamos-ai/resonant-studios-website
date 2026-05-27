@@ -14,12 +14,11 @@ export default function IntakePage() {
   return (
     <>
       <section
-        className="rs-hero"
+        className="rs-hero rs-hero--compact"
         aria-labelledby="intake-hero"
-        style={{ backgroundImage: "url('/library/photos/tony-headshot.jpg')" }}
+        style={{ backgroundImage: "url('/library/photos/intake-grain-background.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Intake form</div>
             <h1 id="intake-hero">Tell us about <em>you.</em></h1>

@@ -365,6 +365,43 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   }
 }
 
+/* Compact hero variant — used on /intake. Single centred column, no bento
+   placeholder, capped at a sensible above-the-fold height instead of 100vh,
+   and a lighter scrim so the warm grain background reads through. */
+.rs-hero--compact {
+  min-height: clamp(480px, 64vh, 680px);
+  align-items: center;
+}
+.rs-hero--compact::before {
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.52) 60%, rgba(0,0,0,0.72) 100%);
+}
+.rs-hero--compact .rs-hero-grid {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+  justify-items: center;
+}
+.rs-hero--compact .rs-hero-content {
+  align-items: center;
+  text-align: center;
+  max-width: 60ch;
+}
+.rs-hero--compact .rs-hero-lead {
+  margin-inline: auto;
+}
+.rs-hero--compact .rs-hero-cta {
+  justify-content: center;
+}
+@media (max-width: 880px) {
+  .rs-hero--compact {
+    min-height: clamp(440px, 70vh, 640px);
+    align-items: center;
+    padding-bottom: var(--s-7);
+  }
+}
+
 /* Section helpers — wrap content blocks. */
 .rs-page-section { padding: var(--s-9) 0; }
 .rs-page-section.tone-sunken { background: var(--bg-sunken); }
