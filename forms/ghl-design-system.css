@@ -1,47 +1,41 @@
 /* ============================================================
-   Resonant Studios — GHL form custom CSS
+   Resonant Studios — GHL form custom CSS  (v2 — aggressive)
    ------------------------------------------------------------
-   Paste this file into the "Custom CSS" panel of any
-   Go High Level form so the rendered iframe matches the
-   resonantstudios.com.au design system.
+   Paste this whole file into the "Custom CSS" panel of any
+   GHL form. The previous version (v1) lost the cascade against
+   GHL's inline theme colours — this revision wins by:
 
-   Token values are mirrored directly from app/globals.css
-   (the inline copy is intentional — the GHL iframe cannot
-   reach the parent page's CSS variables).
+     1. Overriding GHL's own theme CSS variables at :root so the
+        default blue is replaced at the source.
+     2. Body-prefixing every rule for higher selector specificity.
+     3. Broadening the button + input + link targets to match
+        whichever class wrappers GHL is using on this form
+        (the new form-builder DOM differs from the older one
+        the community references documented).
 
-   Selectors are sourced from:
+   Source-of-truth file:
+     https://github.com/teamos-ai/resonant-studios-website/blob/master/forms/ghl-design-system.css
+   Selector provenance:
      https://github.com/teamos-ai/ghl-form-css-reference
-     (selectors.json — every override below cites a `confirmed`
-      entry. Inferred entries are marked inline with TODO:verify.)
-
-   Theme behaviour:
-     · Default = light mode
-     · @media (prefers-color-scheme: dark) swaps tokens to
-       the dark palette. The iframe follows the visitor's
-       OS-level preference, not the parent site's manual
-       theme toggle — cross-origin iframes can't read the
-       parent's data-theme attribute. This is the closest
-       sync available without a postMessage bridge.
-
-   Forms this is applied to:
-     · 04 | Coordinator Combo Lead Magnet (HT93KLrv082pr6Wvq9rL)
-     · 05 | Parents Pack Lead Magnet      (TBA)
    ============================================================ */
 
-/* ---------- 1. Tokens (mirror site CSS variables) ---------- */
-:root {
-  /* Default = light mode */
-  --rs-card-bg:            #FFFFFF;       /* linen-50 / bg-elevated */
+/* ---------- 1. Tokens — mirror site CSS variables ---------- */
+:root,
+html,
+body,
+.hl-app {
+  /* Resonant Studios design-system tokens (light mode default) */
+  --rs-card-bg:            #FFFFFF;
   --rs-field-bg:           #FFFFFF;
   --rs-field-border:       rgba(31, 30, 27, 0.18);
   --rs-field-border-hover: rgba(31, 30, 27, 0.34);
-  --rs-ink:                #1F1E1B;       /* linen-900 */
+  --rs-ink:                #1F1E1B;
   --rs-ink-muted:          rgba(31, 30, 27, 0.66);
   --rs-ink-soft:           rgba(31, 30, 27, 0.50);
   --rs-rule:               rgba(31, 30, 27, 0.10);
   --rs-link:               #A95930;       /* terra-600 */
   --rs-link-hover:         #8B4525;       /* terra-700 */
-  --rs-cta-bg:             #587058;       /* forest-600 — light-mode primary CTA */
+  --rs-cta-bg:             #587058;       /* forest-600 */
   --rs-cta-bg-hover:       #3F523F;       /* forest-700 */
   --rs-cta-ink:            #FFFFFF;
   --rs-error:              #9C4A3C;       /* error-500 */
@@ -49,87 +43,144 @@
   --rs-focus-ring:         #A95930;       /* terra-600 */
   --rs-focus-ring-wash:    rgba(169, 89, 48, 0.28);
 
-  --rs-radius-field:       10px;          /* --r-2 */
-  --rs-radius-card:        20px;          /* --r-4 */
-  --rs-radius-btn:         10px;          /* --r-2 */
+  --rs-radius-field:       10px;
+  --rs-radius-card:        20px;
+  --rs-radius-btn:         10px;
 
-  --rs-font-body:          'Manrope', system-ui, -apple-system, BlinkMacSystemFont,
-                           'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --rs-font-body: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont,
+                  'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+  /* HIJACK every GHL theme variable we know of. Names vary across
+     versions of the form builder; overriding all of them blanks out
+     the default blue at the source. */
+  --primary:               var(--rs-cta-bg) !important;
+  --primary-color:         var(--rs-cta-bg) !important;
+  --primary-hover:         var(--rs-cta-bg-hover) !important;
+  --ghl-primary:           var(--rs-cta-bg) !important;
+  --ghl-primary-color:     var(--rs-cta-bg) !important;
+  --brand-primary:         var(--rs-cta-bg) !important;
+  --brand-color:           var(--rs-cta-bg) !important;
+  --theme-color:           var(--rs-cta-bg) !important;
+  --theme-primary:         var(--rs-cta-bg) !important;
+  --main-color:            var(--rs-cta-bg) !important;
+  --accent-color:          var(--rs-link) !important;
+  --link-color:            var(--rs-link) !important;
+  --form-primary:          var(--rs-cta-bg) !important;
+  --form-button-color:     var(--rs-cta-bg) !important;
+  --form-button-bg-color:  var(--rs-cta-bg) !important;
+  --button-color:          var(--rs-cta-bg) !important;
+  --button-bg-color:       var(--rs-cta-bg) !important;
+  --button-text-color:     var(--rs-cta-ink) !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --rs-card-bg:            #22272B;     /* slate-700 / bg-elevated */
-    --rs-field-bg:           #181C1F;     /* slate-800 / inset field */
+  :root,
+  html,
+  body,
+  .hl-app {
+    --rs-card-bg:            #22272B;
+    --rs-field-bg:           #181C1F;
     --rs-field-border:       rgba(230, 232, 234, 0.16);
     --rs-field-border-hover: rgba(230, 232, 234, 0.32);
     --rs-ink:                #E6E8EA;
     --rs-ink-muted:          rgba(230, 232, 234, 0.70);
     --rs-ink-soft:           rgba(230, 232, 234, 0.52);
     --rs-rule:               rgba(230, 232, 234, 0.10);
-    --rs-link:               #E58F66;     /* terra-300 — dark-mode primary */
+    --rs-link:               #E58F66;       /* terra-300 */
     --rs-link-hover:         #F0A57F;
-    --rs-cta-bg:             #E58F66;     /* terra-300 — dark-mode primary CTA */
+    --rs-cta-bg:             #E58F66;       /* terra-300 */
     --rs-cta-bg-hover:       #F0A57F;
     --rs-cta-ink:            #1A0E08;
-    --rs-error:              #E89A88;     /* error-300 */
+    --rs-error:              #E89A88;
     --rs-error-wash:         rgba(232, 154, 136, 0.18);
-    --rs-focus-ring:         #E58F66;     /* terra-300 */
+    --rs-focus-ring:         #E58F66;
     --rs-focus-ring-wash:    rgba(229, 143, 102, 0.32);
+
+    /* Re-hijack GHL theme variables for dark mode */
+    --primary:               var(--rs-cta-bg) !important;
+    --primary-color:         var(--rs-cta-bg) !important;
+    --primary-hover:         var(--rs-cta-bg-hover) !important;
+    --ghl-primary:           var(--rs-cta-bg) !important;
+    --ghl-primary-color:     var(--rs-cta-bg) !important;
+    --brand-primary:         var(--rs-cta-bg) !important;
+    --brand-color:           var(--rs-cta-bg) !important;
+    --theme-color:           var(--rs-cta-bg) !important;
+    --theme-primary:         var(--rs-cta-bg) !important;
+    --main-color:            var(--rs-cta-bg) !important;
+    --accent-color:          var(--rs-link) !important;
+    --link-color:            var(--rs-link) !important;
+    --form-primary:          var(--rs-cta-bg) !important;
+    --form-button-color:     var(--rs-cta-bg) !important;
+    --form-button-bg-color:  var(--rs-cta-bg) !important;
+    --button-color:          var(--rs-cta-bg) !important;
+    --button-bg-color:       var(--rs-cta-bg) !important;
+    --button-text-color:     var(--rs-cta-ink) !important;
   }
 }
 
 /* ---------- 2. Document base ---------- */
-/* DB ref: structure / app-namespace (.hl-app) — top-level wrapper. */
 html,
 body,
-.hl-app {
+body.hl-app,
+body .hl-app,
+body #_builder-form,
+body form {
   background: transparent !important;
   margin: 0 !important;
   padding: 0 !important;
   font-family: var(--rs-font-body) !important;
   color: var(--rs-ink) !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
 /* ---------- 3. Form card surface ---------- */
-/* DB ref: structure / form-root (form#_builder-form) — the <form> is the card. */
-form#_builder-form {
+/* Targets every plausible form-root selector — the newer form builder
+   doesn't always render with id="_builder-form". */
+body form,
+body form#_builder-form,
+body .form-builder,
+body .form-wrapper,
+body [data-form-id] {
   background: var(--rs-card-bg) !important;
   color: var(--rs-ink) !important;
   border: 1px solid var(--rs-rule) !important;
   border-radius: var(--rs-radius-card) !important;
   padding: 32px !important;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 8px 24px -8px rgba(0, 0, 0, 0.10) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06),
+              0 8px 24px -8px rgba(0,0,0,0.10) !important;
+  font-family: var(--rs-font-body) !important;
 }
-
 @media (prefers-color-scheme: dark) {
-  form#_builder-form {
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.30),
-      0 8px 24px -8px rgba(0, 0, 0, 0.50) !important;
+  body form,
+  body form#_builder-form,
+  body .form-builder,
+  body .form-wrapper,
+  body [data-form-id] {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.30),
+                0 8px 24px -8px rgba(0,0,0,0.50) !important;
   }
 }
 
-/* ---------- 4. Field wrappers + spacing ---------- */
-/* DB ref: field-wrapper / question-container (.ghl-question) — wraps each question. */
-/* DB ref: field-wrapper / field-wrapper (.form-field-wrapper) — wraps each field. */
-.ghl-question,
-.form-field-wrapper {
+/* ---------- 4. Field wrappers + row spacing ---------- */
+body .ghl-question,
+body .form-field-wrapper,
+body .form-group,
+body .field-group,
+body .form-row > * {
   margin-bottom: 20px !important;
 }
-
-.ghl-question:last-child,
-.form-field-wrapper:last-child {
+body .ghl-question:last-child,
+body .form-field-wrapper:last-child,
+body .form-group:last-child {
   margin-bottom: 0 !important;
 }
 
-/* ---------- 5. Labels + required asterisk ---------- */
-/* DB ref: labels / label — confirmed via official help doc. */
-label {
+/* ---------- 5. Labels ---------- */
+body label,
+body form label,
+body .form-field-wrapper label,
+body .ghl-question label {
   font-family: var(--rs-font-body) !important;
   font-weight: 600 !important;
   font-size: 14px !important;
@@ -140,34 +191,41 @@ label {
   display: block !important;
 }
 
-/* DB ref: labels / required-asterisk — TODO:verify markup in DevTools.
-   Most likely <sup>*</sup> appended to the label, but <span class="required">
-   is also seen across versions. Both targeted. */
-label sup,
-label .required {
+/* Required asterisks — the screenshot shows them rendering in the
+   theme blue, so they're picking up `color: var(--primary)` from
+   GHL's stylesheet. We override every plausible asterisk wrapper. */
+body label sup,
+body label .required,
+body label .required-asterisk,
+body label [class*="required"],
+body label > span:last-child,
+body .required-mark,
+body .required-indicator,
+body sup {
   color: var(--rs-error) !important;
   font-weight: 700 !important;
   margin-left: 2px !important;
+  background: transparent !important;
 }
 
 /* ---------- 6. Inputs ---------- */
-/* DB ref: field-input / form-control (.form-control) — Bootstrap-ish base class
-   that GHL applies to most inputs, selects, and textareas.
-   DB ref: field-input / input-text — group selector for type=text/email/tel/etc. */
-.hl-app .form-control,
-form#_builder-form input[type="text"],
-form#_builder-form input[type="email"],
-form#_builder-form input[type="tel"],
-form#_builder-form input[type="number"],
-form#_builder-form input[type="url"],
-form#_builder-form input[type="password"],
-form#_builder-form input[type="date"],
-form#_builder-form input[type="search"],
-form#_builder-form textarea,
-form#_builder-form select {
+body input[type="text"],
+body input[type="email"],
+body input[type="tel"],
+body input[type="number"],
+body input[type="url"],
+body input[type="password"],
+body input[type="date"],
+body input[type="search"],
+body input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="file"]):not([type="hidden"]),
+body textarea,
+body select,
+body .form-control,
+body .hl-app .form-control {
   appearance: none !important;
   -webkit-appearance: none !important;
   background: var(--rs-field-bg) !important;
+  background-color: var(--rs-field-bg) !important;
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
   font-size: 16px !important;
@@ -178,58 +236,49 @@ form#_builder-form select {
   width: 100% !important;
   box-sizing: border-box !important;
   box-shadow: none !important;
-  transition:
-    border-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow  220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transition: border-color 220ms cubic-bezier(0.22,1,0.36,1),
+              box-shadow  220ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-form#_builder-form input::placeholder,
-form#_builder-form textarea::placeholder {
+body input::placeholder,
+body textarea::placeholder {
   color: var(--rs-ink-soft) !important;
   opacity: 1 !important;
 }
 
-.hl-app .form-control:hover,
-form#_builder-form input:hover,
-form#_builder-form textarea:hover,
-form#_builder-form select:hover {
+body input:hover,
+body textarea:hover,
+body select:hover,
+body .form-control:hover {
   border-color: var(--rs-field-border-hover) !important;
 }
 
-.hl-app .form-control:focus,
-.hl-app .form-control:focus-visible,
-form#_builder-form input:focus,
-form#_builder-form input:focus-visible,
-form#_builder-form textarea:focus,
-form#_builder-form textarea:focus-visible,
-form#_builder-form select:focus,
-form#_builder-form select:focus-visible {
+body input:focus,
+body input:focus-visible,
+body textarea:focus,
+body textarea:focus-visible,
+body select:focus,
+body select:focus-visible,
+body .form-control:focus {
   outline: none !important;
   border-color: var(--rs-focus-ring) !important;
   box-shadow: 0 0 0 3px var(--rs-focus-ring-wash) !important;
 }
 
-form#_builder-form textarea {
+body textarea {
   min-height: 120px !important;
   resize: vertical !important;
 }
 
-form#_builder-form input[type="number"] {
-  font-variant-numeric: tabular-nums !important;
-}
-
-/* DB ref: field-types / vue-dropdown (.custom-vue-select.form-control). */
-.custom-vue-select.form-control {
-  background: var(--rs-field-bg) !important;
-  border: 1px solid var(--rs-field-border) !important;
-  border-radius: var(--rs-radius-field) !important;
-  color: var(--rs-ink) !important;
+/* Email field icon prefix — keep it subtle on the brand */
+body input + svg,
+body input ~ svg {
+  color: var(--rs-ink-soft) !important;
 }
 
 /* ---------- 7. Checkbox + radio ---------- */
-/* DB ref: field-types / input-checkbox + input-radio — confirmed via help doc. */
-form#_builder-form input[type="checkbox"],
-form#_builder-form input[type="radio"] {
+body input[type="checkbox"],
+body input[type="radio"] {
   width: 18px !important;
   height: 18px !important;
   accent-color: var(--rs-cta-bg) !important;
@@ -238,11 +287,11 @@ form#_builder-form input[type="radio"] {
   flex-shrink: 0 !important;
 }
 
-/* DB ref: field-types / terms-conditions — TODO:verify class in DevTools.
-   GHL version-dependent. The structure is always <label>[checkbox][text][anchor]. */
-.terms-conditions,
-.terms-and-conditions,
-.consent-text {
+/* Terms-and-conditions text — make sure it's body-weight, not heading-weight */
+body .terms-conditions,
+body .terms-and-conditions,
+body .consent-text,
+body label:has(input[type="checkbox"]) {
   font-family: var(--rs-font-body) !important;
   font-weight: 400 !important;
   font-size: 13px !important;
@@ -253,37 +302,52 @@ form#_builder-form input[type="radio"] {
   gap: 8px !important;
 }
 
-/* ---------- 8. Links inside form copy ---------- */
-/* DB ref: links / form-link (form a) — confirmed via help doc. */
-form#_builder-form a,
-form a {
+/* ---------- 8. Links — beat the GHL theme blue ---------- */
+body a,
+body form a,
+body label a,
+body .terms-conditions a {
   color: var(--rs-link) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
   text-underline-offset: 2px !important;
   text-decoration-color: currentColor !important;
-  transition: color 140ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transition: color 140ms cubic-bezier(0.22,1,0.36,1) !important;
+  background: transparent !important;
 }
 
-form#_builder-form a:hover,
-form a:hover {
+body a:hover,
+body form a:hover {
   color: var(--rs-link-hover) !important;
   text-decoration-thickness: 2px !important;
 }
 
-form#_builder-form a:focus-visible,
-form a:focus-visible {
+body a:focus-visible {
   outline: 2px solid var(--rs-focus-ring) !important;
   outline-offset: 2px !important;
   border-radius: 2px !important;
 }
 
-/* ---------- 9. Submit button ---------- */
-/* DB ref: submit / submit-button (.ghl-btn.ghl-submit-btn) — confirmed.
-   button[type="submit"] kept as a documented fallback per the database. */
-.ghl-btn.ghl-submit-btn,
-form#_builder-form button[type="submit"] {
+/* ---------- 9. Submit button — broadest possible target ---------- */
+/* The screenshot shows the button still default blue, which means
+   none of the v1 selectors matched. We now target every plausible
+   button class GHL might use, plus the bare element-level fallback. */
+body button,
+body button[type="submit"],
+body input[type="submit"],
+body input[type="button"],
+body .ghl-btn,
+body .ghl-submit-btn,
+body .ghl-btn.ghl-submit-btn,
+body button[class*="submit"],
+body button[class*="primary"],
+body button[class*="btn"],
+body [role="button"],
+body form button,
+body form .btn {
   background: var(--rs-cta-bg) !important;
+  background-color: var(--rs-cta-bg) !important;
+  background-image: none !important;
   color: var(--rs-cta-ink) !important;
   font-family: var(--rs-font-body) !important;
   font-weight: 600 !important;
@@ -300,57 +364,74 @@ form#_builder-form button[type="submit"] {
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10) !important;
   text-transform: none !important;
-  transition:
-    background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform        140ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow       140ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  text-shadow: none !important;
+  transition: background-color 220ms cubic-bezier(0.22,1,0.36,1),
+              transform        140ms cubic-bezier(0.22,1,0.36,1),
+              box-shadow       140ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-.ghl-btn.ghl-submit-btn:hover,
-form#_builder-form button[type="submit"]:hover {
+body button:hover,
+body button[type="submit"]:hover,
+body input[type="submit"]:hover,
+body .ghl-btn:hover,
+body .ghl-submit-btn:hover,
+body form button:hover {
   background: var(--rs-cta-bg-hover) !important;
+  background-color: var(--rs-cta-bg-hover) !important;
+  color: var(--rs-cta-ink) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.18) !important;
+  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.18) !important;
 }
 
-.ghl-btn.ghl-submit-btn:active,
-form#_builder-form button[type="submit"]:active {
+body button:active,
+body button[type="submit"]:active,
+body .ghl-btn:active {
   transform: translateY(0) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10) !important;
 }
 
-.ghl-btn.ghl-submit-btn:focus-visible,
-form#_builder-form button[type="submit"]:focus-visible {
+body button:focus-visible,
+body button[type="submit"]:focus-visible,
+body .ghl-btn:focus-visible {
   outline: 2px solid var(--rs-focus-ring) !important;
   outline-offset: 3px !important;
 }
 
-.ghl-btn.ghl-submit-btn:disabled,
-form#_builder-form button[type="submit"]:disabled {
+body button:disabled,
+body button[type="submit"]:disabled,
+body .ghl-btn:disabled {
   opacity: 0.55 !important;
   cursor: not-allowed !important;
   transform: none !important;
   box-shadow: none !important;
 }
 
+/* Force the button's child <span> (some GHL buttons wrap the label
+   in a span that carries its own colour) to inherit. */
+body button > *,
+body button[type="submit"] > *,
+body .ghl-btn > *,
+body .ghl-submit-btn > * {
+  color: var(--rs-cta-ink) !important;
+  background: transparent !important;
+  font-family: var(--rs-font-body) !important;
+}
+
 /* ---------- 10. Validation states ---------- */
-/* DB ref: validation / field-error-state (.input-error, [aria-invalid="true"]). */
-.input-error,
-.hl-app .form-control.input-error,
-form#_builder-form input[aria-invalid="true"],
-form#_builder-form textarea[aria-invalid="true"],
-form#_builder-form select[aria-invalid="true"] {
+body .input-error,
+body .form-control.input-error,
+body input[aria-invalid="true"],
+body textarea[aria-invalid="true"],
+body select[aria-invalid="true"] {
   border-color: var(--rs-error) !important;
   box-shadow: 0 0 0 3px var(--rs-error-wash) !important;
 }
-
-/* DB ref: validation / field-error-message
-   (.field-error, .hl-error, .error-message). All three targeted. */
-.field-error,
-.hl-error,
-.error-message {
+body .field-error,
+body .hl-error,
+body .error-message,
+body .invalid-feedback {
   color: var(--rs-error) !important;
   font-family: var(--rs-font-body) !important;
   font-size: 13px !important;
@@ -360,8 +441,10 @@ form#_builder-form select[aria-invalid="true"] {
 }
 
 /* ---------- 11. Thank-you screen ---------- */
-/* DB ref: thank-you / thank-you (#_builder-form .thank-you-message). */
-#_builder-form .thank-you-message {
+body #_builder-form .thank-you-message,
+body .thank-you-message,
+body .thank-you,
+body .submission-success {
   font-family: var(--rs-font-body) !important;
   color: var(--rs-ink) !important;
   font-size: 16px !important;
@@ -372,59 +455,46 @@ form#_builder-form select[aria-invalid="true"] {
 
 /* ---------- 12. Reduced motion + forced colors ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .hl-app .form-control,
-  form#_builder-form input,
-  form#_builder-form textarea,
-  form#_builder-form select,
-  form#_builder-form button,
-  form#_builder-form a,
-  .ghl-btn.ghl-submit-btn {
+  body input,
+  body textarea,
+  body select,
+  body button,
+  body a,
+  body .form-control,
+  body .ghl-btn {
     transition: none !important;
   }
-  .ghl-btn.ghl-submit-btn:hover,
-  form#_builder-form button[type="submit"]:hover {
+  body button:hover,
+  body button[type="submit"]:hover,
+  body .ghl-btn:hover {
     transform: none !important;
   }
 }
 
 @media (forced-colors: active) {
-  form#_builder-form,
-  form#_builder-form input,
-  form#_builder-form textarea,
-  form#_builder-form select,
-  .ghl-btn.ghl-submit-btn,
-  form#_builder-form button[type="submit"] {
+  body form,
+  body input,
+  body textarea,
+  body select,
+  body button {
     border: 1px solid CanvasText !important;
     box-shadow: none !important;
   }
-  .ghl-btn.ghl-submit-btn,
-  form#_builder-form button[type="submit"] {
+  body button,
+  body button[type="submit"],
+  body .ghl-btn {
     background: ButtonFace !important;
     color: ButtonText !important;
   }
-  form#_builder-form a {
+  body a {
     color: LinkText !important;
   }
 }
 
 /* ============================================================
-   Per-field overrides (template)
-   ------------------------------------------------------------
-   DB ref: field-targeting / field-by-data-q — the data-q
-   attribute mirrors the field's internal name in the GHL
-   builder and is the most stable per-field hook. Use it
-   instead of :nth-child or positional selectors.
-
-   Example — hide a hidden tracking field's wrapper:
-
-     .form-field-wrapper:has(input[data-q="utm_source"]) {
-       display: none !important;
-     }
-
-   Example — make the email field full-width on a two-column row:
-
-     .form-field-wrapper:has(input[data-q="email"]) {
-       flex-basis: 100% !important;
-       max-width: 100% !important;
-     }
+   If anything still doesn't bind after this paste, right-click the
+   stuck element → Inspect → copy outer HTML → send it. We'll add
+   the missing selector to the website CSS AND the database
+   (teamos-ai/ghl-form-css-reference/selectors.json) in one pass so
+   the next form benefits automatically.
    ============================================================ */
