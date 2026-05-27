@@ -11,7 +11,6 @@ export default function SessionsPage() {
         style={{ backgroundImage: "url('/library/photos/tony-hands-on-console.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Sessions</div>
             <h1 id="sessions-hero">Three hours, <em>one-on-one,</em> in a real studio.</h1>

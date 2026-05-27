@@ -19,7 +19,6 @@ export default function CoordinatorsPage() {
         style={{ backgroundImage: "url('/library/photos/founder-client.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">For support coordinators</div>
             <h1 id="coord-hero">A referral <em>worth making.</em></h1>

@@ -19,7 +19,6 @@ export default function HowItWorksPage() {
         style={{ backgroundImage: "url('/library/photos/tony-synth-piano.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">How it works</div>
             <h1 id="how-hero">Idea to Spotify in <em>twelve weeks.</em></h1>

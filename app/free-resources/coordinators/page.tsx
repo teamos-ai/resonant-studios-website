@@ -27,7 +27,6 @@ export default function CoordinatorsResourcesPage() {
         style={{ backgroundImage: "url('/library/photos/control-room-wide.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Free resources · for support coordinators</div>
             <h1 id="combo-hero">The Support Coordinator <em>Combo.</em></h1>

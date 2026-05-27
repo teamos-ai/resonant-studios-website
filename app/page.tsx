@@ -4,14 +4,13 @@ import { Accessibility, Disc3, Headphones } from "lucide-react";
 export default function HomePage() {
   return (
     <>
-      {/* HERO — photo bg + 40/60 split: bento placeholder on the left, content on the right */}
+      {/* HERO — 80vh photo backdrop with content overlay */}
       <section
         className="rs-hero"
         aria-labelledby="hero-heading"
         style={{ backgroundImage: "url('/library/photos/music-studio.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Accessible music studio · Yarraville VIC</div>
             <h1 id="hero-heading">

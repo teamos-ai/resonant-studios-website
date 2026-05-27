@@ -11,7 +11,6 @@ export default function AboutPage() {
         style={{ backgroundImage: "url('/library/photos/tony-mixing-profile.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">About</div>
             <h1 id="about-hero">Built by <em>someone who gets it.</em></h1>

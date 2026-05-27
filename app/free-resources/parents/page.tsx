@@ -27,7 +27,6 @@ export default function ParentsResourcesPage() {
         style={{ backgroundImage: "url('/library/photos/tony-with-participant.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Free resources · for parents</div>
             <h1 id="parents-hero">The Parents <em>Pack.</em></h1>

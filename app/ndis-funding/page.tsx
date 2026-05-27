@@ -11,7 +11,6 @@ export default function NDISFundingPage() {
         style={{ backgroundImage: "url('/library/photos/console-fader-detail.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">NDIS funding</div>
             <h1 id="ndis-hero">Using your NDIS plan <em>for music sessions.</em></h1>

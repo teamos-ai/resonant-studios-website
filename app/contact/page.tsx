@@ -20,7 +20,6 @@ export default function ContactPage() {
         style={{ backgroundImage: "url('/library/photos/control-room-wide.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Contact</div>
             <h1 id="contact-hero">Get in touch with <em>Tony.</em></h1>

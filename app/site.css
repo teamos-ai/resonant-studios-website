@@ -363,13 +363,12 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 
 /* ===== Marketing page utilities ========================== */
 
-/* Hero — full-bleed photo background + vignette/scrim, with a 40 / 60
-   split layered on top (bento placeholder left, content right).
-   The bento is an empty slot for a graphic / image / animation that
-   visually demonstrates the service; it sits on top of the photo. */
+/* Hero — full-bleed photo background + vignette/scrim. Sized to ~80vh
+   so the next section peeks above the fold at the bottom ~20%. Content
+   sits left-aligned over the photo, capped at a readable line length. */
 .rs-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -393,26 +392,16 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 }
 .rs-hero-grid {
   display: grid;
-  grid-template-columns: 40fr 60fr;
+  grid-template-columns: 1fr;
   gap: clamp(var(--s-6), 4vw, var(--s-8));
   align-items: center;
   width: 100%;
   max-width: var(--w-content);
   margin-inline: auto;
 }
-.rs-hero-bento {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(229, 143, 102, 0.18) 0%, rgba(155, 184, 156, 0.18) 100%);
-  border: 1px solid rgba(245, 239, 228, 0.22);
-  border-radius: var(--r-4);
-  aspect-ratio: 4 / 5;
-  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-}
 .rs-hero-content {
   display: flex; flex-direction: column; gap: var(--s-5);
+  max-width: 720px;
 }
 .rs-hero h1 {
   font-family: var(--font-display);
@@ -444,10 +433,10 @@ body { padding-top: calc(var(--nav-h) + 16px); }
 }
 .rs-hero-cta { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-2); }
 
-/* Mobile — text first, bento stacks below */
+/* Mobile — same 80vh proportion, content remains left-aligned. */
 @media (max-width: 880px) {
   .rs-hero {
-    min-height: 100vh;
+    min-height: 80vh;
     align-items: flex-end;
     padding-bottom: var(--s-8);
   }
@@ -455,14 +444,7 @@ body { padding-top: calc(var(--nav-h) + 16px); }
     grid-template-columns: 1fr;
     gap: var(--s-6);
   }
-  .rs-hero-content { order: 1; max-width: 100%; }
-  .rs-hero-bento {
-    order: 2;
-    aspect-ratio: 4 / 3;
-    max-width: 520px;
-    width: 100%;
-    margin-inline: auto;
-  }
+  .rs-hero-content { max-width: 100%; }
 }
 
 /* Compact hero variant — used on /intake. Single centred column, no bento

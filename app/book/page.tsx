@@ -20,7 +20,6 @@ export default function BookPage() {
         style={{ backgroundImage: "url('/library/photos/tony-hands-on-console.jpg')" }}
       >
         <div className="rs-hero-grid">
-          <div className="rs-hero-bento" aria-hidden="true" />
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">Book a call</div>
             <h1 id="book-hero">Let&apos;s talk about <em>what you want to make.</em></h1>
