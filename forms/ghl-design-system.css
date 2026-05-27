@@ -226,6 +226,7 @@ body .hl-app .form-control {
   -webkit-appearance: none !important;
   background: var(--rs-field-bg) !important;
   background-color: var(--rs-field-bg) !important;
+  background-image: none !important; /* GHL paints a gradient on inputs — kill it */
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
   font-size: 16px !important;
@@ -240,10 +241,23 @@ body .hl-app .form-control {
               box-shadow  220ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
+/* Placeholders — vendor-prefixed so we win across every engine.
+   v2 leaked the --primary terracotta into placeholders because GHL's
+   own stylesheet does `color: var(--primary)` on them; explicit overrides
+   here trump the inherited hijacked variable. */
 body input::placeholder,
-body textarea::placeholder {
+body textarea::placeholder,
+body input::-webkit-input-placeholder,
+body textarea::-webkit-input-placeholder,
+body input::-moz-placeholder,
+body textarea::-moz-placeholder,
+body input:-ms-input-placeholder,
+body textarea:-ms-input-placeholder,
+body input::-ms-input-placeholder,
+body textarea::-ms-input-placeholder {
   color: var(--rs-ink-soft) !important;
   opacity: 1 !important;
+  -webkit-text-fill-color: var(--rs-ink-soft) !important;
 }
 
 body input:hover,
@@ -287,11 +301,18 @@ body input[type="radio"] {
   flex-shrink: 0 !important;
 }
 
-/* Terms-and-conditions text — make sure it's body-weight, not heading-weight */
+/* Terms-and-conditions text — v2 only styled the wrapper, but GHL sets
+   `color` directly on the inner <span>/<div>, which beats inheritance.
+   v2.1 targets the wrapper AND every descendant text node. Multiple
+   selector strategies because the markup varies: sometimes the checkbox
+   is inside the <label>, sometimes it's a sibling. */
 body .terms-conditions,
 body .terms-and-conditions,
 body .consent-text,
-body label:has(input[type="checkbox"]) {
+body .checkbox-text,
+body label:has(input[type="checkbox"]),
+body .form-field-wrapper:has(input[type="checkbox"]),
+body .ghl-question:has(input[type="checkbox"]) {
   font-family: var(--rs-font-body) !important;
   font-weight: 400 !important;
   font-size: 13px !important;
@@ -300,6 +321,44 @@ body label:has(input[type="checkbox"]) {
   display: flex !important;
   align-items: flex-start !important;
   gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+/* Descendants of every checkbox container — force readable color on
+   <span>, <div>, <p>, <label>, raw text nodes inside the terms block. */
+body .terms-conditions *,
+body .terms-and-conditions *,
+body .consent-text *,
+body .checkbox-text *,
+body label:has(input[type="checkbox"]) *,
+body .form-field-wrapper:has(input[type="checkbox"]) *:not(input):not(svg):not(a),
+body .ghl-question:has(input[type="checkbox"]) *:not(input):not(svg):not(a),
+body input[type="checkbox"] ~ label,
+body input[type="checkbox"] ~ span,
+body input[type="checkbox"] ~ div,
+body input[type="checkbox"] ~ p,
+body input[type="checkbox"] + label,
+body input[type="checkbox"] + span,
+body input[type="checkbox"] + div {
+  color: var(--rs-ink-muted) !important;
+  font-family: var(--rs-font-body) !important;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+}
+
+/* …but the link inside the terms keeps the brand colour + bold weight. */
+body .terms-conditions a,
+body .terms-and-conditions a,
+body .consent-text a,
+body .checkbox-text a,
+body label:has(input[type="checkbox"]) a,
+body .form-field-wrapper:has(input[type="checkbox"]) a,
+body .ghl-question:has(input[type="checkbox"]) a,
+body input[type="checkbox"] ~ * a {
+  color: var(--rs-link) !important;
+  font-weight: 600 !important;
+  font-size: inherit !important;
 }
 
 /* ---------- 8. Links — beat the GHL theme blue ---------- */
