@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap");
+
+/* ---- Canvas ---- */
+body,
+.ghl-form,
+.form-builder--main {
+  background: transparent !important;
+  font-family: "Public Sans", -apple-system, system-ui, sans-serif !important;
+  color: #0c0d0f !important;
+}
+
+/* ---- Field rhythm ---- */
+.form-builder--main .form-group,
+.field-container,
+.form-control-group,
+.ghl-form-group {
+  margin-bottom: 16px !important;
+}
+
+/* ---- Inputs — light mode ---- */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+textarea,
+select,
+.input-field input {
+  width: 100% !important;
+  background: #ffffff !important;
+  color: #0c0d0f !important;
+  border: 1px solid #c56a31 !important;
+  border-radius: 8px !important;
+  padding: 13px 14px !important;
+  font-family: "Public Sans", system-ui, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: #5b6470 !important;
+  opacity: 1 !important;
+}
+
+/* Field icons */
+.input-field svg,
+.form-group svg,
+.field-container svg {
+  color: #5b6470 !important;
+  fill: currentColor !important;
+  opacity: 1 !important;
+}
+
+input:not([type="checkbox"]):focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  background: #ffffff !important;
+  border-color: #c56a31 !important;
+  box-shadow: 0 0 0 3px rgba(197, 106, 49, 0.18) !important;
+}
+
+/* ---- Consent checkbox — light mode ---- */
+input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  accent-color: #2c628d !important;
+  margin-top: 3px !important;
+}
+
+.checkbox-container label,
+.terms-and-condition,
+.consent-label,
+.checkbox-text {
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #2c628d !important;
+  opacity: 1 !important;
+}
+
+/* ---- Submit — light mode ---- */
+button[type="submit"],
+.submit-form-btn,
+.ghl-btn,
+#submit-btn,
+.form-builder--submit button {
+  width: 100% !important;
+  background: #2c628d !important;
+  color: #ffffff !important;
+  font-family: "Public Sans", system-ui, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 14px 20px !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: background-color 0.15s ease, transform 0.05s ease !important;
+}
+
+button[type="submit"]:hover,
+.submit-form-btn:hover,
+.ghl-btn:hover,
+#submit-btn:hover {
+  background: #245176 !important;
+}
+
+button[type="submit"]:active,
+.submit-form-btn:active {
+  transform: translateY(1px) !important;
+}
+
+/* ---- Footer links (Privacy / Terms) — light mode ---- */
+.form-builder--main a,
+form a {
+  color: #2c628d !important;
+  text-decoration: none !important;
+  font-size: 12.5px !important;
+}
+.form-builder--main a:hover,
+form a:hover {
+  text-decoration: underline !important;
+}
+
+/* ---- Validation ---- */
+.error,
+.invalid-feedback,
+.field-error {
+  color: #b23b2e !important;
+  font-size: 12px !important;
+}
+
+/* ================================================================
+   DARK MODE
+   ================================================================ */
+@media (prefers-color-scheme: dark) {
+
+  body,
+  .ghl-form,
+  .form-builder--main {
+    color: #f0f0f0 !important;
+  }
+
+  /* Inputs */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+  textarea,
+  select,
+  .input-field input {
+    background: #111111 !important;
+    color: #f0f0f0 !important;
+    border-color: #c56a31 !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #8a9099 !important;
+  }
+
+  .input-field svg,
+  .form-group svg,
+  .field-container svg {
+    color: #8a9099 !important;
+  }
+
+  input:not([type="checkbox"]):focus,
+  textarea:focus,
+  select:focus {
+    background: #111111 !important;
+    border-color: #c56a31 !important;
+    box-shadow: 0 0 0 3px rgba(197, 106, 49, 0.25) !important;
+  }
+
+  /* Consent checkbox */
+  input[type="checkbox"] {
+    accent-color: #a65f23 !important;
+  }
+
+  .checkbox-container label,
+  .terms-and-condition,
+  .consent-label,
+  .checkbox-text {
+    color: #a65f23 !important;
+  }
+
+  /* Submit */
+  button[type="submit"],
+  .submit-form-btn,
+  .ghl-btn,
+  #submit-btn,
+  .form-builder--submit button {
+    background: #a65f23 !important;
+  }
+
+  button[type="submit"]:hover,
+  .submit-form-btn:hover,
+  .ghl-btn:hover,
+  #submit-btn:hover {
+    background: #8c4f1c !important;
+  }
+
+  /* Footer links (Privacy / Terms) */
+  .form-builder--main a,
+  form a {
+    color: #a65f23 !important;
+  }
+}
