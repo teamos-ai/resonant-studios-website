@@ -650,16 +650,22 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   .rs-book-embed iframe { min-height: 900px; height: 900px; }
 }
 
-/* Intake survey embed — taller reservation than the booking calendar
-   because multi-question surveys grow. Inherits the rest of .rs-book-embed. */
-.rs-intake-embed,
+/* Intake form embed — much taller reservation than the booking calendar
+   because the multi-section intake form is long (data-height ~4184px).
+   We reserve a generous min-height for the initial paint, but leave height
+   unset so the GHL form_embed.js postMessage resize works without fighting
+   a rigid CSS height. Inherits the rest of .rs-book-embed. */
+.rs-intake-embed {
+  min-height: 1400px;
+  height: auto;
+}
 .rs-intake-embed iframe {
-  min-height: 1000px;
-  height: 1000px;
+  min-height: 1400px;
+  height: 100%;
 }
 @media (max-width: 720px) {
-  .rs-intake-embed,
-  .rs-intake-embed iframe { min-height: 1200px; height: 1200px; }
+  .rs-intake-embed { min-height: 1600px; }
+  .rs-intake-embed iframe { min-height: 1600px; }
 }
 
 /* Responsive helpers — applied across pages. */

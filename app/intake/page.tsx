@@ -3,11 +3,11 @@ import Script from "next/script";
 
 export const metadata = { title: "Intake form — Start your sessions" };
 
-// Go High Level intake survey — provided 2026-05-23.
-// Survey ID: NBTWVrqTd7WOcix3a26N
-// Direct link: https://link.teamos.ai/widget/survey/NBTWVrqTd7WOcix3a26N
-const GHL_INTAKE_ID = "NBTWVrqTd7WOcix3a26N";
-const GHL_INTAKE_SRC = `https://link.teamos.ai/widget/survey/${GHL_INTAKE_ID}`;
+// Go High Level intake form — provided 2026-05-27.
+// Form ID: 3vYz4FfTN37EYn11BHVs
+// Direct link: https://link.teamos.ai/widget/form/3vYz4FfTN37EYn11BHVs
+const GHL_INTAKE_ID = "3vYz4FfTN37EYn11BHVs";
+const GHL_INTAKE_SRC = `https://link.teamos.ai/widget/form/${GHL_INTAKE_ID}`;
 const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 
 export default function IntakePage() {
@@ -64,10 +64,20 @@ export default function IntakePage() {
             <div className="rs-book-embed rs-intake-embed">
               <iframe
                 src={GHL_INTAKE_SRC}
-                id={GHL_INTAKE_ID}
+                id={`inline-${GHL_INTAKE_ID}`}
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Resonant Intake Form"
+                data-height="4184"
+                data-layout-iframe-id={`inline-${GHL_INTAKE_ID}`}
+                data-form-id={GHL_INTAKE_ID}
                 title="Resonant Studios — intake form"
-                scrolling="no"
-                style={{ border: "none", width: "100%", display: "block" }}
+                style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
               />
             </div>
 
