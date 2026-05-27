@@ -36,6 +36,7 @@ export default function Footer() {
               <li><Link href="/how-it-works">How it works</Link></li>
               <li><Link href="/sessions">What a session looks like</Link></li>
               <li><Link href="/ndis-funding">NDIS funding</Link></li>
+              <li><Link href="/free-resources/parents">Free Parent Pack</Link></li>
               <li><Link href="/book">Book a call</Link></li>
             </ul>
           </div>
@@ -46,6 +47,7 @@ export default function Footer() {
               <li><Link href="/for-support-coordinators">Why refer here</Link></li>
               <li><Link href="/for-support-coordinators#outcomes">Outcomes &amp; reporting</Link></li>
               <li><Link href="/for-support-coordinators#referral">How to refer</Link></li>
+              <li><Link href="/free-resources/coordinators">Free Coordinator Combo</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
