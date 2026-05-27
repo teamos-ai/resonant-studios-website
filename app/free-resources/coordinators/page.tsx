@@ -7,12 +7,14 @@ export const metadata = {
     "Three free resources for support coordinators and plan managers: the Compliance Checklist, the Provider Cheat Sheet, and the Plan-Goal Swipe Files. Everything you need to confidently refer a participant to Resonant Studios.",
 };
 
-// Lead-magnet form for The Support Coordinator Combo — to be created in Go High
-// Level by the Resonant team. When the form is live, set GHL_FORM_ID to the
-// new form's ID and the embed slot below will render the iframe automatically.
-// Until then the slot shows a clearly-labelled placeholder so the rest of the
-// page remains useful while the form is being built.
-const GHL_FORM_ID = ""; // TODO: paste the GHL form ID once created
+// Lead-magnet form for The Support Coordinator Combo — provided 2026-05-28.
+// Form ID:    HT93KLrv082pr6Wvq9rL
+// GHL name:   04 | Coordinator Combo Lead Magnet Form
+// Custom CSS: forms/ghl-design-system.css (applied inside the form builder
+//             so the iframe renders on-brand without us styling the host
+//             wrapper). If the form is ever paused, blank GHL_FORM_ID and
+//             the conditional below restores the placeholder copy.
+const GHL_FORM_ID = "HT93KLrv082pr6Wvq9rL";
 const GHL_FORM_SRC = GHL_FORM_ID
   ? `https://link.teamos.ai/widget/form/${GHL_FORM_ID}`
   : "";
@@ -153,10 +155,18 @@ export default function CoordinatorsResourcesPage() {
                   src={GHL_FORM_SRC}
                   id={`inline-${GHL_FORM_ID}`}
                   data-layout="{'id':'INLINE'}"
-                  data-form-name="Lead Magnet — Support Coordinator Combo"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="04 | Coordinator Combo Lead Magnet Form"
+                  data-height="490"
+                  data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
                   data-form-id={GHL_FORM_ID}
                   title="Download The Support Coordinator Combo — Resonant Studios"
-                  style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
+                  style={{ width: "100%", height: "100%", border: "none", borderRadius: 10, display: "block" }}
                 />
               ) : (
                 <div
