@@ -2,11 +2,16 @@ import type { MetadataRoute } from "next";
 
 /**
  * robots.txt for crawlers. Next.js 15 serves this at /robots.txt.
- * Currently allow-all — no auth-gated routes or API surface to hide.
+ *
+ * Explicitly welcomes AI crawlers (GPTBot, PerplexityBot, ClaudeBot,
+ * Google-Extended, etc.) — many sites block these by default, which
+ * blocks Resonant Studios from being cited inside AI Overviews,
+ * ChatGPT, Perplexity, and similar.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
+      // Generic crawlers
       {
         userAgent: "*",
         allow: "/",
@@ -17,6 +22,15 @@ export default function robots(): MetadataRoute.Robots {
         // sets robots: { index: false } in its metadata as a belt-and-braces.
         disallow: ["/_next/", "/api/", "/thank-you"],
       },
+      // AI search crawlers — explicitly allow
+      { userAgent: "GPTBot", allow: "/" },
+      { userAgent: "ChatGPT-User", allow: "/" },
+      { userAgent: "PerplexityBot", allow: "/" },
+      { userAgent: "ClaudeBot", allow: "/" },
+      { userAgent: "anthropic-ai", allow: "/" },
+      { userAgent: "Google-Extended", allow: "/" },
+      { userAgent: "CCBot", allow: "/" },
+      { userAgent: "Bytespider", allow: "/" },
     ],
     sitemap: "https://resonantstudios.com.au/sitemap.xml",
     host: "https://resonantstudios.com.au",

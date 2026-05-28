@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-export const metadata = { title: "Book a call — A relaxed 30–45 minute conversation" };
+export const metadata: Metadata = {
+  title: "Book a call — A relaxed 30–45 minute conversation",
+  description:
+    "Book a free 30–45 minute discovery call with Tony Rako. Talk through your NDIS plan, your goals, and whether Resonant Studios is the right fit. No pressure, no signing yet.",
+  alternates: { canonical: "https://resonantstudios.com.au/book" },
+  openGraph: {
+    title: "Book a discovery call · Resonant Studios",
+    description:
+      "Free 30–45 minute call with Tony. No pressure, no signing yet.",
+    url: "https://resonantstudios.com.au/book",
+  },
+};
 
 // Go High Level booking calendar — provided 2026-05-22 (replaces earlier form).
 // Calendar ID: fIIJeYghi1LiBVfnmbTe

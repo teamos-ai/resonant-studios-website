@@ -1,10 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "The Parents Pack — free NDIS music funding guide",
   description:
-    "Three free resources for parents of teenagers with an NDIS plan: the Funding Guide, the Plan-Review Worksheet, and the Parent Swipe Files. Plain-English answers to the question every parent asks first.",
+    "Three free resources for parents of adult children with an NDIS plan: the Funding Guide, the Plan-Review Worksheet, and the Parent Swipe Files. Plain-English answers to the question every parent asks first.",
+  alternates: { canonical: "https://resonantstudios.com.au/free-resources/parents" },
+  openGraph: {
+    title: "Free Parents Pack · Resonant Studios",
+    description:
+      "Three free NDIS resources for parents: Funding Guide, Plan-Review Worksheet, Parent Swipe Files.",
+    url: "https://resonantstudios.com.au/free-resources/parents",
+    type: "article",
+  },
 };
 
 // Lead-magnet form for The Parents Pack — provided 2026-05-28.

@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-export const metadata = { title: "Intake form — Start your sessions" };
+export const metadata: Metadata = {
+  title: "Intake form — Start your sessions",
+  description:
+    "NDIS intake form for participants, families, and support coordinators. Refer a participant to Resonant Studios in two minutes.",
+  alternates: { canonical: "https://resonantstudios.com.au/intake" },
+  openGraph: {
+    title: "Intake — Refer a participant · Resonant Studios",
+    description:
+      "NDIS intake form. For participants, families, and support coordinators.",
+    url: "https://resonantstudios.com.au/intake",
+  },
+};
 
 // Go High Level intake form — provided 2026-05-27.
 // Form ID: 3vYz4FfTN37EYn11BHVs

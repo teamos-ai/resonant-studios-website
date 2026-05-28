@@ -1,7 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import { JsonLd } from "../lib/seo/JsonLd";
+import { supportCoordinatorServiceSchema, breadcrumbSchema } from "../lib/seo/schemas";
 
-export const metadata = { title: "For support coordinators — A referral worth making" };
+export const metadata: Metadata = {
+  title: "For support coordinators — A referral worth making",
+  description:
+    "Structured NDIS music sessions with clear documentation, measurable engagement, and creative outcomes. Refer participants to Resonant Studios in three steps.",
+  alternates: { canonical: "https://resonantstudios.com.au/for-support-coordinators" },
+  openGraph: {
+    title: "For NDIS Support Coordinators · Resonant Studios",
+    description:
+      "Structured music sessions with clear documentation. A referral worth making for your NDIS participants.",
+    url: "https://resonantstudios.com.au/for-support-coordinators",
+    type: "article",
+  },
+};
 
 // Go High Level referral form — provided 2026-05-22.
 // Form ID: yztI9Mq5aooBrsTHAa1g
@@ -13,6 +28,8 @@ const GHL_EMBED_SCRIPT = "https://link.teamos.ai/js/form_embed.js";
 export default function CoordinatorsPage() {
   return (
     <>
+      <JsonLd data={supportCoordinatorServiceSchema()} id="schema-sc-service" />
+      <JsonLd data={breadcrumbSchema("For Support Coordinators", "/for-support-coordinators")} id="schema-breadcrumb-sc" />
       <section
         className="rs-hero"
         aria-labelledby="coord-hero"

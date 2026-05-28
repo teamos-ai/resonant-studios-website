@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Accessibility statement — Resonant Studios",
   description:
     "Our commitment to making the Resonant Studios website usable by everyone, regardless of ability. WCAG 2.2 AA target.",
+  alternates: { canonical: "https://resonantstudios.com.au/accessibility" },
+  openGraph: {
+    title: "Accessibility statement · Resonant Studios",
+    description:
+      "Our commitment to making the Resonant Studios website usable by everyone. WCAG 2.2 AA target.",
+    url: "https://resonantstudios.com.au/accessibility",
+  },
 };
 
 const EFFECTIVE_DATE = "22 May 2026";

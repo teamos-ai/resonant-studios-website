@@ -1,9 +1,26 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Accessibility, Disc3, Headphones } from "lucide-react";
+import { JsonLd } from "./lib/seo/JsonLd";
+import { localBusinessSchema } from "./lib/seo/schemas";
+
+export const metadata: Metadata = {
+  title: "Resonant Studios — NDIS music production in Melbourne's west",
+  description:
+    "A boutique, NDIS-aligned music production studio in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name. Built and run by Tony Rako.",
+  alternates: { canonical: "https://resonantstudios.com.au/" },
+  openGraph: {
+    title: "Resonant Studios — NDIS music production in Melbourne's west",
+    description:
+      "A boutique, NDIS-aligned music production studio in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name.",
+    url: "https://resonantstudios.com.au/",
+  },
+};
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={localBusinessSchema()} id="schema-localbusiness" />
       {/* HERO — 80vh photo backdrop with content overlay */}
       <section
         className="rs-hero"

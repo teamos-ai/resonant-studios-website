@@ -1,10 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "../lib/seo/JsonLd";
+import { ndisFundingFaqSchema, breadcrumbSchema } from "../lib/seo/schemas";
 
-export const metadata = { title: "NDIS funding — Using your plan for music sessions" };
+export const metadata: Metadata = {
+  title: "NDIS funding — Using your plan for music sessions",
+  description:
+    "How NDIS plans may fund music sessions at Resonant Studios. Pricing aligned with Assistance with Social and Community Participation. Self-managed and plan-managed participants accepted.",
+  alternates: { canonical: "https://resonantstudios.com.au/ndis-funding" },
+  openGraph: {
+    title: "NDIS funding for music sessions · Resonant Studios",
+    description:
+      "How NDIS plans may fund music sessions. Pricing aligned with Assistance with Social and Community Participation.",
+    url: "https://resonantstudios.com.au/ndis-funding",
+    type: "article",
+  },
+};
 
 export default function NDISFundingPage() {
   return (
     <>
+      <JsonLd data={ndisFundingFaqSchema()} id="schema-ndis-faq" />
+      <JsonLd data={breadcrumbSchema("NDIS Funding", "/ndis-funding")} id="schema-breadcrumb-ndis" />
       <section
         className="rs-hero"
         aria-labelledby="ndis-hero"

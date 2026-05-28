@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Website terms of use — Resonant Studios",
   description:
     "Terms governing your use of the Resonant Studios website. These are separate from any service agreement signed when you become a participant.",
+  alternates: { canonical: "https://resonantstudios.com.au/terms" },
+  openGraph: {
+    title: "Terms of use · Resonant Studios",
+    description:
+      "Terms governing your use of the Resonant Studios website.",
+    url: "https://resonantstudios.com.au/terms",
+  },
 };
 
 const EFFECTIVE_DATE = "22 May 2026";

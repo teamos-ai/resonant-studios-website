@@ -1,10 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "The Support Coordinator Combo — free download",
   description:
     "Three free resources for support coordinators and plan managers: the Compliance Checklist, the Provider Cheat Sheet, and the Plan-Goal Swipe Files. Everything you need to confidently refer a participant to Resonant Studios.",
+  alternates: { canonical: "https://resonantstudios.com.au/free-resources/coordinators" },
+  openGraph: {
+    title: "Free Support Coordinator Combo · Resonant Studios",
+    description:
+      "Three free NDIS resources for support coordinators: Compliance Checklist, Cheat Sheet, Swipe Files.",
+    url: "https://resonantstudios.com.au/free-resources/coordinators",
+    type: "article",
+  },
 };
 
 // Lead-magnet form for The Support Coordinator Combo — provided 2026-05-28.

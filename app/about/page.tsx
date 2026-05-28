@@ -1,10 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "../lib/seo/JsonLd";
+import { tonySchema, breadcrumbSchema } from "../lib/seo/schemas";
 
-export const metadata = { title: "About — Built by someone who gets it" };
+export const metadata: Metadata = {
+  title: "About — Built by someone who gets it",
+  description:
+    "Tony Rako: 25+ years of professional music production and lived experience of disability. Founder of Resonant Studios, a boutique NDIS-aligned music studio in Yarraville, Melbourne.",
+  alternates: { canonical: "https://resonantstudios.com.au/about" },
+  openGraph: {
+    title: "About Tony Rako · Resonant Studios",
+    description:
+      "25+ years of professional music production. Lived experience of disability. Founder of a boutique NDIS-aligned music studio in Yarraville.",
+    url: "https://resonantstudios.com.au/about",
+    type: "profile",
+  },
+};
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={tonySchema()} id="schema-tony" />
+      <JsonLd data={breadcrumbSchema("About", "/about")} id="schema-breadcrumb-about" />
       <section
         className="rs-hero"
         aria-labelledby="about-hero"

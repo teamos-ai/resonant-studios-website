@@ -1,8 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-export const metadata = { title: "Contact — Get in touch with Tony" };
+export const metadata: Metadata = {
+  title: "Contact — Get in touch with Tony",
+  description:
+    "Get in touch with Resonant Studios. Email info@resonantstudios.com.au, call 0480 893 303, or book a discovery call. Based in Yarraville, Melbourne.",
+  alternates: { canonical: "https://resonantstudios.com.au/contact" },
+  openGraph: {
+    title: "Contact Resonant Studios",
+    description:
+      "Email, phone, or book a discovery call. Yarraville, Melbourne.",
+    url: "https://resonantstudios.com.au/contact",
+  },
+};
 
 // Go High Level contact form — provided 2026-05-22.
 // Form ID: CUDcn1a92JPBJjfpEcH1

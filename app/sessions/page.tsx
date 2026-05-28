@@ -1,10 +1,26 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "../lib/seo/JsonLd";
+import { sessionsServiceSchema, breadcrumbSchema } from "../lib/seo/schemas";
 
-export const metadata = { title: "Sessions — What a session looks like" };
+export const metadata: Metadata = {
+  title: "Sessions — What a session looks like",
+  description:
+    "Three-hour one-on-one music production sessions in a real studio. Songwriting, recording, beat-making, mixing, and mastering. Weekly recurring timeslots in Yarraville.",
+  alternates: { canonical: "https://resonantstudios.com.au/sessions" },
+  openGraph: {
+    title: "Sessions — Three hours, one-on-one, in a real studio",
+    description:
+      "Music production sessions for NDIS participants. Three hours of one-on-one studio time with Tony Rako.",
+    url: "https://resonantstudios.com.au/sessions",
+  },
+};
 
 export default function SessionsPage() {
   return (
     <>
+      <JsonLd data={sessionsServiceSchema()} id="schema-sessions-service" />
+      <JsonLd data={breadcrumbSchema("Sessions", "/sessions")} id="schema-breadcrumb-sessions" />
       <section
         className="rs-hero"
         aria-labelledby="sessions-hero"

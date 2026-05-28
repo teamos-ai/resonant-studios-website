@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Privacy policy — How Resonant Studios handles your personal information",
   description:
     "How Resonant Studios collects, uses, stores, and protects personal information under the Australian Privacy Act 1988. NDIS-aligned music production studio in Yarraville VIC.",
+  alternates: { canonical: "https://resonantstudios.com.au/privacy" },
+  openGraph: {
+    title: "Privacy policy · Resonant Studios",
+    description:
+      "How Resonant Studios collects, uses, stores, and protects personal information under the Australian Privacy Act 1988.",
+    url: "https://resonantstudios.com.au/privacy",
+  },
 };
 
 const EFFECTIVE_DATE = "22 May 2026";

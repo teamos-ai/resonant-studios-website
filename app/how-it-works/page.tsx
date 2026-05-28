@@ -1,6 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = { title: "How it works — From first call to Spotify release" };
+export const metadata: Metadata = {
+  title: "How it works — From first call to Spotify release",
+  description:
+    "The Resonant Studios journey in five steps: discovery call, first session, songwriting and recording, mixing and mastering, and your song released on Spotify under your name.",
+  alternates: { canonical: "https://resonantstudios.com.au/how-it-works" },
+  openGraph: {
+    title: "How it works · Resonant Studios",
+    description:
+      "From discovery call to a finished song on Spotify. The Resonant Studios process explained in plain English.",
+    url: "https://resonantstudios.com.au/how-it-works",
+    type: "article",
+  },
+};
 
 const steps = [
   { n: "01", h: "Free discovery call", p: "A relaxed 30–45 minute conversation with Tony. We talk through your goals, how NDIS funding works for sessions, and whether Resonant Studios is the right fit. No pressure." },
