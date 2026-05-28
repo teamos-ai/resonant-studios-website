@@ -1781,10 +1781,13 @@ h3.rs-price-eyebrow {
   border: 0;
   width: 100%;
 }
-/* Compact variant — single featured track. Spotify's embed has 16px
-   inner padding at small heights; the radius matches the player chrome. */
+/* Compact variant — single featured track. Wrapped in a brand-green
+   frame (1px secondary border + 4px wash glow) so the player reads
+   as a deliberate on-brand surface rather than a generic embed. */
 .rs-connect-spotify--compact {
   border-radius: 12px;
+  border: 1px solid var(--secondary);
+  box-shadow: 0 0 0 4px var(--secondary-wash), var(--shadow-sm);
 }
 
 /* ---------- SOCIAL LINKS ---------- */
@@ -1799,8 +1802,8 @@ h3.rs-price-eyebrow {
 .rs-connect-socials a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--s-2);
+  justify-content: flex-start;
+  gap: var(--s-3);
   padding: var(--s-3) var(--s-4);
   background: var(--bg-elevated);
   border: 1px solid var(--rule);
@@ -1814,6 +1817,10 @@ h3.rs-price-eyebrow {
   transition: background var(--dur-fast) var(--ease),
               border-color var(--dur-fast) var(--ease),
               color var(--dur-fast) var(--ease);
+}
+.rs-connect-socials a svg {
+  flex-shrink: 0;
+  color: currentColor;
 }
 .rs-connect-socials a:hover {
   background: var(--primary-wash);
@@ -1846,7 +1853,7 @@ h3.rs-price-eyebrow {
   font-size: var(--fs-small);
 }
 .rs-connect-address a {
-  color: var(--primary);
+  color: var(--secondary);
   font-weight: 500;
 }
 .rs-connect-address-foot {

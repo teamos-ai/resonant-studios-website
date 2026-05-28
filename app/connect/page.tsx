@@ -1,6 +1,31 @@
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import Link from "next/link";
-import { Mail, Phone, MessageCircle, Calendar } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MessageCircle,
+  Calendar,
+  Instagram,
+  Facebook,
+} from "lucide-react";
+
+/* Spotify isn't in lucide-react (brand-icon cleanup in v0.x). Inlining
+   a minimal SVG component so the social row stays dependency-light. */
+function SpotifyIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.72 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+    </svg>
+  );
+}
 
 export const metadata: Metadata = {
   title: "Tony Rako — Resonant Studios",
@@ -21,15 +46,22 @@ export const metadata: Metadata = {
      · Set to "" (empty string) to hide that social entirely.
      · `full: true` makes a tile span the full width (use it for
        a featured/standalone link like Spotify).
+     · `icon` is the leading brand glyph — Lucide for everything
+       except Spotify, which uses the inline SpotifyIcon above.
    Layout: 2-column grid, in array order. Instagram top-left,
-   Facebook top-right, Spotify full-width below — matches the
-   currently-configured order.
+   Facebook top-right, Spotify full-width below.
    ─────────────────────────────────────────────────────────── */
-const SOCIAL: Array<{ label: string; url: string; full?: boolean }> = [
-  { label: "Instagram", url: "https://www.instagram.com/resonantstudios.au" },
-  { label: "Facebook",  url: "https://www.facebook.com/resonantstudios.au" },
-  { label: "Spotify",   url: "https://open.spotify.com/artist/REPLACE_WITH_ARTIST_ID", full: true },
-  { label: "TikTok",    url: "" },   // empty = hidden
+type SocialEntry = {
+  label: string;
+  url: string;
+  icon?: ComponentType<{ size?: number }>;
+  full?: boolean;
+};
+const SOCIAL: SocialEntry[] = [
+  { label: "Instagram", url: "https://www.instagram.com/resonantstudios.au", icon: Instagram },
+  { label: "Facebook",  url: "https://www.facebook.com/resonantstudios.au",  icon: Facebook },
+  { label: "Spotify",   url: "https://open.spotify.com/artist/REPLACE_WITH_ARTIST_ID", icon: SpotifyIcon, full: true },
+  { label: "TikTok",    url: "" },   // empty = hidden (add icon when enabled)
   { label: "YouTube",   url: "" },   // empty = hidden
   { label: "LinkedIn",  url: "" },   // empty = hidden
 ];
@@ -210,22 +242,26 @@ export default function ConnectPage() {
       </section>
 
       {/* SOCIAL LINKS — 2-column grid in array order. Items with
-          `full: true` span both columns (use for featured links like
-          a Spotify artist profile sitting below the small socials). */}
+          `full: true` span both columns (used for the featured Spotify
+          link below the small socials). Each row leads with the brand
+          icon followed by the platform name. */}
       <section className="rs-connect-section">
         <h2>Find me online</h2>
         <ul className="rs-connect-socials" role="list">
-          {SOCIAL.filter((s) => s.url).map((s) => (
-            <li
-              key={s.label}
-              className={s.full ? "rs-connect-social--wide" : undefined}
-            >
-              <a href={s.url} target="_blank" rel="noopener noreferrer">
-                <span>{s.label}</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </li>
-          ))}
+          {SOCIAL.filter((s) => s.url).map((s) => {
+            const Icon = s.icon;
+            return (
+              <li
+                key={s.label}
+                className={s.full ? "rs-connect-social--wide" : undefined}
+              >
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {Icon ? <Icon size={18} /> : null}
+                  <span>{s.label}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
