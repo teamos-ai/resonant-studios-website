@@ -121,8 +121,8 @@ export default function ConnectPage() {
           <div className="rs-connect-hero-tile rs-connect-hero-tile--photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/library/photos/tony-headshot.jpg"
-              alt="Tony Rako, music producer at Resonant Studios"
+              src="/library/photos/tony-in-action.jpg"
+              alt="Tony Rako at the studio, mid-session at the mixing console"
             />
           </div>
         </div>
