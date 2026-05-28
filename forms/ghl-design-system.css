@@ -119,33 +119,19 @@ body,
 }
 
 /* ---------- 2. Document base ---------- */
-/* Force EVERY iframe-document wrapper to transparent so any space around
-   or beneath the form card lets the host page's surface show through —
-   no white-iframe-body leak. The form card itself wins later (Section 3)
-   with its `background: var(--rs-card-bg)` rule. */
-html,
-body,
-body.hl-app,
-body .hl-app,
-body > *,
-body > * > *,
-body > * > * > *,
-body > div,
-body > section,
-body #_builder-form,
-body .form-builder,
-body .form-wrapper,
-body .form-container,
-body [class*="form-"]:not(form):not(.form-field-wrapper):not(.form-control):not(.form-builder--item) {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-}
-
+/* The iframe's <html> and <body> now share the form card's surface
+   colour. Any space inside the iframe that sits beyond the <form>
+   element reads as a quiet extension of the card instead of a default
+   white bleed. The transparent rules below still apply to every
+   intermediate wrapper so they don't paint a third colour on top.
+   Token-driven: --rs-card-bg = #FFFFFF (light) / #22272B (dark). */
 html,
 body,
 body.hl-app,
 body .hl-app {
+  background: var(--rs-card-bg) !important;
+  background-color: var(--rs-card-bg) !important;
+  background-image: none !important;
   margin: 0 !important;
   padding: 0 !important;
   font-family: var(--rs-font-body) !important;
@@ -155,6 +141,22 @@ body .hl-app {
   width: 100% !important;
   max-width: none !important;
   box-sizing: border-box !important;
+}
+
+/* Intermediate wrappers GHL injects between <body> and <form> — keep
+   them transparent so html/body's card-bg shows through everywhere. */
+body > *,
+body > * > *,
+body > * > * > *,
+body > div,
+body > section,
+body .form-builder,
+body .form-wrapper,
+body .form-container,
+body [class*="form-"]:not(form):not(.form-field-wrapper):not(.form-control):not(.form-builder--item) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
 }
 
 /* ---------- 3. Form card surface ---------- */
