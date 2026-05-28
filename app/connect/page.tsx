@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ComponentType } from "react";
+import type { ElementType } from "react";
 import Link from "next/link";
 import {
   Mail,
@@ -55,7 +55,12 @@ export const metadata: Metadata = {
 type SocialEntry = {
   label: string;
   url: string;
-  icon?: ComponentType<{ size?: number }>;
+  /* ElementType is React's canonical "any component" type — bridges
+     lucide's ForwardRefExoticComponent icons with the inline
+     SpotifyIcon function component without forcing both into the
+     same prop signature. The `size={18}` prop still type-checks at
+     the JSX call site below. */
+  icon?: ElementType;
   full?: boolean;
 };
 const SOCIAL: SocialEntry[] = [
