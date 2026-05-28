@@ -81,32 +81,18 @@ const SPOTIFY_EMBED_SRC =
 const SPOTIFY_EMBED_HEIGHT = 152;
 
 /* ─────────────────────────────────────────────────────────────
-   vCARD QR CODE — encodes Tony's contact details into a single
-   QR code. Scanning with any phone camera prompts "Add to
-   Contacts" with all fields pre-filled. Edit the VCARD lines
-   below to change what gets saved.
+   QR CODE — points to this /connect page (the same QR printed on
+   the physical business card). Visitors who scan the on-screen QR
+   with another device land on this page; visitors already on this
+   page can show the QR to share the URL without typing.
 
-   The QR image is generated on demand by qrserver.com (a free,
-   reliable QR API used by millions of sites). To switch to a
-   pre-generated static file later: save a 600×600 PNG/SVG to
-   public/library/qr/tony-vcard.svg and set QR_CODE_SRC to
-   "/library/qr/tony-vcard.svg".
+   File: public/library/qr/connect.svg
+   To regenerate: any QR generator (qr-code-generator.com works)
+     · Data: https://www.resonantstudios.com.au/connect
+     · Format: SVG (vector — sharper than PNG at every size)
+   Drop the new file at the same path, no code change needed.
    ─────────────────────────────────────────────────────────── */
-const VCARD = [
-  "BEGIN:VCARD",
-  "VERSION:3.0",
-  "N:Rako;Tony;;;",
-  "FN:Tony Rako",
-  "ORG:Resonant Studios",
-  "TITLE:Music Producer",
-  "TEL;TYPE=CELL,VOICE:+61480893303",
-  "EMAIL;TYPE=INTERNET,WORK:info@resonantstudios.com.au",
-  "ADR;TYPE=WORK:;;3 Harris Street;Yarraville;VIC;3013;Australia",
-  "URL:https://resonantstudios.com.au",
-  "END:VCARD",
-].join("\r\n");
-const QR_CODE_SRC =
-  `https://api.qrserver.com/v1/create-qr-code/?size=400x400&format=svg&margin=0&data=${encodeURIComponent(VCARD)}`;
+const QR_CODE_SRC = "/library/qr/connect.svg";
 
 export default function ConnectPage() {
   return (
@@ -120,7 +106,7 @@ export default function ConnectPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={QR_CODE_SRC}
-              alt="QR code — scan with your phone camera to save Tony Rako's contact details"
+              alt="QR code linking to resonantstudios.com.au/connect — same code that's printed on Tony Rako's business card"
               width={400}
               height={400}
               loading="eager"
