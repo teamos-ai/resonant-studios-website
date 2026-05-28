@@ -795,6 +795,33 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   .rs-intake-embed iframe { min-height: 1600px; }
 }
 
+/* Lead-magnet form embed — much SHORTER reservation than the booking
+   calendar because the lead-magnet forms are tiny (full name + email +
+   terms + submit ≈ 490px per GHL data-height). Wrapper is fully
+   transparent — any padding around the form card is the page surface
+   showing through, not a white iframe leak. height: auto lets the GHL
+   form_embed.js postMessage resize grow the iframe to match content. */
+.rs-lead-magnet-embed {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  min-height: 540px;
+  height: auto;
+}
+.rs-lead-magnet-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  min-height: 540px;
+  height: 540px;
+}
+@media (max-width: 720px) {
+  .rs-lead-magnet-embed,
+  .rs-lead-magnet-embed iframe { min-height: 620px; height: 620px; }
+}
+
 /* Responsive helpers — applied across pages. */
 @media (max-width: 880px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr !important; }

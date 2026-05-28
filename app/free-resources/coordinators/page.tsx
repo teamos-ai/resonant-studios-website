@@ -149,7 +149,7 @@ export default function CoordinatorsResourcesPage() {
               </div>
             </div>
 
-            <div className="rs-book-embed">
+            <div className="rs-lead-magnet-embed">
               {GHL_FORM_ID ? (
                 <iframe
                   src={GHL_FORM_SRC}
@@ -166,7 +166,9 @@ export default function CoordinatorsResourcesPage() {
                   data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
                   data-form-id={GHL_FORM_ID}
                   title="Download The Support Coordinator Combo — Resonant Studios"
-                  style={{ width: "100%", height: "100%", border: "none", borderRadius: 10, display: "block" }}
+                  /* height + background handled by .rs-lead-magnet-embed iframe rules;
+                     setting them inline would fight form_embed.js' postMessage resize. */
+                  style={{ border: "none", borderRadius: 10, display: "block", background: "transparent" }}
                 />
               ) : (
                 <div

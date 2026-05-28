@@ -119,34 +119,62 @@ body,
 }
 
 /* ---------- 2. Document base ---------- */
+/* Force EVERY iframe-document wrapper to transparent so any space around
+   or beneath the form card lets the host page's surface show through —
+   no white-iframe-body leak. The form card itself wins later (Section 3)
+   with its `background: var(--rs-card-bg)` rule. */
 html,
 body,
 body.hl-app,
 body .hl-app,
+body > *,
+body > * > *,
+body > * > * > *,
+body > div,
+body > section,
 body #_builder-form,
-body form {
+body .form-builder,
+body .form-wrapper,
+body .form-container,
+body [class*="form-"]:not(form):not(.form-field-wrapper):not(.form-control):not(.form-builder--item) {
   background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html,
+body,
+body.hl-app,
+body .hl-app {
   margin: 0 !important;
   padding: 0 !important;
   font-family: var(--rs-font-body) !important;
   color: var(--rs-ink) !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
 }
 
 /* ---------- 3. Form card surface ---------- */
-/* Targets every plausible form-root selector — the newer form builder
-   doesn't always render with id="_builder-form". */
+/* The <form> element IS the visual card. Stretch it to fill the iframe
+   width so it sits flush with the embed wrapper — no white frame around
+   it. The host page's wrapper provides outer padding/spacing. */
 body form,
 body form#_builder-form,
-body .form-builder,
-body .form-wrapper,
 body [data-form-id] {
   background: var(--rs-card-bg) !important;
+  background-color: var(--rs-card-bg) !important;
+  background-image: none !important;
   color: var(--rs-ink) !important;
   border: 1px solid var(--rs-rule) !important;
   border-radius: var(--rs-radius-card) !important;
   padding: 32px !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
   box-shadow: 0 1px 2px rgba(0,0,0,0.06),
               0 8px 24px -8px rgba(0,0,0,0.10) !important;
   font-family: var(--rs-font-body) !important;
