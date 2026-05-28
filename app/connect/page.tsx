@@ -19,25 +19,34 @@ export const metadata: Metadata = {
    SOCIAL MEDIA LINKS — change these as accounts come online.
      · Set a URL to render the link.
      · Set to "" (empty string) to hide that social entirely.
+     · `full: true` makes a tile span the full width (use it for
+       a featured/standalone link like Spotify).
+   Layout: 2-column grid, in array order. Instagram top-left,
+   Facebook top-right, Spotify full-width below — matches the
+   currently-configured order.
    ─────────────────────────────────────────────────────────── */
-const SOCIAL: Array<{ label: string; url: string }> = [
+const SOCIAL: Array<{ label: string; url: string; full?: boolean }> = [
   { label: "Instagram", url: "https://www.instagram.com/resonantstudios.au" },
-  { label: "LinkedIn",  url: "https://www.linkedin.com/in/tony-rako" },
-  { label: "YouTube",   url: "https://www.youtube.com/@resonantstudios" },
-  { label: "Spotify",   url: "https://open.spotify.com/artist/REPLACE_WITH_ARTIST_ID" },
+  { label: "Facebook",  url: "https://www.facebook.com/resonantstudios.au" },
+  { label: "Spotify",   url: "https://open.spotify.com/artist/REPLACE_WITH_ARTIST_ID", full: true },
   { label: "TikTok",    url: "" },   // empty = hidden
-  { label: "Facebook",  url: "" },   // empty = hidden
+  { label: "YouTube",   url: "" },   // empty = hidden
+  { label: "LinkedIn",  url: "" },   // empty = hidden
 ];
 
 /* ─────────────────────────────────────────────────────────────
-   SPOTIFY EMBED — paste the artist / album / playlist URL.
-     Format (artist):   https://open.spotify.com/embed/artist/<id>
-     Format (album):    https://open.spotify.com/embed/album/<id>
-     Format (playlist): https://open.spotify.com/embed/playlist/<id>
-   Append ?utm_source=generator&theme=0 for the dark Spotify theme.
+   SPOTIFY EMBED — paste a single TRACK URL for the featured player.
+     Track format (recommended):
+       https://open.spotify.com/embed/track/<id>?utm_source=generator&theme=0
+     Album / playlist also supported but use heavier heights.
+   Height presets:
+     · 80   — minimal (cover + play button only)
+     · 152  — compact (cover + title + artist + progress) ← default
+     · 352  — full panel (with upsell card, Spotify-marketing)
    ─────────────────────────────────────────────────────────── */
 const SPOTIFY_EMBED_SRC =
-  "https://open.spotify.com/embed/artist/4gzpq5DPGxSnKTe4SA8HAU?utm_source=generator&theme=0";
+  "https://open.spotify.com/embed/track/4iV5W9uYEdYUVa79Axb7Rh?utm_source=generator&theme=0";
+const SPOTIFY_EMBED_HEIGHT = 152;
 
 export default function ConnectPage() {
   return (
@@ -79,6 +88,24 @@ export default function ConnectPage() {
             </a>
           </li>
         </ul>
+      </section>
+
+      {/* FEATURED TRACK — compact Spotify embed surfaced at the top so
+          new visitors can hear Tony's music before they scroll. Single
+          track in a 152px-tall card; swap SPOTIFY_EMBED_SRC at the top
+          of this file to change which track plays. */}
+      <section className="rs-connect-section">
+        <h2>Featured track</h2>
+        <div className="rs-connect-spotify rs-connect-spotify--compact">
+          <iframe
+            src={SPOTIFY_EMBED_SRC}
+            width="100%"
+            height={SPOTIFY_EMBED_HEIGHT}
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Tony Rako — featured track on Spotify"
+          />
+        </div>
       </section>
 
       {/* AT A GLANCE — 3 stat cards, mirrors the Categories card in the reference */}
@@ -140,27 +167,17 @@ export default function ConnectPage() {
         </ul>
       </section>
 
-      {/* SPOTIFY EMBED */}
-      <section className="rs-connect-section">
-        <h2>Listen to my work</h2>
-        <div className="rs-connect-spotify">
-          <iframe
-            src={SPOTIFY_EMBED_SRC}
-            width="100%"
-            height="352"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            title="Tony Rako on Spotify"
-          />
-        </div>
-      </section>
-
-      {/* SOCIAL LINKS */}
+      {/* SOCIAL LINKS — 2-column grid in array order. Items with
+          `full: true` span both columns (use for featured links like
+          a Spotify artist profile sitting below the small socials). */}
       <section className="rs-connect-section">
         <h2>Find me online</h2>
         <ul className="rs-connect-socials" role="list">
           {SOCIAL.filter((s) => s.url).map((s) => (
-            <li key={s.label}>
+            <li
+              key={s.label}
+              className={s.full ? "rs-connect-social--wide" : undefined}
+            >
               <a href={s.url} target="_blank" rel="noopener noreferrer">
                 <span>{s.label}</span>
                 <span aria-hidden="true">↗</span>

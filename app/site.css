@@ -1603,8 +1603,8 @@ h3.rs-price-eyebrow {
   font-weight: 600;
   letter-spacing: var(--track-eyebrow);
   text-transform: uppercase;
-  background: var(--primary-wash);
-  color: var(--primary);
+  background: var(--secondary-wash);
+  color: var(--secondary);
   padding: var(--s-2) var(--s-3);
   border-radius: var(--r-pill);
   margin-top: var(--s-2);
@@ -1614,8 +1614,8 @@ h3.rs-price-eyebrow {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--primary);
-  box-shadow: 0 0 0 4px var(--primary-wash);
+  background: var(--secondary);
+  box-shadow: 0 0 0 4px var(--secondary-wash);
   flex-shrink: 0;
 }
 
@@ -1758,6 +1758,11 @@ h3.rs-price-eyebrow {
   border: 0;
   width: 100%;
 }
+/* Compact variant — single featured track. Spotify's embed has 16px
+   inner padding at small heights; the radius matches the player chrome. */
+.rs-connect-spotify--compact {
+  border-radius: 12px;
+}
 
 /* ---------- SOCIAL LINKS ---------- */
 .rs-connect-socials {
@@ -1795,6 +1800,12 @@ h3.rs-price-eyebrow {
 .rs-connect-socials a:focus-visible {
   outline: var(--focus-ring);
   outline-offset: 2px;
+}
+/* Full-width social tile — items with `full: true` in the SOCIAL array
+   render across both grid columns. Use for a featured social link like
+   a Spotify artist profile sitting below smaller social tiles. */
+.rs-connect-social--wide {
+  grid-column: 1 / -1;
 }
 
 /* ---------- STUDIO ADDRESS FOOTER ---------- */
