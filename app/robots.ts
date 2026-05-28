@@ -12,7 +12,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         // Block Next.js internal routes from being indexed (still allowed
         // to fetch — we just don't want them in search results).
-        disallow: ["/_next/", "/api/"],
+        // /thank-you is a post-conversion destination, not an entry point,
+        // so we keep it out of search results too. The page itself also
+        // sets robots: { index: false } in its metadata as a belt-and-braces.
+        disallow: ["/_next/", "/api/", "/thank-you"],
       },
     ],
     sitemap: "https://resonantstudios.com.au/sitemap.xml",
