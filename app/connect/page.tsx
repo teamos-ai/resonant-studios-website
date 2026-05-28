@@ -140,11 +140,15 @@ export default function ConnectPage() {
               desktop the file downloads and opens with the default
               vCard handler (Contacts app on mobile). The vCard data
               lives at public/library/contacts/tony-rako.vcf — edit
-              that file when contact details change. */}
+              that file when contact details change.
+              The `rs-save-contact` modifier paints this button sage
+              green AND adds a gentle 10s-loop attention pulse so it
+              reads as the primary "tap me" affordance in the row. */}
           <li>
             <a
               href="/library/contacts/tony-rako.vcf"
               download="tony-rako.vcf"
+              className="rs-save-contact"
               aria-label="Save Tony Rako to your contacts"
             >
               <UserPlus size={20} strokeWidth={1.75} aria-hidden="true" />

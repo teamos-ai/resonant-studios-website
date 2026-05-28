@@ -1682,6 +1682,42 @@ h3.rs-price-eyebrow {
   outline-offset: 2px;
 }
 
+/* Save Contact modifier — sage green colour + gentle 10s attention
+   pulse so the vCard download reads as the primary "tap me" action
+   in the quick-action row. Animation rest:active is roughly 85:15 —
+   8.5s of stillness, 1.5s of jiggle — quiet enough that the page
+   doesn't feel busy, lively enough that the button gets noticed
+   on every screen the visitor sits on. */
+.rs-connect-quick-actions a.rs-save-contact {
+  background: var(--secondary-wash);
+  border-color: var(--secondary);
+  color: var(--secondary);
+  animation: rs-attention-pulse 10s ease-in-out infinite;
+  transform-origin: center center;
+}
+.rs-connect-quick-actions a.rs-save-contact:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--secondary-ink);
+  /* Pause the pulse on hover — the hover lift + colour shift is
+     itself the "interactive" signal, no need to keep wiggling. */
+  animation: none;
+}
+.rs-connect-quick-actions a.rs-save-contact:focus-visible {
+  /* Same pause behaviour on keyboard focus. */
+  animation: none;
+}
+
+@keyframes rs-attention-pulse {
+  0%, 85%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  88% { transform: scale(1.06) rotate(-4deg); }
+  91% { transform: scale(1.04) rotate(4deg); }
+  94% { transform: scale(1.08) rotate(-3deg); }
+  97% { transform: scale(1.04) rotate(2deg); }
+}
+
 /* ---------- STAT CARDS ---------- */
 .rs-connect-stats {
   display: grid;
@@ -1876,6 +1912,13 @@ h3.rs-price-eyebrow {
   }
   .rs-connect-quick-actions a:hover,
   .rs-connect-link:hover {
+    transform: none;
+  }
+  /* Kill the Save Contact attention pulse — sage colour stays as the
+     visual signal, but the wiggle gets dropped for visitors who've
+     asked for reduced motion. */
+  .rs-connect-quick-actions a.rs-save-contact {
+    animation: none;
     transform: none;
   }
 }
