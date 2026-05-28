@@ -8,6 +8,7 @@ import {
   Calendar,
   Instagram,
   Facebook,
+  UserPlus,
 } from "lucide-react";
 
 /* Spotify isn't in lucide-react (brand-icon cleanup in v0.x). Inlining
@@ -129,6 +130,21 @@ export default function ConnectPage() {
           role="list"
           aria-label="Quick contact"
         >
+          {/* Save Contact — downloads tony-rako.vcf. On iOS the phone
+              opens the "Add to Contacts" sheet directly; on Android +
+              desktop the file downloads and opens with the default
+              vCard handler (Contacts app on mobile). The vCard data
+              lives at public/library/contacts/tony-rako.vcf — edit
+              that file when contact details change. */}
+          <li>
+            <a
+              href="/library/contacts/tony-rako.vcf"
+              download="tony-rako.vcf"
+              aria-label="Save Tony Rako to your contacts"
+            >
+              <UserPlus size={20} strokeWidth={1.75} aria-hidden="true" />
+            </a>
+          </li>
           <li>
             <a href="tel:+61480893303" aria-label="Call Tony Rako">
               <Phone size={20} strokeWidth={1.75} aria-hidden="true" />

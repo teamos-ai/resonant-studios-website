@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Rako;Tony;;;
+FN:Tony Rako
+ORG:Resonant Studios
+TITLE:Music Producer
+TEL;TYPE=CELL,VOICE:+61480893303
+EMAIL;TYPE=INTERNET,WORK:info@resonantstudios.com.au
+ADR;TYPE=WORK:;;3 Harris Street;Yarraville;VIC;3013;Australia
+URL:https://resonantstudios.com.au
+NOTE:Music producer · NDIS-aligned music sessions · Yarraville VIC. Book a free discovery call at resonantstudios.com.au/book
+END:VCARD
