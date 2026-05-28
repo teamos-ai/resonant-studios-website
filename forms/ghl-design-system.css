@@ -162,7 +162,14 @@ body [class*="form-"]:not(form):not(.form-field-wrapper):not(.form-control):not(
 /* ---------- 3. Form card surface ---------- */
 /* The <form> element IS the visual card. Stretch it to fill the iframe
    width so it sits flush with the embed wrapper — no white frame around
-   it. The host page's wrapper provides outer padding/spacing. */
+   it. The host page's wrapper provides outer padding/spacing.
+
+   No box-shadow: because Section 2 paints the iframe's html/body with
+   --rs-card-bg (same colour as the form card), any shadow projecting
+   downward lands on an identical-colour surface and reads as a visible
+   darker stripe below the card — particularly in dark mode where the
+   shadow alpha is heavier. The 1 px border + 20 px radius are enough
+   to define the card edge without help from a shadow. */
 body form,
 body form#_builder-form,
 body [data-form-id] {
@@ -177,19 +184,8 @@ body [data-form-id] {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06),
-              0 8px 24px -8px rgba(0,0,0,0.10) !important;
+  box-shadow: none !important;
   font-family: var(--rs-font-body) !important;
-}
-@media (prefers-color-scheme: dark) {
-  body form,
-  body form#_builder-form,
-  body .form-builder,
-  body .form-wrapper,
-  body [data-form-id] {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.30),
-                0 8px 24px -8px rgba(0,0,0,0.50) !important;
-  }
 }
 
 /* ---------- 4. Field wrappers + row spacing ---------- */
