@@ -10,7 +10,10 @@
 
 export const SITE_URL = "https://resonantstudios.com.au";
 export const SITE_NAME = "Resonant Studios";
-export const OG_IMAGE = `${SITE_URL}/library/photos/tony-with-participant.jpg`;
+export const OG_IMAGE = `${SITE_URL}/library/branding/og-logo.png`;
+export const OG_IMAGE_WIDTH = 1024;
+export const OG_IMAGE_HEIGHT = 1024;
+export const OG_IMAGE_ALT = "Resonant Studios — the brand mark on a wooden speaker chassis";
 
 /** Sitewide Organization — emit once in root layout. */
 export function organizationSchema() {

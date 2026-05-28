@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Nav from "./components/site/Nav";
 import Footer from "./components/site/Footer";
 import { JsonLd } from "./lib/seo/JsonLd";
-import { organizationSchema, OG_IMAGE } from "./lib/seo/schemas";
+import {
+  organizationSchema,
+  OG_IMAGE,
+  OG_IMAGE_WIDTH,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_ALT,
+} from "./lib/seo/schemas";
 import "./globals.css";
 import "./site.css";
 
@@ -38,9 +44,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Resonant Studios — NDIS music production in Yarraville",
+        width: OG_IMAGE_WIDTH,
+        height: OG_IMAGE_HEIGHT,
+        alt: OG_IMAGE_ALT,
       },
     ],
   },
