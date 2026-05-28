@@ -1589,14 +1589,19 @@ h3.rs-price-eyebrow {
 }
 /* QR variant — forced white background regardless of theme so the
    QR's "quiet zone" stays high-contrast and scans reliably from any
-   phone camera. Padding gives the quiet zone breathing room. */
+   phone camera. 10px padding lets the QR stretch close to the tile
+   border without crowding the quiet zone — wide enough for scanners,
+   tight enough that the QR fills the placeholder. */
 .rs-connect-hero-tile--qr {
   background: #FFFFFF;
   border-color: rgba(0, 0, 0, 0.08);
 }
 .rs-connect-hero-tile--qr img {
-  padding: var(--s-3);
+  width: 100%;
+  height: 100%;
+  padding: 10px;
   object-fit: contain;
+  box-sizing: border-box;
 }
 .rs-connect-hero h1 {
   font-family: var(--font-display);
