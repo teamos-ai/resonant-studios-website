@@ -7,12 +7,16 @@ export const metadata = {
     "Three free resources for parents of teenagers with an NDIS plan: the Funding Guide, the Plan-Review Worksheet, and the Parent Swipe Files. Plain-English answers to the question every parent asks first.",
 };
 
-// Lead-magnet form for The Parents Pack — to be created in Go High Level by
-// the Resonant team. When the form is live, set GHL_FORM_ID to the new form's
-// ID and the embed slot below will render the iframe automatically. Until then
-// the slot shows a clearly-labelled placeholder so the rest of the page remains
-// useful while the form is being built.
-const GHL_FORM_ID = ""; // TODO: paste the GHL form ID once created
+// Lead-magnet form for The Parents Pack — provided 2026-05-28.
+// Form ID:    dgj9ZYBJWvXUpjlc21fR
+// GHL name:   04 | Parent Pack Lead Magnet Form
+// Custom CSS: forms/ghl-design-system.css (paste into the form's
+//             Custom CSS panel inside the GHL builder). The same
+//             CSS file is used for both lead-magnet forms — both
+//             share the Resonant Studios design system. If the form
+//             is ever paused, blank GHL_FORM_ID and the conditional
+//             below restores the placeholder copy.
+const GHL_FORM_ID = "dgj9ZYBJWvXUpjlc21fR";
 const GHL_FORM_SRC = GHL_FORM_ID
   ? `https://link.teamos.ai/widget/form/${GHL_FORM_ID}`
   : "";
@@ -148,16 +152,26 @@ export default function ParentsResourcesPage() {
               </div>
             </div>
 
-            <div className="rs-book-embed">
+            <div className="rs-lead-magnet-embed">
               {GHL_FORM_ID ? (
                 <iframe
                   src={GHL_FORM_SRC}
                   id={`inline-${GHL_FORM_ID}`}
                   data-layout="{'id':'INLINE'}"
-                  data-form-name="Lead Magnet — Parents Pack"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="04 | Parent Pack Lead Magnet Form 🧲"
+                  data-height="490"
+                  data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
                   data-form-id={GHL_FORM_ID}
-                  title="Get The Parents Pack — Resonant Studios"
-                  style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
+                  title="04 | Parent Pack Lead Magnet Form 🧲"
+                  /* height + background handled by .rs-lead-magnet-embed iframe rules;
+                     setting them inline would fight form_embed.js' postMessage resize. */
+                  style={{ border: "none", borderRadius: 10, display: "block", background: "transparent" }}
                 />
               ) : (
                 <div
