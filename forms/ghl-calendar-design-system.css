@@ -1,112 +1,75 @@
 /* ============================================================
-   Resonant Studios — GHL CALENDAR custom CSS  (v1)
+   Resonant Studios — GHL CALENDAR custom CSS  (v2)
    ------------------------------------------------------------
-   Paste this whole file into the "Custom CSS" panel of the
-   GHL booking calendar (Calendars → your calendar →
-   Customizations → Custom CSS). Works on both Classic and
-   Neo calendar styles.
+   v2 REWRITE — replaces v1's substring-guess approach with real
+   class names + theme variables extracted from the live
+   LeadConnector CSS bundle.
+
+   WHERE TO PASTE THIS:
+     GHL UI → Settings → Calendars → [edit your calendar]
+            → Forms & Payment → Confirmation → Custom Code
+
+     The field is called "Custom Code", NOT "Custom CSS".
+     Calendars don't have a dedicated CSS panel like forms do.
+
+   FORMAT — paste the version of this file that includes the
+     <style>...</style> wrapper, NOT the raw CSS file itself.
+     The Custom Code field is HTML-typed code injection. Raw
+     CSS pasted without the <style> wrapper renders as visible
+     text on the booking page (the failure mode that produced
+     the screenshot dump in the v1 debug round).
 
    Strategy:
-     1. Reuse the same Resonant Studios design tokens as the
-        form CSS — calendars and forms must match pixel-for-pixel.
-     2. Hijack GHL's root theme CSS variables (same trick as
-        the form CSS) so the default theme blue dies at the
-        source.
-     3. Use substring class matching ([class*="day-cell"])
-        instead of exact class names — GHL renames calendar
-        classes between versions and substring matching survives
-        that churn.
-     4. Use ARIA attributes (aria-selected, aria-pressed,
-        aria-disabled) as primary state hooks. They're semantic
-        and version-resistant. Class-based fallbacks included
-        for older builds that don't apply ARIA.
-     5. Reuse form-widget selectors for the calendar's form
-        step (step 3 of the booking flow uses the form DOM).
+     1. Override the --appointment_widgets-* CSS variables at
+        :root — these are GHL's own first-party customisation
+        surface and the only thing the component bundle can't
+        out-specificity us on.
+     2. Layer real class selectors on top for properties not
+        covered by variables (radius, font-family, padding).
+     3. Cover BOTH Neo (Revamp) selectors AND Classic selectors
+        so the file survives a template flip.
 
    Source-of-truth file:
      https://github.com/teamos-ai/resonant-studios-website/blob/master/forms/ghl-calendar-design-system.css
-   Selector provenance (database):
-     https://github.com/teamos-ai/ghl-form-css-reference
-       (see categories starting with `calendar-`)
-   Companion CSS (for standalone forms):
-     https://github.com/teamos-ai/resonant-studios-website/blob/master/forms/ghl-design-system.css
+   Selector provenance:
+     https://github.com/teamos-ai/ghl-calendar-css-reference
+       (selectors.json — every selector below cites a `confirmed`
+        entry from this database, extracted from the live bundle.)
    ============================================================ */
 
-/* ---------- 1. Tokens — mirror site CSS variables ---------- */
-:root,
-html,
-body,
-.hl-app {
-  /* Resonant Studios design-system tokens (light mode default) */
+/* ---------- 1. Resonant Studios design tokens ---------- */
+:root {
+  /* Light mode defaults */
   --rs-card-bg:            #FFFFFF;
   --rs-field-bg:           #FFFFFF;
   --rs-field-border:       rgba(31, 30, 27, 0.18);
-  --rs-field-border-hover: rgba(31, 30, 27, 0.34);
   --rs-ink:                #1F1E1B;
   --rs-ink-muted:          rgba(31, 30, 27, 0.66);
   --rs-ink-soft:           rgba(31, 30, 27, 0.50);
   --rs-ink-faint:          rgba(31, 30, 27, 0.24);
   --rs-rule:               rgba(31, 30, 27, 0.10);
-  --rs-link:               #A95930;       /* terra-600 */
-  --rs-link-hover:         #8B4525;       /* terra-700 */
-  --rs-cta-bg:             #587058;       /* forest-600 */
-  --rs-cta-bg-hover:       #3F523F;       /* forest-700 */
+  --rs-link:               #A95930;
+  --rs-link-hover:         #8B4525;
+  --rs-cta-bg:             #587058;       /* forest-600 — light-mode CTA */
+  --rs-cta-bg-hover:       #3F523F;
   --rs-cta-ink:            #FFFFFF;
-  --rs-cta-wash:           rgba(88, 112, 88, 0.12);  /* forest-600 @ 12% */
+  --rs-cta-wash:           rgba(88, 112, 88, 0.12);
   --rs-error:              #9C4A3C;
-  --rs-error-wash:         rgba(156, 74, 60, 0.18);
   --rs-focus-ring:         #A95930;
   --rs-focus-ring-wash:    rgba(169, 89, 48, 0.28);
-
   --rs-radius-field:       10px;
   --rs-radius-card:        20px;
   --rs-radius-btn:         10px;
-  --rs-radius-date:        10px;   /* date tile corners */
-  --rs-radius-slot:        10px;   /* time-slot corners */
-
   --rs-font-body:          'Manrope', system-ui, -apple-system, BlinkMacSystemFont,
-                           'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                           'Segoe UI', Roboto, sans-serif;
   --rs-font-display:       'DM Serif Display', Georgia, serif;
-
-  /* HIJACK every GHL theme variable — same family as forms,
-     plus a few calendar-specific guesses (--calendar-primary etc).
-     Defining unused variables is a no-op, so the over-coverage is safe. */
-  --primary:                 var(--rs-cta-bg) !important;
-  --primary-color:           var(--rs-cta-bg) !important;
-  --primary-hover:           var(--rs-cta-bg-hover) !important;
-  --ghl-primary:             var(--rs-cta-bg) !important;
-  --ghl-primary-color:       var(--rs-cta-bg) !important;
-  --brand-primary:           var(--rs-cta-bg) !important;
-  --brand-color:             var(--rs-cta-bg) !important;
-  --theme-color:             var(--rs-cta-bg) !important;
-  --theme-primary:           var(--rs-cta-bg) !important;
-  --main-color:              var(--rs-cta-bg) !important;
-  --accent-color:            var(--rs-link) !important;
-  --link-color:              var(--rs-link) !important;
-  --button-color:            var(--rs-cta-bg) !important;
-  --button-bg-color:         var(--rs-cta-bg) !important;
-  --button-text-color:       var(--rs-cta-ink) !important;
-  /* Calendar-specific guesses */
-  --calendar-primary:        var(--rs-cta-bg) !important;
-  --calendar-color:          var(--rs-cta-bg) !important;
-  --calendar-bg:             var(--rs-card-bg) !important;
-  --date-selected-bg:        var(--rs-cta-bg) !important;
-  --date-selected-color:     var(--rs-cta-ink) !important;
-  --slot-selected-bg:        var(--rs-cta-bg) !important;
-  --slot-selected-color:     var(--rs-cta-ink) !important;
-  --slot-bg:                 var(--rs-field-bg) !important;
-  --slot-border:             var(--rs-field-border) !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root,
-  html,
-  body,
-  .hl-app {
-    --rs-card-bg:            #22272B;
-    --rs-field-bg:           #181C1F;
+  :root {
+    --rs-card-bg:            #22272B;     /* slate-700 */
+    --rs-field-bg:           #181C1F;     /* slate-800 */
     --rs-field-border:       rgba(230, 232, 234, 0.16);
-    --rs-field-border-hover: rgba(230, 232, 234, 0.32);
     --rs-ink:                #E6E8EA;
     --rs-ink-muted:          rgba(230, 232, 234, 0.70);
     --rs-ink-soft:           rgba(230, 232, 234, 0.52);
@@ -114,175 +77,122 @@ body,
     --rs-rule:               rgba(230, 232, 234, 0.10);
     --rs-link:               #E58F66;
     --rs-link-hover:         #F0A57F;
-    --rs-cta-bg:             #E58F66;     /* terra-300 */
+    --rs-cta-bg:             #E58F66;     /* terra-300 — dark-mode CTA */
     --rs-cta-bg-hover:       #F0A57F;
     --rs-cta-ink:            #1A0E08;
     --rs-cta-wash:           rgba(229, 143, 102, 0.14);
     --rs-error:              #E89A88;
-    --rs-error-wash:         rgba(232, 154, 136, 0.18);
     --rs-focus-ring:         #E58F66;
     --rs-focus-ring-wash:    rgba(229, 143, 102, 0.32);
-
-    /* Re-hijack theme vars for dark mode */
-    --primary:                 var(--rs-cta-bg) !important;
-    --primary-color:           var(--rs-cta-bg) !important;
-    --primary-hover:           var(--rs-cta-bg-hover) !important;
-    --ghl-primary:             var(--rs-cta-bg) !important;
-    --ghl-primary-color:       var(--rs-cta-bg) !important;
-    --brand-primary:           var(--rs-cta-bg) !important;
-    --brand-color:             var(--rs-cta-bg) !important;
-    --theme-color:             var(--rs-cta-bg) !important;
-    --theme-primary:           var(--rs-cta-bg) !important;
-    --main-color:              var(--rs-cta-bg) !important;
-    --accent-color:            var(--rs-link) !important;
-    --link-color:              var(--rs-link) !important;
-    --button-color:            var(--rs-cta-bg) !important;
-    --button-bg-color:         var(--rs-cta-bg) !important;
-    --button-text-color:       var(--rs-cta-ink) !important;
-    --calendar-primary:        var(--rs-cta-bg) !important;
-    --calendar-color:          var(--rs-cta-bg) !important;
-    --calendar-bg:             var(--rs-card-bg) !important;
-    --date-selected-bg:        var(--rs-cta-bg) !important;
-    --date-selected-color:     var(--rs-cta-ink) !important;
-    --slot-selected-bg:        var(--rs-cta-bg) !important;
-    --slot-selected-color:     var(--rs-cta-ink) !important;
-    --slot-bg:                 var(--rs-field-bg) !important;
-    --slot-border:             var(--rs-field-border) !important;
   }
 }
 
-/* ---------- 2. Document base ---------- */
-/* html/body match the card surface — any iframe space beyond the
-   widget reads as a quiet extension of the card, not a white leak.
-   Same pattern as the form CSS Section 2. */
+/* ============================================================
+   2. GHL FIRST-PARTY THEME VARIABLE HIJACK
+   ------------------------------------------------------------
+   These are the variables GHL's own CalendarComponent bundle
+   reads from. Overriding them at :root with !important is the
+   highest-leverage customisation surface. Everything else in
+   this file layers on top of these.
+   ============================================================ */
+:root {
+  --appointment_widgets-primary-color:       var(--rs-cta-bg) !important;
+  --appointment_widgets-light-primary-color: var(--rs-cta-wash) !important;
+  --appointment_widgets-background-color:    var(--rs-card-bg) !important;
+  --appointment_widgets-border-color:        var(--rs-field-border) !important;
+  --appointment_widgets-text-color:          var(--rs-ink) !important;
+  --appointment_widgets-light-text-color:    var(--rs-ink-muted) !important;
+  --appointment_widgets-blur-color:          var(--rs-card-bg) !important;
+
+  /* Plus the broader GHL theme-variable family (same hijack we
+     do on form widgets) for any cross-referenced rules. */
+  --primary:              var(--rs-cta-bg) !important;
+  --primary-color:        var(--rs-cta-bg) !important;
+  --primary-hover:        var(--rs-cta-bg-hover) !important;
+  --ghl-primary:          var(--rs-cta-bg) !important;
+  --ghl-primary-color:    var(--rs-cta-bg) !important;
+  --brand-primary:        var(--rs-cta-bg) !important;
+  --brand-color:          var(--rs-cta-bg) !important;
+  --theme-color:          var(--rs-cta-bg) !important;
+  --button-bg-color:      var(--rs-cta-bg) !important;
+  --button-text-color:    var(--rs-cta-ink) !important;
+}
+
+/* ---------- 3. Document base ---------- */
 html,
 body,
 body.hl-app,
-body .hl-app {
+.appointment_widgets--revamp--container {
   background: var(--rs-card-bg) !important;
   background-color: var(--rs-card-bg) !important;
-  background-image: none !important;
+  color: var(--rs-ink) !important;
+  font-family: var(--rs-font-body) !important;
   margin: 0 !important;
   padding: 0 !important;
-  font-family: var(--rs-font-body) !important;
-  color: var(--rs-ink) !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  width: 100% !important;
-  max-width: none !important;
-  box-sizing: border-box !important;
 }
 
-/* Intermediate wrappers stay transparent so html/body's card-bg
-   shows through everywhere. */
-body > *,
-body > * > *,
-body > * > * > *,
-body > div,
-body > section,
-body [class*="calendar-wrapper"],
-body [class*="widget-wrapper"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
+/* ---------- 4. Neo (Revamp) widget — root containers ---------- */
+/* DB ref: container-revamp — confirmed in CalendarComponent bundle */
+.appointment_widgets--revamp--container,
+.appointment_widgets--revamp--booking,
+.appointment_widgets--revamp--steps {
+  background: var(--rs-card-bg) !important;
+  color: var(--rs-ink) !important;
+  border-radius: var(--rs-radius-card) !important;
 }
 
-/* ---------- 3. Calendar widget container ---------- */
-body .calendar-container,
-body [class*="calendar-widget"],
-body [class*="calendar-container"],
-body .neo-calendar {
+/* ---------- 5. Classic widget — root containers ---------- */
+/* DB ref: container-classic — confirmed in _main bundle */
+.hl_widget,
+.hl_widget--pick-date,
+.hl_widget--pick-date-time,
+.hl_widget-body {
   background: var(--rs-card-bg) !important;
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
-  border: 1px solid var(--rs-rule) !important;
-  border-radius: var(--rs-radius-card) !important;
-  padding: 24px !important;
-  margin: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  box-shadow: none !important; /* avoid the dark-mode shadow stripe bug */
 }
 
-/* ---------- 4. Headings (month/year + step titles) ---------- */
-body [class*="calendar"] h1,
-body [class*="calendar"] h2,
-body [class*="month-header"],
-body [class*="month-label"],
-body [class*="step-title"] {
+/* ---------- 6. Headings + body text ---------- */
+.appointment_widgets--revamp--container h1,
+.appointment_widgets--revamp--container h2,
+.appointment_widgets--revamp--container h3,
+.hl_widget h1,
+.hl_widget h2,
+.hl_widget h3 {
   font-family: var(--rs-font-display) !important;
   font-weight: 500 !important;
   color: var(--rs-ink) !important;
   letter-spacing: -0.02em !important;
   line-height: 1.2 !important;
-  margin: 0 0 16px !important;
 }
 
-body [class*="calendar"] h1 { font-size: 24px !important; }
-body [class*="calendar"] h2,
-body [class*="month-header"],
-body [class*="month-label"] { font-size: 18px !important; }
-
-/* ---------- 5. Day-of-week column headers (Mon Tue Wed...) ---------- */
-body [class*="weekday"],
-body [class*="day-name"],
-body [class*="dow"] {
-  font-family: var(--rs-font-body) !important;
-  font-weight: 600 !important;
-  font-size: 12px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-  color: var(--rs-ink-muted) !important;
-  text-align: center !important;
-  padding: 8px 0 !important;
-}
-
-/* ---------- 6. Date tile (base) ---------- */
-/* The :not([class*="weekday"]) guard stops this rule from clobbering
-   the column headers, which also contain "day" in their class names. */
-body [class*="day-cell"],
-body [class*="date-cell"],
-body button[class*="day"]:not([class*="weekday"]):not([class*="day-name"]) {
+/* ---------- 7. Neo widget — date tiles ---------- */
+/* DB ref: date-tile-neo — confirmed */
+.widgets-date-block {
   background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
   font-weight: 500 !important;
-  font-size: 14px !important;
   border: 1px solid transparent !important;
-  border-radius: var(--rs-radius-date) !important;
+  border-radius: var(--rs-radius-field) !important;
   cursor: pointer !important;
-  min-height: 40px !important;
-  padding: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: none !important;
   transition: background-color 140ms cubic-bezier(0.22,1,0.36,1),
               border-color    140ms cubic-bezier(0.22,1,0.36,1),
               color           140ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-body [class*="day-cell"]:hover,
-body [class*="date-cell"]:hover,
-body button[class*="day"]:not([class*="weekday"]):not([class*="day-name"]):hover {
+.widgets-date-block:hover {
   background: var(--rs-cta-wash) !important;
   background-color: var(--rs-cta-wash) !important;
   border-color: var(--rs-field-border) !important;
-  color: var(--rs-ink) !important;
 }
 
-/* Date — selected (ARIA primary, class fallback) */
-body [class*="day-cell"][aria-pressed="true"],
-body [class*="day-cell"][aria-selected="true"],
-body [class*="date-cell"][aria-pressed="true"],
-body [class*="date-cell"][aria-selected="true"],
-body button[class*="day"][aria-pressed="true"],
-body button[class*="day"][aria-selected="true"],
-body [class*="day-cell"][class*="selected"],
-body [class*="date-cell"][class*="selected"] {
+/* DB ref: date-tile-neo-selected — confirmed */
+.widgets-date-block.selected-day,
+.widgets-date-block.selected-date,
+.selected-appointment-date {
   background: var(--rs-cta-bg) !important;
   background-color: var(--rs-cta-bg) !important;
   color: var(--rs-cta-ink) !important;
@@ -290,167 +200,101 @@ body [class*="date-cell"][class*="selected"] {
   font-weight: 600 !important;
 }
 
-/* Date — today (only when NOT also selected) */
-body [class*="day-cell"][class*="today"]:not([aria-pressed="true"]):not([aria-selected="true"]):not([class*="selected"]),
-body [class*="date-cell"][class*="today"]:not([aria-pressed="true"]):not([aria-selected="true"]):not([class*="selected"]),
-body button[class*="day"][class*="today"]:not([aria-pressed="true"]):not([aria-selected="true"]):not([class*="selected"]) {
+/* DB ref: date-tile-neo-today — confirmed */
+.widgets-date-block.today:not(.selected-day):not(.selected-date) {
   color: var(--rs-link) !important;
   font-weight: 700 !important;
   border-color: var(--rs-link) !important;
 }
 
-/* Date — disabled / unavailable */
-body [class*="day-cell"][disabled],
-body [class*="day-cell"][aria-disabled="true"],
-body [class*="day-cell"][class*="disabled"],
-body [class*="date-cell"][disabled],
-body [class*="date-cell"][aria-disabled="true"],
-body button[class*="day"][disabled] {
-  background: transparent !important;
+/* ---------- 8. Classic widget — date tiles ---------- */
+/* DB ref: date-tile-classic + date-tile-classic-content — confirmed */
+.vdpCell {
+  color: var(--rs-ink) !important;
+  font-family: var(--rs-font-body) !important;
+}
+
+.vdpCellContent {
+  border-radius: var(--rs-radius-field) !important;
+  transition: background-color 140ms cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+.vdpCell.selectable:hover .vdpCellContent {
+  background: var(--rs-cta-wash) !important;
+}
+
+.vdpCell.selected .vdpCellContent {
+  background: var(--rs-cta-bg) !important;
+  color: var(--rs-cta-ink) !important;
+}
+
+.vdpCell.today .vdpCellContent {
+  color: var(--rs-link) !important;
+  font-weight: 700 !important;
+}
+
+.vdpCell.disabled .vdpCellContent,
+.vdpCell.outOfRange .vdpCellContent {
   color: var(--rs-ink-faint) !important;
   cursor: not-allowed !important;
-  opacity: 0.35 !important;
-  pointer-events: none !important;
 }
 
-/* Date — outside current month (spillover from prev/next month) */
-body [class*="day-cell"][class*="other"],
-body [class*="day-cell"][class*="outside"],
-body [class*="day-cell"][class*="not-current-month"] {
-  color: var(--rs-ink-faint) !important;
-  opacity: 0.4 !important;
-}
-
-/* ---------- 7. Month navigation arrows ---------- */
-body button[class*="nav"],
-body button[class*="arrow"],
-body button[class*="prev"],
-body button[class*="next"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  color: var(--rs-ink) !important;
-  border: 1px solid var(--rs-field-border) !important;
-  border-radius: var(--rs-radius-field) !important;
-  width: 36px !important;
-  height: 36px !important;
-  min-height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-  transition: background-color 140ms cubic-bezier(0.22,1,0.36,1),
-              border-color    140ms cubic-bezier(0.22,1,0.36,1) !important;
-}
-
-body button[class*="nav"]:hover,
-body button[class*="arrow"]:hover,
-body button[class*="prev"]:hover,
-body button[class*="next"]:hover {
-  background: var(--rs-cta-wash) !important;
-  background-color: var(--rs-cta-wash) !important;
-  border-color: var(--rs-field-border-hover) !important;
-}
-
-body button[class*="nav"]:focus-visible,
-body button[class*="arrow"]:focus-visible,
-body button[class*="prev"]:focus-visible,
-body button[class*="next"]:focus-visible {
-  outline: 2px solid var(--rs-focus-ring) !important;
-  outline-offset: 2px !important;
-}
-
-/* ---------- 8. Time slot button (base) ---------- */
-body button[class*="slot"],
-body button[class*="time-slot"],
-body [class*="time-slot"] button {
+/* ---------- 9. Neo widget — time slots ---------- */
+/* DB ref: time-slot-neo — confirmed */
+.widgets-time-slot,
+.widgets-slot-block,
+.class-booking-seats-slot {
   background: var(--rs-field-bg) !important;
   background-color: var(--rs-field-bg) !important;
-  background-image: none !important;
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
   font-weight: 600 !important;
   font-size: 14px !important;
-  letter-spacing: 0 !important;
-  padding: 12px 16px !important;
   border: 1px solid var(--rs-field-border) !important;
-  border-radius: var(--rs-radius-slot) !important;
+  border-radius: var(--rs-radius-field) !important;
   cursor: pointer !important;
-  min-height: 44px !important;
-  width: 100% !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
   transition: background-color 140ms cubic-bezier(0.22,1,0.36,1),
               border-color    140ms cubic-bezier(0.22,1,0.36,1),
               color           140ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-body button[class*="slot"]:hover {
+.widgets-time-slot:hover,
+.widgets-slot-block:hover,
+.class-booking-seats-slot:hover {
   background: var(--rs-card-bg) !important;
   background-color: var(--rs-card-bg) !important;
   border-color: var(--rs-cta-bg) !important;
-  color: var(--rs-ink) !important;
 }
 
-/* Time slot — selected */
-body button[class*="slot"][aria-pressed="true"],
-body button[class*="slot"][aria-selected="true"],
-body button[class*="slot"][class*="selected"],
-body button[class*="slot"][class*="active"] {
+/* Selected time slot — GHL variant class names vary; cover the
+   plausible set + the [aria-pressed] / [aria-selected] semantic
+   fallbacks. */
+.widgets-time-slot.selected,
+.widgets-time-slot.active,
+.widgets-slot-block.selected,
+.widgets-slot-block.active,
+.widgets-time-slot[aria-pressed="true"],
+.widgets-time-slot[aria-selected="true"] {
   background: var(--rs-cta-bg) !important;
   background-color: var(--rs-cta-bg) !important;
   color: var(--rs-cta-ink) !important;
   border-color: var(--rs-cta-bg) !important;
 }
 
-/* Time slot — disabled */
-body button[class*="slot"][disabled],
-body button[class*="slot"][aria-disabled="true"] {
+/* DB ref: time-slot-neo-disabled — confirmed */
+.disable-slots,
+.widgets-time-slot.disable-slots {
   opacity: 0.35 !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
 }
 
-body button[class*="slot"]:focus-visible {
-  outline: 2px solid var(--rs-focus-ring) !important;
-  outline-offset: 2px !important;
-}
-
-/* ---------- 9. Timezone selector ---------- */
-body [class*="timezone"] select,
-body select[class*="timezone"],
-body [class*="timezone-picker"] {
-  background: var(--rs-field-bg) !important;
-  background-color: var(--rs-field-bg) !important;
-  background-image: none !important;
-  color: var(--rs-ink) !important;
-  font-family: var(--rs-font-body) !important;
-  font-size: 14px !important;
-  border: 1px solid var(--rs-field-border) !important;
-  border-radius: var(--rs-radius-field) !important;
-  padding: 8px 12px !important;
-  cursor: pointer !important;
-}
-
-body [class*="timezone"] {
-  color: var(--rs-ink-muted) !important;
-  font-size: 13px !important;
-  font-family: var(--rs-font-body) !important;
-}
-
-/* ---------- 10. Confirm / book / continue button ---------- */
-body button[type="submit"],
-body button[class*="confirm"],
-body button[class*="book"],
-body button[class*="continue"],
-body button[class*="next-btn"],
-body .ghl-btn,
-body .ghl-submit-btn {
+/* ---------- 10. Submit / confirm button ---------- */
+/* DB ref: submit-button-revamp — confirmed (.form-builder--btn-submit
+   is shared between calendar Neo widget + form widget). */
+.form-builder--btn-submit,
+.hl_button,
+button[type="submit"] {
   background: var(--rs-cta-bg) !important;
   background-color: var(--rs-cta-bg) !important;
   background-image: none !important;
@@ -465,7 +309,6 @@ body .ghl-submit-btn {
   border-radius: var(--rs-radius-btn) !important;
   cursor: pointer !important;
   min-height: 48px !important;
-  width: 100% !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -477,238 +320,159 @@ body .ghl-submit-btn {
               transform        140ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-body button[type="submit"]:hover,
-body button[class*="confirm"]:hover,
-body button[class*="book"]:hover,
-body button[class*="continue"]:hover,
-body button[class*="next-btn"]:hover,
-body .ghl-btn:hover {
+.form-builder--btn-submit:hover,
+.hl_button:hover,
+button[type="submit"]:hover {
   background: var(--rs-cta-bg-hover) !important;
   background-color: var(--rs-cta-bg-hover) !important;
-  color: var(--rs-cta-ink) !important;
   transform: translateY(-1px) !important;
 }
 
-body button[type="submit"]:focus-visible,
-body button[class*="confirm"]:focus-visible,
-body button[class*="book"]:focus-visible,
-body .ghl-btn:focus-visible {
+.form-builder--btn-submit:focus-visible,
+.hl_button:focus-visible,
+button[type="submit"]:focus-visible {
   outline: 2px solid var(--rs-focus-ring) !important;
   outline-offset: 3px !important;
 }
 
-body button[type="submit"]:disabled,
-body button[class*="confirm"]:disabled,
-body .ghl-btn:disabled {
+.form-builder--btn-submit:disabled,
+.hl_button:disabled,
+button[type="submit"]:disabled {
   opacity: 0.55 !important;
   cursor: not-allowed !important;
   transform: none !important;
 }
 
-body button[type="submit"] > *,
-body button[class*="confirm"] > *,
-body .ghl-btn > * {
-  color: var(--rs-cta-ink) !important;
+/* ---------- 11. Back button + navigation ---------- */
+/* DB ref: back-button-revamp + nav-container-revamp — confirmed */
+.appointment_widgets--revamp--back-button {
   background: transparent !important;
+  color: var(--rs-link) !important;
+  border: 1px solid var(--rs-field-border) !important;
+  border-radius: var(--rs-radius-btn) !important;
   font-family: var(--rs-font-body) !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  padding: 12px 18px !important;
+  transition: background-color 140ms cubic-bezier(0.22,1,0.36,1),
+              border-color    140ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-/* ---------- 11. Form step (reuse form-widget styling) ---------- */
-/* The calendar's form-fields screen reuses the form widget DOM, so
-   these rules duplicate the relevant sections of the standalone form
-   CSS. Keeps the form step on-brand without needing to paste both
-   files into the calendar Custom CSS panel. */
-body label,
-body .form-field-wrapper label,
-body .ghl-question label {
+.appointment_widgets--revamp--back-button:hover {
+  background: var(--rs-cta-wash) !important;
+  border-color: var(--rs-link) !important;
+}
+
+.appointment_widgets--revamp--navigation-container {
+  gap: 12px !important;
+}
+
+/* ---------- 12. No-slots empty state ---------- */
+/* DB ref: no-slots-message — confirmed */
+.no-slots-block {
+  color: var(--rs-ink-muted) !important;
+  font-family: var(--rs-font-body) !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  padding: 24px !important;
+}
+
+/* ---------- 13. Form step (visitor details — reuses form DOM) ---------- */
+/* DB ref: form-step-reuse — confirmed. Light copy of the form-widget
+   styling so the calendar's final step matches the brand without
+   needing to paste the form CSS file too. */
+label,
+.form-field-wrapper label,
+.ghl-question label {
   font-family: var(--rs-font-body) !important;
   font-weight: 600 !important;
   font-size: 14px !important;
-  line-height: 1.4 !important;
   color: var(--rs-ink) !important;
-  letter-spacing: 0 !important;
   margin: 0 0 8px !important;
   display: block !important;
 }
 
-body label sup,
-body label .required,
-body sup {
+label sup,
+label .required {
   color: var(--rs-error) !important;
   font-weight: 700 !important;
-  margin-left: 2px !important;
-  background: transparent !important;
 }
 
-body input[type="text"],
-body input[type="email"],
-body input[type="tel"],
-body input[type="number"],
-body input[type="url"],
-body input[type="date"],
-body input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="file"]):not([type="hidden"]),
-body textarea,
-body select:not([class*="timezone"]),
-body .form-control {
-  appearance: none !important;
-  -webkit-appearance: none !important;
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select,
+.form-control {
   background: var(--rs-field-bg) !important;
-  background-color: var(--rs-field-bg) !important;
-  background-image: none !important;
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
   font-size: 16px !important;
-  line-height: 1.5 !important;
   border: 1px solid var(--rs-field-border) !important;
   border-radius: var(--rs-radius-field) !important;
   padding: 12px 14px !important;
   width: 100% !important;
   box-sizing: border-box !important;
-  box-shadow: none !important;
   transition: border-color 220ms cubic-bezier(0.22,1,0.36,1) !important;
 }
 
-body input::placeholder,
-body textarea::placeholder,
-body input::-webkit-input-placeholder,
-body textarea::-webkit-input-placeholder,
-body input::-moz-placeholder,
-body textarea::-moz-placeholder,
-body input:-ms-input-placeholder,
-body textarea:-ms-input-placeholder {
+input::placeholder,
+textarea::placeholder {
   color: var(--rs-ink-soft) !important;
   opacity: 1 !important;
   -webkit-text-fill-color: var(--rs-ink-soft) !important;
 }
 
-body input:focus,
-body textarea:focus,
-body select:focus,
-body .form-control:focus {
+input:focus,
+textarea:focus,
+select:focus,
+.form-control:focus {
   outline: none !important;
   border-color: var(--rs-focus-ring) !important;
   box-shadow: 0 0 0 3px var(--rs-focus-ring-wash) !important;
 }
 
-body .ghl-question,
-body .form-field-wrapper {
-  margin-bottom: 20px !important;
-}
-
-/* Links inside form copy (terms etc.) */
-body a {
+a {
   color: var(--rs-link) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
   text-underline-offset: 2px !important;
-  transition: color 140ms cubic-bezier(0.22,1,0.36,1) !important;
 }
-body a:hover {
+a:hover {
   color: var(--rs-link-hover) !important;
   text-decoration-thickness: 2px !important;
 }
 
-/* Validation states */
-body .input-error,
-body input[aria-invalid="true"],
-body textarea[aria-invalid="true"],
-body select[aria-invalid="true"] {
-  border-color: var(--rs-error) !important;
-  box-shadow: 0 0 0 3px var(--rs-error-wash) !important;
-}
-body .field-error,
-body .hl-error,
-body .error-message {
-  color: var(--rs-error) !important;
-  font-family: var(--rs-font-body) !important;
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  margin-top: 6px !important;
-  display: block !important;
-}
-
-/* ---------- 12. Confirmation / booked screen ---------- */
-body [class*="confirmation"],
-body [class*="thank-you"],
-body [class*="success"],
-body [class*="booked"] {
-  background: transparent !important;
-  color: var(--rs-ink) !important;
-  font-family: var(--rs-font-body) !important;
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  padding: 32px !important;
-  text-align: center !important;
-}
-
-body [class*="confirmation"] h1,
-body [class*="confirmation"] h2,
-body [class*="confirmation"] h3,
-body [class*="thank-you"] h1,
-body [class*="thank-you"] h2,
-body [class*="success"] h1,
-body [class*="success"] h2 {
-  font-family: var(--rs-font-display) !important;
-  font-weight: 500 !important;
-  color: var(--rs-ink) !important;
-  letter-spacing: -0.02em !important;
-}
-
-/* ---------- 13. Reduced motion + forced colors ---------- */
+/* ---------- 14. Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  body [class*="day-cell"],
-  body [class*="date-cell"],
-  body button[class*="day"],
-  body button[class*="slot"],
-  body button[class*="nav"],
-  body button[type="submit"],
-  body button[class*="confirm"],
-  body .ghl-btn,
-  body input,
-  body textarea,
-  body select,
-  body a {
+  .widgets-date-block,
+  .widgets-time-slot,
+  .widgets-slot-block,
+  .vdpCell,
+  .vdpCellContent,
+  .form-builder--btn-submit,
+  .hl_button,
+  .appointment_widgets--revamp--back-button,
+  button[type="submit"],
+  input,
+  textarea,
+  select,
+  a {
     transition: none !important;
   }
-  body button[type="submit"]:hover,
-  body button[class*="confirm"]:hover,
-  body .ghl-btn:hover {
+  .form-builder--btn-submit:hover,
+  .hl_button:hover,
+  button[type="submit"]:hover {
     transform: none !important;
   }
 }
 
-@media (forced-colors: active) {
-  body [class*="day-cell"],
-  body [class*="date-cell"],
-  body button[class*="day"],
-  body button[class*="slot"],
-  body button[class*="nav"],
-  body button[type="submit"],
-  body button[class*="confirm"],
-  body .ghl-btn,
-  body input,
-  body textarea,
-  body select {
-    border: 1px solid CanvasText !important;
-    box-shadow: none !important;
-  }
-  body button[type="submit"],
-  body button[class*="confirm"],
-  body .ghl-btn,
-  body [aria-pressed="true"],
-  body [aria-selected="true"] {
-    background: Highlight !important;
-    color: HighlightText !important;
-  }
-  body a {
-    color: LinkText !important;
-  }
-}
-
 /* ============================================================
-   If anything doesn't bind after this paste, right-click the
-   stuck element → Inspect → copy outer HTML → send it. We'll
-   add the missing selector to both the website CSS AND the
-   database (teamos-ai/ghl-form-css-reference/selectors.json)
-   so future calendars benefit automatically.
+   If anything still doesn't bind after pasting + saving + hard-
+   refreshing, right-click the stuck element → Inspect → copy the
+   outer HTML AND the computed `background-color` / `color` →
+   send the snippet back. We'll add the missing selector to BOTH
+   this file AND the database (teamos-ai/ghl-calendar-css-reference)
+   in one pass so future calendars benefit automatically.
    ============================================================ */
