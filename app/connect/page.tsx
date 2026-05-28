@@ -48,17 +48,59 @@ const SPOTIFY_EMBED_SRC =
   "https://open.spotify.com/embed/track/4iV5W9uYEdYUVa79Axb7Rh?utm_source=generator&theme=0";
 const SPOTIFY_EMBED_HEIGHT = 152;
 
+/* ─────────────────────────────────────────────────────────────
+   vCARD QR CODE — encodes Tony's contact details into a single
+   QR code. Scanning with any phone camera prompts "Add to
+   Contacts" with all fields pre-filled. Edit the VCARD lines
+   below to change what gets saved.
+
+   The QR image is generated on demand by qrserver.com (a free,
+   reliable QR API used by millions of sites). To switch to a
+   pre-generated static file later: save a 600×600 PNG/SVG to
+   public/library/qr/tony-vcard.svg and set QR_CODE_SRC to
+   "/library/qr/tony-vcard.svg".
+   ─────────────────────────────────────────────────────────── */
+const VCARD = [
+  "BEGIN:VCARD",
+  "VERSION:3.0",
+  "N:Rako;Tony;;;",
+  "FN:Tony Rako",
+  "ORG:Resonant Studios",
+  "TITLE:Music Producer",
+  "TEL;TYPE=CELL,VOICE:+61480893303",
+  "EMAIL;TYPE=INTERNET,WORK:info@resonantstudios.com.au",
+  "ADR;TYPE=WORK:;;3 Harris Street;Yarraville;VIC;3013;Australia",
+  "URL:https://resonantstudios.com.au",
+  "END:VCARD",
+].join("\r\n");
+const QR_CODE_SRC =
+  `https://api.qrserver.com/v1/create-qr-code/?size=400x400&format=svg&margin=0&data=${encodeURIComponent(VCARD)}`;
+
 export default function ConnectPage() {
   return (
     <main className="rs-connect">
-      {/* HERO — photo + name + role + badge + quick contact icons */}
+      {/* HERO — two square tiles (QR + photo) + name + role + badge
+          + quick contact icons. Tile chrome (radius, border) mirrors
+          the Spotify embed for visual consistency. */}
       <section className="rs-connect-hero">
-        <div className="rs-connect-photo">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/library/photos/tony-headshot.jpg"
-            alt="Tony Rako, music producer at Resonant Studios"
-          />
+        <div className="rs-connect-hero-tiles">
+          <div className="rs-connect-hero-tile rs-connect-hero-tile--qr">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={QR_CODE_SRC}
+              alt="QR code — scan with your phone camera to save Tony Rako's contact details"
+              width={400}
+              height={400}
+              loading="eager"
+            />
+          </div>
+          <div className="rs-connect-hero-tile rs-connect-hero-tile--photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/library/photos/tony-headshot.jpg"
+              alt="Tony Rako, music producer at Resonant Studios"
+            />
+          </div>
         </div>
         <h1>Tony Rako</h1>
         <p className="rs-connect-role">Music Producer · Resonant Studios</p>

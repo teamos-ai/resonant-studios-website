@@ -1562,20 +1562,41 @@ h3.rs-price-eyebrow {
   gap: var(--s-3);
   box-shadow: var(--shadow-md);
 }
-.rs-connect-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+/* Two-tile hero — square QR + photo side-by-side. Tile chrome
+   (radius, border, shadow) matches the Spotify embed below so the
+   whole hero reads as a single coherent system. */
+.rs-connect-hero-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto var(--s-2);
+}
+.rs-connect-hero-tile {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-2); /* 10px — matches Spotify chrome */
   overflow: hidden;
-  border: 3px solid var(--primary);
-  margin-bottom: var(--s-2);
+  border: 1px solid var(--rule);
+  background: var(--bg);
   box-shadow: var(--shadow-sm);
 }
-.rs-connect-photo img {
+.rs-connect-hero-tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* QR variant — forced white background regardless of theme so the
+   QR's "quiet zone" stays high-contrast and scans reliably from any
+   phone camera. Padding gives the quiet zone breathing room. */
+.rs-connect-hero-tile--qr {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+.rs-connect-hero-tile--qr img {
+  padding: var(--s-3);
+  object-fit: contain;
 }
 .rs-connect-hero h1 {
   font-family: var(--font-display);
@@ -1606,7 +1627,8 @@ h3.rs-price-eyebrow {
   background: var(--secondary-wash);
   color: var(--secondary);
   padding: var(--s-2) var(--s-3);
-  border-radius: var(--r-pill);
+  /* Squircle radius matching the hero tiles + Spotify chrome. */
+  border-radius: var(--r-2);
   margin-top: var(--s-2);
 }
 .rs-connect-badge::before {
@@ -1633,7 +1655,8 @@ h3.rs-price-eyebrow {
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  /* Squircle matching the hero tiles + badge + Spotify chrome. */
+  border-radius: var(--r-2);
   background: var(--bg);
   border: 1px solid var(--rule);
   color: var(--ink);
