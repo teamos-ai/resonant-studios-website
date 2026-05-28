@@ -36,7 +36,7 @@ export default function BookPage() {
             <div className="rs-hero-eyebrow">Book a call</div>
             <h1 id="book-hero">Let&apos;s talk about <em>what you want to make.</em></h1>
             <p className="rs-hero-lead">
-              A free 30–45 minute discovery call. Phone or Zoom — whichever suits you. Bring your support coordinator, family member, or anyone who helps you decide.
+              A free 30–45 minute discovery call by phone. Bring your support coordinator, family member, or anyone who helps you decide — put us on speaker.
             </p>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function BookPage() {
               <div className="eyebrow" style={{ marginBottom: 10 }}>Pick a time</div>
               <h2 className="rs-book-title">A relaxed conversation, not a sales call.</h2>
               <p className="rs-book-lead">
-                All times are Melbourne local. Sessions are 30–45 minutes. You&apos;ll get a confirmation email with the Zoom link or Tony&apos;s number once you book.
+                All times are Melbourne local. Calls run 30–45 minutes. You&apos;ll get a confirmation email with Tony&apos;s number once you book — he&apos;ll call you at the time you picked.
               </p>
             </header>
 
