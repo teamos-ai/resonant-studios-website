@@ -161,11 +161,11 @@ export default function CoordinatorsResourcesPage() {
                   data-activation-value=""
                   data-deactivation-type="neverDeactivate"
                   data-deactivation-value=""
-                  data-form-name="04 | Coordinator Combo Lead Magnet Form"
+                  data-form-name="04 | Coordinator Combo Lead Magnet Form 🧲"
                   data-height="490"
                   data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
                   data-form-id={GHL_FORM_ID}
-                  title="Download The Support Coordinator Combo — Resonant Studios"
+                  title="04 | Coordinator Combo Lead Magnet Form 🧲"
                   /* height + background handled by .rs-lead-magnet-embed iframe rules;
                      setting them inline would fight form_embed.js' postMessage resize. */
                   style={{ border: "none", borderRadius: 10, display: "block", background: "transparent" }}
