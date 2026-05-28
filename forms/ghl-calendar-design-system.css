@@ -368,98 +368,73 @@ button[type="submit"]:disabled {
 }
 
 /* ============================================================
-   12. TIMEZONE DROPDOWN OVERLAP FIX
+   12. TIMEZONE DROPDOWN — Vue Multiselect (v2.2)
    ------------------------------------------------------------
-   The GHL timezone picker is a Vue Select / Multiselect component
-   with an internal search input that sits next to the selected
-   value display. Our generic input[type="text"] rule (Section 13)
-   forces a background + padding + border onto that internal input,
-   which breaks the component's layering and produces a visible
-   double-text overlay — the selected timezone label rendering on
-   top of the search input's placeholder.
+   v2.1 used substring matching ([class*="timezone"]) and Vue Select
+   class names (.vs__*). Live-bundle inspection confirmed:
 
-   Fix: neutralise input styling INSIDE any timezone wrapper so
-   the Vue Select renders as its library intended. Selected value
-   stays opaque + bold; placeholder text goes transparent except
-   when the user is actively typing (focused).
+     · The library is Vue Multiselect (NOT Vue Select).
+     · Wrapper is .widgets-timezone-picker (custom GHL class).
+     · The label is .timezone-label (sibling of the wrapper).
+     · The placeholder text comes from the
+       <input class="multiselect__input"> element's
+       placeholder="Type to search..." attribute — NOT a <span>.
+     · The selected value lives in .multiselect__single.
 
-   DB ref (forthcoming): timezone-vue-select-overlap
+   v2.1 created two visual problems:
+     1. Double-box layout — [class*="timezone"] matched both the
+        wrapper AND the label, painting borders on both.
+     2. Placeholder still showing — .vs__placeholder targeting
+        was for the wrong library; the actual placeholder lives
+        on .multiselect__input.
+
+   v2.2 fixes both by using the real class names.
+
+   DB ref (database v1.2.0):
+     timezone-multiselect-wrapper, timezone-multiselect-label,
+     timezone-multiselect-tags, timezone-multiselect-input,
+     timezone-multiselect-single, timezone-multiselect-arrow,
+     timezone-multiselect-dropdown
    ============================================================ */
 
-/* 12a. Strip our input styling INSIDE timezone wrappers. */
-[class*="timezone"] input,
-[class*="timezone"] input[type="text"],
-[class*="timezone"] input[type="search"],
-.vs__search,
-.multiselect__input {
+/* 12a. Label — sibling of the picker. NO border / padding box,
+   just typography. */
+.timezone-label {
+  font-family: var(--rs-font-body) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  color: var(--rs-ink) !important;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  display: block !important;
+}
+
+/* 12b. The wrapper itself is just a container — no styling.
+   The .multiselect__tags inside does the actual visual work. */
+.widgets-timezone-picker {
   background: transparent !important;
   background-color: transparent !important;
-  background-image: none !important;
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  font-size: inherit !important;
-  font-family: var(--rs-font-body) !important;
-  color: var(--rs-ink) !important;
-  caret-color: var(--rs-ink) !important;
-  box-shadow: none !important;
-  outline: none !important;
-  width: auto !important;
-  min-width: 0 !important;
 }
 
-/* 12b. Hide the placeholder text by default — it was overlapping
-   the selected value. (Refer to 12d for the focused-state override
-   that lets it reappear while the user is typing.) */
-[class*="timezone"] input::placeholder,
-[class*="timezone"] input::-webkit-input-placeholder,
-[class*="timezone"] input::-moz-placeholder,
-[class*="timezone"] input:-ms-input-placeholder,
-.vs__search::placeholder,
-.multiselect__placeholder {
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  opacity: 0 !important;
-}
-
-/* 12c. Make the selected value display opaque + on top. Covers
-   Vue Select v3 (.vs__selected) and Vue Multiselect
-   (.multiselect__single) class families. */
-[class*="timezone"] .vs__selected,
-[class*="timezone"] .multiselect__single,
-[class*="timezone"] [class*="single"],
-[class*="timezone"] [class*="display"],
-.vs__selected,
-.multiselect__single {
-  position: relative !important;
-  z-index: 2 !important;
-  color: var(--rs-ink) !important;
+.widgets-timezone-picker .multiselect {
   background: transparent !important;
-  font-family: var(--rs-font-body) !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  border: none !important;
+  min-height: auto !important;
+}
+.widgets-timezone-picker .multiselect:hover {
+  background: transparent !important;
 }
 
-/* 12d. When the user clicks INTO the dropdown to search, let the
-   placeholder come back so they know what to type. */
-[class*="timezone"] input:focus::placeholder,
-[class*="timezone"] input:focus::-webkit-input-placeholder,
-[class*="timezone"] input:focus::-moz-placeholder,
-.vs__search:focus::placeholder,
-.multiselect__input:focus::placeholder {
-  color: var(--rs-ink-soft) !important;
-  -webkit-text-fill-color: var(--rs-ink-soft) !important;
-  opacity: 1 !important;
-}
-
-/* 12e. The timezone wrapper itself — keep our styled look (border,
-   radius, padding) but only on the OUTER container, not the inner
-   input. */
-[class*="timezone-picker"],
-[class*="timezone-select"],
-[class*="timezone"]:not(input):not(.vs__search):not(.multiselect__input) {
+/* 12c. The actual visible "row" of the dropdown — Vue Multiselect's
+   .multiselect__tags is the element that should look like a styled
+   field box. This replaces v2.1's [class*="timezone"] wrapper rule. */
+.widgets-timezone-picker .multiselect__tags {
   background: var(--rs-field-bg) !important;
   background-color: var(--rs-field-bg) !important;
   color: var(--rs-ink) !important;
@@ -467,16 +442,87 @@ button[type="submit"]:disabled {
   font-size: 14px !important;
   border: 1px solid var(--rs-field-border) !important;
   border-radius: var(--rs-radius-field) !important;
-  padding: 10px 14px !important;
+  padding: 12px 40px 12px 14px !important; /* extra right padding for the arrow */
+  min-height: auto !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
-/* 12f. Dropdown options list — when the user opens the timezone
-   menu. Match the field surface so they don't see a white popup
-   in dark mode. */
-.vs__dropdown-menu,
-.multiselect__content-wrapper,
-[class*="timezone"] [class*="dropdown"],
-[class*="timezone"] [class*="menu"] {
+/* 12d. Kill the .multiselect__input — this is the <input> with
+   placeholder="Type to search..." that was overlapping the selected
+   value. Vue Multiselect needs the node to exist for keyboard
+   interaction; zero its visible footprint instead of display:none. */
+.widgets-timezone-picker .multiselect__input {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  border: 0 !important;
+  clip: rect(0,0,0,0) !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  caret-color: transparent !important;
+  font-size: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.widgets-timezone-picker .multiselect__input::placeholder,
+.widgets-timezone-picker .multiselect__input::-webkit-input-placeholder,
+.widgets-timezone-picker .multiselect__input::-moz-placeholder,
+.widgets-timezone-picker .multiselect__input:-ms-input-placeholder {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* 12e. The runtime-rendered .multiselect__placeholder span — only
+   visible when no value is selected. Hide it entirely since we want
+   the timezone to always show its default value. */
+.widgets-timezone-picker .multiselect__placeholder {
+  display: none !important;
+}
+
+/* 12f. The selected value display — make it the dominant element
+   in the row. */
+.widgets-timezone-picker .multiselect__single {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: var(--rs-ink) !important;
+  font-family: var(--rs-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 12g. Dropdown arrow — the triangle on the right. Vue Multiselect
+   uses .multiselect__select for the wrapper + .multiselect__select::before
+   for the triangle itself. */
+.widgets-timezone-picker .multiselect__select {
+  background: transparent !important;
+  height: 100% !important;
+  top: 0 !important;
+}
+.widgets-timezone-picker .multiselect__select::before {
+  border-top-color: var(--rs-link) !important;
+  border-bottom-color: transparent !important;
+}
+
+/* 12h. Open dropdown panel — the options list that appears when the
+   user clicks the picker. */
+.widgets-timezone-picker .multiselect__content-wrapper {
   background: var(--rs-field-bg) !important;
   background-color: var(--rs-field-bg) !important;
   color: var(--rs-ink) !important;
@@ -484,22 +530,39 @@ button[type="submit"]:disabled {
   border: 1px solid var(--rs-field-border) !important;
   border-radius: var(--rs-radius-field) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.10) !important;
+  margin-top: 4px !important;
 }
-.vs__dropdown-option,
-.multiselect__option {
+
+.widgets-timezone-picker .multiselect__option {
   color: var(--rs-ink) !important;
   font-family: var(--rs-font-body) !important;
+  font-size: 14px !important;
   padding: 10px 14px !important;
+  min-height: auto !important;
 }
-.vs__dropdown-option--highlight,
-.multiselect__option--highlight {
+
+.widgets-timezone-picker .multiselect__option--highlight {
   background: var(--rs-cta-wash) !important;
   color: var(--rs-ink) !important;
 }
-.vs__dropdown-option--selected,
-.multiselect__option--selected {
+
+.widgets-timezone-picker .multiselect__option--highlight::after {
+  display: none !important;
+}
+
+.widgets-timezone-picker .multiselect__option--selected {
   background: var(--rs-cta-bg) !important;
   color: var(--rs-cta-ink) !important;
+  font-weight: 600 !important;
+}
+
+.widgets-timezone-picker .multiselect__option--selected.multiselect__option--highlight {
+  background: var(--rs-cta-bg-hover) !important;
+  color: var(--rs-cta-ink) !important;
+}
+
+.widgets-timezone-picker .multiselect__option--selected::after {
+  display: none !important;
 }
 
 /* ---------- 13. No-slots empty state ---------- */
