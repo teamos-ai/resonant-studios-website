@@ -1526,3 +1526,310 @@ h3.rs-price-eyebrow {
   margin: 0;
   color: var(--ink);
 }
+
+/* ============================================================
+   CONNECT — mobile-first Linktree-style profile page.
+   Intended as the landing surface for QR codes on business cards.
+   Optimised for portrait mobile ≤480px and scales gracefully up.
+   Tokens used throughout so it auto-themes with the rest of the site.
+   ============================================================ */
+.rs-connect {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--s-5) var(--s-4) var(--s-9);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+@media (min-width: 720px) {
+  .rs-connect {
+    max-width: 560px;
+    padding: var(--s-7) var(--s-5) var(--s-9);
+    gap: var(--s-6);
+  }
+}
+
+/* ---------- HERO CARD ---------- */
+.rs-connect-hero {
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-5);
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  box-shadow: var(--shadow-md);
+}
+.rs-connect-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--primary);
+  margin-bottom: var(--s-2);
+  box-shadow: var(--shadow-sm);
+}
+.rs-connect-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.rs-connect-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+  margin: 0;
+}
+.rs-connect-role {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--track-eyebrow);
+  margin: 0;
+}
+.rs-connect-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  background: var(--primary-wash);
+  color: var(--primary);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-pill);
+  margin-top: var(--s-2);
+}
+.rs-connect-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-wash);
+  flex-shrink: 0;
+}
+
+/* Quick action icon row (call, sms, email) */
+.rs-connect-quick-actions {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-3) 0 0;
+  display: flex;
+  gap: var(--s-3);
+}
+.rs-connect-quick-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.rs-connect-quick-actions a:hover {
+  background: var(--primary-wash);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+.rs-connect-quick-actions a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- STAT CARDS ---------- */
+.rs-connect-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-3);
+}
+.rs-connect-stat {
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-4);
+  padding: var(--s-4) var(--s-2);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.rs-connect-stat-num {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 5vw, 1.8rem);
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: var(--s-1);
+}
+.rs-connect-stat-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--track-eyebrow);
+  line-height: 1.3;
+}
+
+/* ---------- SECTIONS ---------- */
+.rs-connect-section h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  margin: 0 0 var(--s-3);
+  letter-spacing: var(--track-tight);
+  line-height: var(--lh-heading);
+}
+
+/* ---------- LINK BUTTONS ---------- */
+.rs-connect-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.rs-connect-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  text-decoration: none;
+  min-height: var(--tap-target);
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.rs-connect-link:hover {
+  background: var(--bg-sunken);
+  border-color: var(--rule-strong);
+  transform: translateY(-1px);
+}
+.rs-connect-link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+.rs-connect-link--primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+  border-color: var(--primary);
+  font-weight: 600;
+}
+.rs-connect-link--primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--primary-ink);
+}
+
+/* ---------- SPOTIFY EMBED ---------- */
+.rs-connect-spotify {
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.rs-connect-spotify iframe {
+  display: block;
+  border: 0;
+  width: 100%;
+}
+
+/* ---------- SOCIAL LINKS ---------- */
+.rs-connect-socials {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-2);
+}
+.rs-connect-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  text-decoration: none;
+  min-height: var(--tap-target);
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+.rs-connect-socials a:hover {
+  background: var(--primary-wash);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.rs-connect-socials a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- STUDIO ADDRESS FOOTER ---------- */
+.rs-connect-address {
+  background: var(--bg-sunken);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+  padding: var(--s-5);
+  text-align: center;
+}
+.rs-connect-address p {
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-small);
+}
+.rs-connect-address a {
+  color: var(--primary);
+  font-weight: 500;
+}
+.rs-connect-address-foot {
+  margin-top: var(--s-4) !important;
+  font-size: var(--fs-micro) !important;
+  color: var(--ink-soft) !important;
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .rs-connect-quick-actions a,
+  .rs-connect-link,
+  .rs-connect-socials a {
+    transition: none;
+  }
+  .rs-connect-quick-actions a:hover,
+  .rs-connect-link:hover {
+    transform: none;
+  }
+}

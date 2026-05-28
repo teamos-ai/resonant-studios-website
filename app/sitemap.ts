@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/free-resources/parents", priority: 0.7, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.75, changeFrequency: "monthly" },
     { path: "/intake", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/connect", priority: 0.6, changeFrequency: "monthly" },
     { path: "/accessibility", priority: 0.5, changeFrequency: "yearly" },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
