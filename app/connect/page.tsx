@@ -83,7 +83,7 @@ const SOCIAL: SocialEntry[] = [
      · 352  — full panel (with upsell card, Spotify-marketing)
    ─────────────────────────────────────────────────────────── */
 const SPOTIFY_EMBED_SRC =
-  "https://open.spotify.com/embed/track/4iV5W9uYEdYUVa79Axb7Rh?utm_source=generator&theme=0";
+  "https://open.spotify.com/embed/track/2KUEvat0rU7Z6n152xAWju?utm_source=generator&theme=0";
 const SPOTIFY_EMBED_HEIGHT = 152;
 
 /* ─────────────────────────────────────────────────────────────
