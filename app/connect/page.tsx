@@ -97,8 +97,8 @@ export default function ConnectPage() {
           <div className="rs-connect-hero-tile rs-connect-hero-tile--photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/library/photos/tony-in-action.jpg"
-              alt="Tony Rako at the studio, mid-session at the mixing console"
+              src="/library/photos/tony-front-on.jpg"
+              alt="Tony Rako, founder of Resonant Studios — primary front-on portrait"
             />
           </div>
         </div>
