@@ -86,38 +86,14 @@ const SPOTIFY_EMBED_SRC =
   "https://open.spotify.com/embed/track/2KUEvat0rU7Z6n152xAWju?utm_source=generator&theme=0";
 const SPOTIFY_EMBED_HEIGHT = 152;
 
-/* ─────────────────────────────────────────────────────────────
-   QR CODE — points to this /connect page (the same QR printed on
-   the physical business card). Visitors who scan the on-screen QR
-   with another device land on this page; visitors already on this
-   page can show the QR to share the URL without typing.
-
-   File: public/library/qr/connect.svg
-   To regenerate: any QR generator (qr-code-generator.com works)
-     · Data: https://www.resonantstudios.com.au/connect
-     · Format: SVG (vector — sharper than PNG at every size)
-   Drop the new file at the same path, no code change needed.
-   ─────────────────────────────────────────────────────────── */
-const QR_CODE_SRC = "/library/qr/connect.svg";
-
 export default function ConnectPage() {
   return (
     <main className="rs-connect">
-      {/* HERO — two square tiles (QR + photo) + name + role + badge
-          + quick contact icons. Tile chrome (radius, border) mirrors
-          the Spotify embed for visual consistency. */}
+      {/* HERO — single square photo tile + name + role description +
+          badge + quick contact icons. Tile chrome (radius, border)
+          mirrors the Spotify embed for visual consistency. */}
       <section className="rs-connect-hero">
         <div className="rs-connect-hero-tiles">
-          <div className="rs-connect-hero-tile rs-connect-hero-tile--qr">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={QR_CODE_SRC}
-              alt="QR code linking to resonantstudios.com.au/connect — same code that's printed on Tony Rako's business card"
-              width={400}
-              height={400}
-              loading="eager"
-            />
-          </div>
           <div className="rs-connect-hero-tile rs-connect-hero-tile--photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -127,7 +103,10 @@ export default function ConnectPage() {
           </div>
         </div>
         <h1>Tony Rako</h1>
-        <p className="rs-connect-role">Music Producer · Resonant Studios</p>
+        <p className="rs-connect-role">
+          Founder of Resonant Studios, delivering accessible music production
+          sessions for people with disabilities.
+        </p>
         <div className="rs-connect-badge">Accepting new participants</div>
 
         <ul
@@ -172,6 +151,33 @@ export default function ConnectPage() {
               <Mail size={20} strokeWidth={1.75} aria-hidden="true" />
             </a>
           </li>
+        </ul>
+      </section>
+
+      {/* SOCIAL LINKS — sits directly under the hero's quick-action
+          row so the contact pathways (call/text/email/save) and the
+          broader online presence read as one continuous block.
+          2-column grid in array order. Items with `full: true` span
+          both columns (used for the featured Spotify link below the
+          small socials). Each row leads with the brand icon followed
+          by the platform name. */}
+      <section className="rs-connect-section">
+        <h2>Connect with Resonant Studios</h2>
+        <ul className="rs-connect-socials" role="list">
+          {SOCIAL.filter((s) => s.url).map((s) => {
+            const Icon = s.icon;
+            return (
+              <li
+                key={s.label}
+                className={s.full ? "rs-connect-social--wide" : undefined}
+              >
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {Icon ? <Icon size={18} /> : null}
+                  <span>{s.label}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
@@ -249,30 +255,6 @@ export default function ConnectPage() {
               <span aria-hidden="true">→</span>
             </Link>
           </li>
-        </ul>
-      </section>
-
-      {/* SOCIAL LINKS — 2-column grid in array order. Items with
-          `full: true` span both columns (used for the featured Spotify
-          link below the small socials). Each row leads with the brand
-          icon followed by the platform name. */}
-      <section className="rs-connect-section">
-        <h2>Find me online</h2>
-        <ul className="rs-connect-socials" role="list">
-          {SOCIAL.filter((s) => s.url).map((s) => {
-            const Icon = s.icon;
-            return (
-              <li
-                key={s.label}
-                className={s.full ? "rs-connect-social--wide" : undefined}
-              >
-                <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {Icon ? <Icon size={18} /> : null}
-                  <span>{s.label}</span>
-                </a>
-              </li>
-            );
-          })}
         </ul>
       </section>
 
