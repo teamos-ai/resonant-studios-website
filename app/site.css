@@ -1846,7 +1846,7 @@ h3.rs-price-eyebrow {
 .rs-connect-socials a {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: var(--s-3);
   padding: var(--s-3) var(--s-4);
   background: var(--bg-elevated);

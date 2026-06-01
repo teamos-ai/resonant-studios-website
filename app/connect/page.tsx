@@ -66,7 +66,7 @@ type SocialEntry = {
 const SOCIAL: SocialEntry[] = [
   { label: "Instagram", url: "https://www.instagram.com/resonantstudios.au", icon: Instagram },
   { label: "Facebook",  url: "https://www.facebook.com/resonantstudios.au",  icon: Facebook },
-  { label: "Spotify",   url: "https://open.spotify.com/artist/REPLACE_WITH_ARTIST_ID", icon: SpotifyIcon, full: true },
+  { label: "Spotify",   url: "https://open.spotify.com/artist/7zb5dfmNZ6KLk4cZYPxrmP", icon: SpotifyIcon, full: true },
   { label: "TikTok",    url: "" },   // empty = hidden (add icon when enabled)
   { label: "YouTube",   url: "" },   // empty = hidden
   { label: "LinkedIn",  url: "" },   // empty = hidden
