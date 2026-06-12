@@ -64,8 +64,8 @@ type SocialEntry = {
   full?: boolean;
 };
 const SOCIAL: SocialEntry[] = [
-  { label: "Instagram", url: "https://www.instagram.com/resonantstudios.au", icon: Instagram },
-  { label: "Facebook",  url: "https://www.facebook.com/resonantstudios.au",  icon: Facebook },
+  { label: "Instagram", url: "https://www.instagram.com/resonant_studios_au/", icon: Instagram },
+  { label: "Facebook",  url: "https://www.facebook.com/profile.php?id=61579670143213",  icon: Facebook },
   { label: "Spotify",   url: "https://open.spotify.com/artist/7zb5dfmNZ6KLk4cZYPxrmP", icon: SpotifyIcon, full: true },
   { label: "TikTok",    url: "" },   // empty = hidden (add icon when enabled)
   { label: "YouTube",   url: "" },   // empty = hidden
