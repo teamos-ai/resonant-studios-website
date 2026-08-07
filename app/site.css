@@ -600,6 +600,10 @@ body { padding-top: calc(var(--nav-h) + 16px); }
   letter-spacing: var(--track-tight); color: var(--ink); margin: 0 0 var(--s-3);
 }
 .rs-section-heading p { color: var(--ink-muted); font-size: var(--fs-lead); line-height: 1.5; }
+/* Section headings carrying a second paragraph (How It Works — Creative Journey
+   framing sits above the existing pace note). Matches the h2's bottom margin so
+   the block keeps its existing rhythm. */
+.rs-section-heading p + p { margin-top: var(--s-3); }
 
 /* Numbered step list (How It Works). */
 .rs-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s-5); }

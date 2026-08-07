@@ -25,7 +25,7 @@ export default function Footer() {
               />
             </Link>
             <p className="rs-footer-tagline">Your song. Your story. On Spotify.</p>
-            <p className="rs-footer-bio">A boutique, NDIS-aligned music production studio in Yarraville. Twelve weeks. One finished song. Released under your name. Built and run by Tony Rako.</p>
+            <p className="rs-footer-bio">A boutique, NDIS-aligned music production studio in Yarraville. Personalised one-on-one sessions. Your own music, released under your name. Built and run by Tony Rako.</p>
             <Link className="btn rs-footer-cta" href="/book">Book a call</Link>
           </div>
 

@@ -7,12 +7,12 @@ import { localBusinessSchema } from "./lib/seo/schemas";
 export const metadata: Metadata = {
   title: "Resonant Studios — NDIS music production in Melbourne's west",
   description:
-    "A boutique, NDIS-aligned music production studio in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name. Built and run by Tony Rako.",
+    "A boutique, NDIS-aligned music production studio in Yarraville VIC. Personalised one-on-one sessions working towards your own music, released on Spotify under your name. Built and run by Tony Rako.",
   alternates: { canonical: "https://resonantstudios.com.au/" },
   openGraph: {
     title: "Resonant Studios — NDIS music production in Melbourne's west",
     description:
-      "A boutique, NDIS-aligned music production studio in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name.",
+      "A boutique, NDIS-aligned music production studio in Yarraville VIC. Personalised one-on-one sessions working towards your own music, released on Spotify under your name.",
     url: "https://resonantstudios.com.au/",
   },
 };
@@ -72,7 +72,7 @@ export default function HomePage() {
                 <div className="card" style={{ background: "var(--bg)", boxShadow: "var(--shadow-sm), inset 0 0 0 1px var(--primary-wash)" }}>
                   <div className="eyebrow">What we do instead</div>
                   <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "var(--fs-h3)", margin: "var(--s-2) 0 var(--s-2)" }}>A finished, released song</h3>
-                  <p style={{ color: "var(--ink-muted)", fontSize: "var(--fs-small)" }}>Twelve weeks of one-on-one sessions ending with your track on Spotify, released under your name.</p>
+                  <p style={{ color: "var(--ink-muted)", fontSize: "var(--fs-small)" }}>Personalised one-on-one sessions working towards your track on Spotify, released under your name.</p>
                 </div>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
             </li>
           </ul>
           <p style={{ textAlign: "center", marginTop: "var(--s-7)" }}>
-            <Link className="btn btn-ghost" href="/how-it-works">See the full 12-week journey →</Link>
+            <Link className="btn btn-ghost" href="/how-it-works">See the full Creative Journey →</Link>
           </p>
         </div>
       </section>

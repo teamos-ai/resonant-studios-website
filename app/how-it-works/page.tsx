@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How it works — From first call to Spotify release",
   description:
-    "The Resonant Studios journey in five steps: discovery call, first session, songwriting and recording, mixing and mastering, and your song released on Spotify under your name.",
+    "Your Creative Journey at Resonant Studios in five stages: discovery call, first session, songwriting and recording, mixing and mastering, and your song released on Spotify under your name.",
   alternates: { canonical: "https://resonantstudios.com.au/how-it-works" },
   openGraph: {
     title: "How it works · Resonant Studios",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const steps = [
   { n: "01", h: "Free discovery call", p: "A relaxed 30–45 minute conversation with Tony. We talk through your goals, how NDIS funding works for sessions, and whether Resonant Studios is the right fit. No pressure." },
   { n: "02", h: "First session", p: "Three hours in the studio. You bring your ideas. Tony brings 25+ years of professional music production experience. We start shaping what your song could be." },
-  { n: "03", h: "Songwriting & recording", p: "Across the following weeks, we write lyrics, build the beat, record vocals and instruments — whatever the music needs, shaped around your goals and creative style. At your pace, in your style." },
+  { n: "03", h: "Songwriting & recording", p: "Over the coming sessions, we write lyrics, build the beat, record vocals and instruments — whatever the music needs, shaped around your goals and creative style. At your pace, in your style." },
   { n: "04", h: "Mixing & mastering", p: "Tony mixes and masters your finished track to the same professional standard he applies to major-label work — delivering the polished sound your music deserves." },
   { n: "05", h: "Released on Spotify", p: "Your song goes live on Spotify under your name. Friends, family, your support team — everyone can hear what you made. Yours to share, forever." },
 ];
@@ -34,9 +34,9 @@ export default function HowItWorksPage() {
         <div className="rs-hero-grid">
           <div className="rs-hero-content">
             <div className="rs-hero-eyebrow">How it works</div>
-            <h1 id="how-hero">Idea to Spotify in <em>twelve weeks.</em></h1>
+            <h1 id="how-hero">From idea to <em>Spotify.</em></h1>
             <p className="rs-hero-lead">
-              One discovery call. One session to explore your goals. A handful of weeks together. One finished song, released under your name. Here&apos;s the full path.
+              One discovery call. Personalised one-on-one sessions tailored to your goals. Through our Creative Journey, you&apos;ll work towards professionally recording and releasing your own music under your name.
             </p>
             <div className="rs-hero-cta">
               <Link className="btn" href="/book">Book a call</Link>
@@ -48,15 +48,16 @@ export default function HowItWorksPage() {
 
       <aside className="rs-easy-read-summary" role="note" aria-label="What this page is about">
         <strong>What this page is about</strong>
-        <p>This page shows the five steps from your first call to your finished song on Spotify.</p>
+        <p>This page shows the five stages of your Creative Journey, from your first call to your finished song on Spotify.</p>
       </aside>
 
       <section className="rs-page-section">
         <div className="rs-page-container editorial">
           <header className="rs-section-heading">
-            <div className="eyebrow">The journey</div>
-            <h2>Five steps. Twelve weeks. Your music.</h2>
-            <p>Every step happens at your pace. If a week needs to be lighter, we go lighter. If a session needs to focus on lyrics instead of recording, we do that.</p>
+            <div className="eyebrow">The Creative Journey</div>
+            <h2>Your Creative Journey. Five stages. Your music.</h2>
+            <p>The five stages below are an example of how your Creative Journey can progress. Every journey is personalised and can continue for as long as it supports your goals.</p>
+            <p>Every stage happens at your pace. If a session needs to be lighter, we go lighter. If it needs to focus on lyrics instead of recording, we do that.</p>
           </header>
           <ol className="rs-steps">
             {steps.map((s) => (
@@ -98,7 +99,7 @@ export default function HowItWorksPage() {
 
       <section className="rs-cta-band" style={{ backgroundImage: "url('/library/photos/studio-side.jpg')" }}>
         <div className="rs-cta-band-inner">
-          <h2>Ready to start the journey?</h2>
+          <h2>Ready to start your Creative Journey?</h2>
           <p>We start out with a call. It&apos;s where we work out if this is the right fit for you.</p>
           <div style={{ display: "flex", justifyContent: "center", gap: "var(--s-3)", flexWrap: "wrap" }}>
             <Link className="btn btn-lg" href="/book">Book a call</Link>

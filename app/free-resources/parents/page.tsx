@@ -88,7 +88,7 @@ export default function ParentsResourcesPage() {
                 NDIS plan. Six pages. No jargon. No selling. Covers how
                 Capacity Building funding actually works, what 09_009_0117_6_3
                 means, what to ask for at your plan review, how to vet a
-                creative provider, and what the 12-week journey looks like.
+                creative provider, and what the Creative Journey looks like.
               </p>
               <p style={{ color: "var(--ink-soft)", fontSize: "var(--fs-small)", marginTop: "var(--s-2)" }}>
                 Six pages · the answer every parent asks first.
@@ -117,7 +117,7 @@ export default function ParentsResourcesPage() {
               <p>
                 A seven-card swipe file you can keep on your phone — the line
                 item, the language to use, the words to avoid, what to look
-                for in a creative provider, and what the 12-week journey
+                for in a creative provider, and what the Creative Journey
                 actually feels like. Built for moments when you need the
                 answer fast.
               </p>

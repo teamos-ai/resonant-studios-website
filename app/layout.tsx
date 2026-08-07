@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s · Resonant Studios",
   },
   description:
-    "A boutique, NDIS-aligned music production studio in Yarraville VIC. Twelve weeks of one-on-one sessions ending with your finished song released on Spotify under your name. Built and run by Tony Rako. Call 0480 893 303.",
+    "A boutique, NDIS-aligned music production studio in Yarraville VIC. Personalised one-on-one sessions working towards your own music, released on Spotify under your name. Built and run by Tony Rako. Call 0480 893 303.",
   metadataBase: new URL("https://resonantstudios.com.au"),
   applicationName: "Resonant Studios",
   authors: [{ name: "Tony Rako", url: "https://resonantstudios.com.au/about" }],

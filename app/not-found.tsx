@@ -49,7 +49,7 @@ export default function NotFound() {
             <li className="card">
               <div className="eyebrow" style={{ color: "var(--primary)" }}>For participants</div>
               <h3 className="rs-feature-h">Sessions</h3>
-              <p>What a music session at Resonant Studios actually looks like, and how the 12-week journey runs.</p>
+              <p>What a music session at Resonant Studios actually looks like, and how your Creative Journey runs.</p>
               <p style={{ marginTop: "var(--s-3)" }}>
                 <Link href="/sessions">Sessions →</Link>
               </p>
