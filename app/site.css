@@ -1929,3 +1929,89 @@ h3.rs-price-eyebrow {
     transform: none;
   }
 }
+
+/* ── Intake · accessibility mode switch ────────────────────────────────
+   Toggles between the standard GHL intake form and a simplified,
+   screen-reader-friendly one. Both panels stay mounted; the inactive one
+   carries `hidden`, which drops it out of the accessibility tree so a
+   screen reader never walks through two intake forms in a row.
+   Scoped rather than a blanket [hidden] rule so nothing else on the site
+   changes behaviour. */
+.rs-a11y-switch[hidden],
+.booking-form-standard[hidden],
+.booking-form-accessible[hidden] { display: none !important; }
+
+.rs-a11y-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  margin-bottom: var(--s-6);
+  border: 2px solid var(--secondary);
+  border-radius: var(--r-3);
+  background: var(--secondary-wash);
+}
+.rs-a11y-switch-text {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+/* Panels take focus programmatically on switch so the region name is
+   announced. tabindex="-1" focus doesn't match :focus-visible, so no ring
+   appears for mouse users — but keyboard users still get one. `outline:
+   none` is never used here; the house rule holds. */
+.booking-form-standard:focus-visible,
+.booking-form-accessible:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: var(--r-3);
+}
+
+.rs-a11y-return { margin-bottom: var(--s-5); }
+.rs-a11y-panel-h {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-tight);
+  color: var(--ink);
+  margin: 0 0 var(--s-3);
+}
+.rs-a11y-panel-lead {
+  margin: 0 0 var(--s-6);
+  max-width: 62ch;
+  color: var(--ink-muted);
+  line-height: var(--lh-body);
+}
+
+/* Placeholder shown until the accessible GHL form is embedded. */
+.rs-a11y-embed-slot {
+  padding: var(--s-7) var(--s-6);
+  border: 1px dashed var(--rule);
+  border-radius: var(--r-3);
+  background: var(--bg-sunken);
+  text-align: center;
+  color: var(--ink-muted);
+}
+.rs-a11y-embed-slot p {
+  max-width: 48ch;
+  margin: 0 auto;
+  line-height: var(--lh-body);
+}
+
+/* Fade the incoming panel in. Elements inside `display: none` don't run
+   animations, so clearing `hidden` starts this from the top. The global
+   prefers-reduced-motion block already collapses the duration. */
+.rs-a11y-switch:not([hidden]),
+.booking-form-standard:not([hidden]),
+.booking-form-accessible:not([hidden]) {
+  animation: rs-form-fade var(--dur-mid) var(--ease) both;
+}
+@keyframes rs-form-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

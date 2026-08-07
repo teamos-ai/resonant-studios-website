@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import IntakeFormSwitcher from "../components/site/IntakeFormSwitcher";
 
 export const metadata: Metadata = {
   title: "Intake form — Start your sessions",
@@ -72,32 +73,74 @@ export default function IntakePage() {
               </div>
             </div>
 
-            <div className="rs-book-embed rs-intake-embed">
-              <iframe
-                src={GHL_INTAKE_SRC}
-                id={`inline-${GHL_INTAKE_ID}`}
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Resonant Intake Form"
-                data-height="4184"
-                data-layout-iframe-id={`inline-${GHL_INTAKE_ID}`}
-                data-form-id={GHL_INTAKE_ID}
-                title="Resonant Studios — intake form"
-                style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
-              />
-            </div>
+            <IntakeFormSwitcher
+              standard={
+                <>
+                  <div className="rs-book-embed rs-intake-embed">
+                    <iframe
+                      src={GHL_INTAKE_SRC}
+                      id={`inline-${GHL_INTAKE_ID}`}
+                      data-layout="{'id':'INLINE'}"
+                      data-trigger-type="alwaysShow"
+                      data-trigger-value=""
+                      data-activation-type="alwaysActivated"
+                      data-activation-value=""
+                      data-deactivation-type="neverDeactivate"
+                      data-deactivation-value=""
+                      data-form-name="Resonant Intake Form"
+                      data-height="4184"
+                      data-layout-iframe-id={`inline-${GHL_INTAKE_ID}`}
+                      data-form-id={GHL_INTAKE_ID}
+                      title="Resonant Studios — intake form"
+                      style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, display: "block" }}
+                    />
+                  </div>
 
-            <p className="rs-book-foot">
-              Form not loading?{" "}
-              <a href={GHL_INTAKE_SRC} target="_blank" rel="noopener noreferrer">Open the intake form in a new tab →</a>
-              <br />
-              Prefer to chat first? <Link href="/book">Book a free discovery call</Link> — Tony will walk you through the intake on the call.
-            </p>
+                  <p className="rs-book-foot">
+                    Form not loading?{" "}
+                    <a href={GHL_INTAKE_SRC} target="_blank" rel="noopener noreferrer">Open the intake form in a new tab →</a>
+                    <br />
+                    Prefer to chat first? <Link href="/book">Book a free discovery call</Link> — Tony will walk you through the intake on the call.
+                  </p>
+                </>
+              }
+              accessible={
+                /* ══════════════════════════════════════════════════════════
+                   PASTE THE ACCESSIBLE GHL FORM EMBED CODE HERE
+
+                   Replace this whole <div className="rs-a11y-embed-slot">
+                   block with the iframe from GHL. Copy the shape of the
+                   standard form's iframe above — same wrapper, same inline
+                   style — and give it its own form ID:
+
+                     <div className="rs-book-embed rs-intake-embed">
+                       <iframe
+                         src="https://link.teamos.ai/widget/form/YOUR_FORM_ID"
+                         id="inline-YOUR_FORM_ID"
+                         data-layout="{'id':'INLINE'}"
+                         data-form-id="YOUR_FORM_ID"
+                         data-height="…"
+                         title="Resonant Studios — accessible intake form"
+                         style={{ width: "100%", height: "100%",
+                                  border: "none", borderRadius: 8,
+                                  display: "block" }}
+                       />
+                     </div>
+
+                   The GHL embed loader at the bottom of this file already
+                   covers both forms — no extra <Script> needed.
+                   ══════════════════════════════════════════════════════════ */
+                <div className="rs-a11y-embed-slot" role="status">
+                  <div className="eyebrow" style={{ marginBottom: 12 }}>Coming online</div>
+                  <p>
+                    The accessible form is being set up. In the meantime, email{" "}
+                    <a href="mailto:info@resonantstudios.com.au">info@resonantstudios.com.au</a>{" "}
+                    or call <a href="tel:+61480893303">0480 893 303</a> and Tony will take
+                    you through the intake directly.
+                  </p>
+                </div>
+              }
+            />
           </div>
         </div>
       </section>
