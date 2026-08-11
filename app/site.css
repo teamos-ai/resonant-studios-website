@@ -1932,14 +1932,37 @@ h3.rs-price-eyebrow {
 
 /* ── Intake · accessibility mode switch ────────────────────────────────
    Toggles between the standard GHL intake form and a simplified,
-   screen-reader-friendly one. Both panels stay mounted; the inactive one
-   carries `hidden`, which drops it out of the accessibility tree so a
-   screen reader never walks through two intake forms in a row.
-   Scoped rather than a blanket [hidden] rule so nothing else on the site
-   changes behaviour. */
-.rs-a11y-switch[hidden],
-.booking-form-standard[hidden],
-.booking-form-accessible[hidden] { display: none !important; }
+   screen-reader-friendly one. Both panels stay mounted; the inactive one is
+   hidden with `visibility`, which drops it out of the accessibility tree and
+   the tab order so a screen reader never walks through two intake forms in
+   a row.
+
+   `display: none` would be the obvious choice and is the wrong one here. It
+   detaches the subtree from layout, so a hidden GHL iframe reports a
+   collapsed viewport and form_embed.js pins it to ~5px — switching back left
+   the form stuck at its CSS min-height behind an inner scrollbar.
+   `visibility: hidden` skips painting but keeps layout, so each iframe holds
+   the height its embed script measured.
+
+   The inactive panel is taken out of flow with absolute positioning rather
+   than collapsed to `height: 0` — collapsing clips the iframe before
+   form_embed.js can size it, and the accessible form then loads stuck at its
+   minimum with an inner scrollbar. Absolute keeps the box at full size; the
+   wrapper's `overflow: hidden` stops that off-flow height adding phantom
+   page scroll. */
+.rs-a11y-switch[hidden] { display: none !important; }
+
+.rs-form-panels { position: relative; overflow: hidden; }
+
+.booking-form-standard[data-active="false"],
+.booking-form-accessible[data-active="false"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  pointer-events: none;
+}
 
 .rs-a11y-switch {
   display: flex;
@@ -1988,27 +2011,11 @@ h3.rs-price-eyebrow {
   line-height: var(--lh-body);
 }
 
-/* Placeholder shown until the accessible GHL form is embedded. */
-.rs-a11y-embed-slot {
-  padding: var(--s-7) var(--s-6);
-  border: 1px dashed var(--rule);
-  border-radius: var(--r-3);
-  background: var(--bg-sunken);
-  text-align: center;
-  color: var(--ink-muted);
-}
-.rs-a11y-embed-slot p {
-  max-width: 48ch;
-  margin: 0 auto;
-  line-height: var(--lh-body);
-}
-
-/* Fade the incoming panel in. Elements inside `display: none` don't run
-   animations, so clearing `hidden` starts this from the top. The global
-   prefers-reduced-motion block already collapses the duration. */
+/* Fade the incoming panel in. The global prefers-reduced-motion block already
+   collapses the duration to near zero. */
 .rs-a11y-switch:not([hidden]),
-.booking-form-standard:not([hidden]),
-.booking-form-accessible:not([hidden]) {
+.booking-form-standard[data-active="true"],
+.booking-form-accessible[data-active="true"] {
   animation: rs-form-fade var(--dur-mid) var(--ease) both;
 }
 @keyframes rs-form-fade {

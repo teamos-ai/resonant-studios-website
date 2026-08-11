@@ -10,11 +10,17 @@ type Mode = "standard" | "accessible";
  * Intake form accessibility switch.
  *
  * Renders both intake forms and toggles which one is visible. Neither is ever
- * removed from the page — the inactive panel carries the `hidden` attribute,
- * which takes it out of the accessibility tree entirely. That matters more
- * than it looks: without it a screen reader would walk straight through the
- * "hidden" form's fields as well, and the user would meet two intake forms
- * back to back.
+ * removed from the page — the inactive panel is hidden with `visibility`,
+ * which takes it out of the accessibility tree and out of the tab order. That
+ * matters more than it looks: without it a screen reader would walk straight
+ * through the "hidden" form's fields as well, and the user would meet two
+ * intake forms back to back.
+ *
+ * Deliberately NOT `display: none`. That detaches the subtree from layout, so
+ * a hidden GHL iframe reports a collapsed viewport — form_embed.js then reads
+ * it as ~5px tall and pins that height. Switching back left the form stuck at
+ * its CSS min-height with an inner scrollbar. `visibility: hidden` skips paint
+ * but keeps layout, so each iframe holds the height its embed script measured.
  *
  * Both panels are passed in as slots so the GHL iframes stay server-rendered
  * — only the toggle state lives on the client.
@@ -70,11 +76,15 @@ export default function IntakeFormSwitcher({
         </button>
       </div>
 
+      {/* Positioning context: the inactive panel is taken out of flow but
+          kept at full size so its GHL iframe still measures correctly. */}
+      <div className="rs-form-panels">
       {/* ── Standard form ─────────────────────────────────────────────── */}
       <div
         ref={standardPanelRef}
         className="booking-form-standard"
-        hidden={mode !== "standard"}
+        data-active={mode === "standard"}
+        aria-hidden={mode !== "standard"}
         tabIndex={-1}
         role="region"
         aria-label="Standard intake form"
@@ -86,7 +96,8 @@ export default function IntakeFormSwitcher({
       <div
         ref={accessiblePanelRef}
         className="booking-form-accessible"
-        hidden={mode !== "accessible"}
+        data-active={mode === "accessible"}
+        aria-hidden={mode !== "accessible"}
         tabIndex={-1}
         role="region"
         aria-labelledby="accessible-form-heading"
@@ -111,6 +122,7 @@ export default function IntakeFormSwitcher({
         </p>
 
         {accessible}
+      </div>
       </div>
     </>
   );
