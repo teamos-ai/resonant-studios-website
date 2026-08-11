@@ -40,6 +40,16 @@ export default function IntakeFormSwitcher({
   // paint — otherwise landing on /intake would yank focus down the page.
   const hasSwitched = useRef(false);
 
+  // `inert` is the only hiding a descendant cannot override. form_embed.js
+  // writes inline visibility onto its iframes, which can defeat an inherited
+  // `visibility: hidden` — without this, a screen reader could still tab into
+  // the form that is supposed to be put away. Set from an effect rather than
+  // JSX because React 18's DOM typings don't carry the attribute.
+  useEffect(() => {
+    standardPanelRef.current?.toggleAttribute("inert", mode !== "standard");
+    accessiblePanelRef.current?.toggleAttribute("inert", mode !== "accessible");
+  }, [mode]);
+
   useEffect(() => {
     if (!hasSwitched.current) return;
     const panel =

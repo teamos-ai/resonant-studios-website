@@ -1949,7 +1949,17 @@ h3.rs-price-eyebrow {
    form_embed.js can size it, and the accessible form then loads stuck at its
    minimum with an inner scrollbar. Absolute keeps the box at full size; the
    wrapper's `overflow: hidden` stops that off-flow height adding phantom
-   page scroll. */
+   page scroll.
+
+   It is parked off-screen rather than merely hidden in place. form_embed.js
+   writes inline `visibility` and `opacity` onto its own iframes as it
+   activates them, and an inline `visibility: visible` on the iframe beats the
+   `visibility: hidden` it would otherwise inherit from this panel — the
+   inactive form then paints on top of the active one. Position is not
+   something a descendant can override, so off-screen is the only hiding that
+   survives that script. `visibility` stays on as the pre-hydration fallback,
+   and the component adds `inert` to keep the panel out of the accessibility
+   tree and the tab order even if GHL forces its iframe visible. */
 .rs-a11y-switch[hidden] { display: none !important; }
 
 .rs-form-panels { position: relative; overflow: hidden; }
@@ -1958,7 +1968,7 @@ h3.rs-price-eyebrow {
 .booking-form-accessible[data-active="false"] {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -200vw;
   width: 100%;
   visibility: hidden;
   pointer-events: none;
